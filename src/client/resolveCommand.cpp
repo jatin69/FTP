@@ -1,6 +1,6 @@
-#include "./server.hpp"
+#include "./client.hpp"
 
-Server::Command Server::resolveCommand(const string& incomingCommandTokens) {
+Client::Command Client::resolveCommand(const string& incomingCommandTokens) {
     string cmd(incomingCommandTokens);
     std::transform(cmd.begin(), cmd.end(), cmd.begin(), std::ptr_fun<int, int>(std::toupper));
     

@@ -7,6 +7,7 @@
 
 Client parseArgs(int argc, char** argv){
     Client ftpClient("127.0.0.1", 9000, true);
+    // Client ftpClient(argv[1], argv[2], true);
     if(ftpClient.isVerbose()){
         // print a lot of details
         fprintf(stdout, "Using Defaults. ./client 127.0.0.1 9000 -v");

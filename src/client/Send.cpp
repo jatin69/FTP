@@ -6,7 +6,7 @@
 int Client::Send(int sockfd, const string& msgToSend, int responseCode) {
     string msg;
     if(responseCode != 0){
-        msg += string("[Request : ") + to_string(responseCode) + string("] "); 
+        msg += string("[Request : ") + to_string(responseCode) + string("] \n"); 
     }
     msg += msgToSend;
     msg += FTP::DELIM;

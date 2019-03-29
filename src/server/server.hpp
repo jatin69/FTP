@@ -25,19 +25,30 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/time.h>
+#include <sys/select.h>
 #include <unistd.h> // close()
 #include <signal.h>
 using namespace std;
 
 // Preprocessors
+#define log(x) fprintf(stdout, "%s\n", x)
 #define logv(x) cout << "[Variable] " << #x << " = " << x << "\n"
 #define logs(x) fprintf(stdout, "[LOGGING] %s\n", x)
+#define logr(x) cout << "[REQUEST] " << #x << " = " << x << "\n"
 
 namespace FTP{
   const int LINE_SIZE = 1000;
   const int SOCKET_READ_BUFFER_SIZE = 10000;
   const int FILE_READ_BUFFER_SIZE = 100000;
   const string DELIM("\r\n");
+
+  /**These two cant be same for localhost
+   * Unfortunately, for localhost these cant be same.
+   * Because its the same machine. Same port can't be reused on same address.
+  */
+  const int OFFSET_dataConnectionToClient = 10; // normally its 0
+  const int OFFSET_dataConnectionToServer = 1; // normally its 1
 }
 
 // The following functions doesn't need to be part of the class
@@ -46,6 +57,7 @@ namespace FTP{
 
 // UTILS
 vector<string> commandTokenizer(string& cmd);
+vector<string> pathTokenizer(string& path);
 
 // Print error messages
 void printError(const char* msg = "No Detailed Info Available");
@@ -54,10 +66,15 @@ void printInfo(const char *msg, int value);
 
 void* _get_in_addr(struct sockaddr *sa);
 
+// Socket programming functions
+int createSocketAndConnectToHost(const char* host, int port);
+
 // Create a socket and bind it to the given port
 int createSocketAndBindToPort(int portNumber);
 void Listen(int sockfd, int backlog);
-int Accept(int sockfd);
+int Accept(int sockfd, string& ipAddressOfClient);
+
+string executeShellCommand(const string&);
 
 /** Class : Server
  *
@@ -67,21 +84,32 @@ class Server {
 
   private:
   
+  //  Control IP : with whom the connection is Active
+  string controlConnectionIP ;
   // Control port : Protocol Interpreter Connection Port
-  const int controlPortNumber;
+  const int controlConnectionPortNumber ;
   
-  // data Connection Port : Used for data connections
+  // Data Connection IP : By default it is same as controlConnectionIP
+  
+  // send data from which IP
+  string dataConnectionIP ;
+  
+  // send data to which port : in default cases, we send to client control port only
   int dataConnectionPortNumber;
+
+  // ignore this comment
+  // Data Connection Port Number : By default it is same as 1+controlConnectionPortNumber
 
   // Should the Server be verbose and print all internal messages
   bool isVerboseModeOn;
 
   // When accept() call is blocking, how many potential connections are allowed to queue up
-  const int backlogsPermitted;
+  const int backlogsPermitted ;
 
   // extraBuffer
-  string extraBuffer;
+  string extraBuffer = "";
 
+  
   // Internal Functions
 
   // Send the entire buffer
@@ -95,42 +123,78 @@ class Server {
   int _recv_all_binary(int sockfd, FILE *fd);
   
 
-  public:
+  public: 
 
   // Default cons'
   Server() :
-    controlPortNumber{9000},
-    dataConnectionPortNumber{9001},
+    controlConnectionIP{""},
+    controlConnectionPortNumber{9000},
+    dataConnectionIP{controlConnectionIP},
+    dataConnectionPortNumber{controlConnectionPortNumber + FTP::OFFSET_dataConnectionToClient},
     isVerboseModeOn{true},
-    backlogsPermitted{10},
-    extraBuffer{""}
-    {}
+    backlogsPermitted{10} {}
 
   // Paramterized cons'
   Server(
-    const int _controlPortNumber, 
-    int _dataConnectionPortNumber = -1,
+    const int _controlConnectionPortNumber,
     bool _isVerboseModeOn = true,
-    int _backlogsPermitted = 10,
-    string _extraBuffer = ""
+    int _backlogsPermitted = 10
     ) : 
-      controlPortNumber(_controlPortNumber),
-      dataConnectionPortNumber(_dataConnectionPortNumber == -1 ? controlPortNumber + 1 : _dataConnectionPortNumber),
+      controlConnectionIP{""},
+      controlConnectionPortNumber{_controlConnectionPortNumber},
+      dataConnectionIP{controlConnectionIP},
+      dataConnectionPortNumber{controlConnectionPortNumber + FTP::OFFSET_dataConnectionToClient},
       isVerboseModeOn(_isVerboseModeOn),
-      backlogsPermitted(_backlogsPermitted),
-      extraBuffer(_extraBuffer) { }
-  
+      backlogsPermitted{_backlogsPermitted} {}
 
   ~Server() = default;
   
 
-  /**************************** Getters ****************************/
+  /************************ Getters & Setters ***********************/
 
   bool isVerbose() { return isVerboseModeOn; }
-  int getControlPortNumber() { return controlPortNumber; }
   int getBacklogsPermitted() { return backlogsPermitted; }
+  
+  const char* getControlConnectionIP() { return controlConnectionIP.c_str(); }
+  int getControlConnectionPortNumber() { return controlConnectionPortNumber; }
+  void setControlConnectionIP(const char* _IP) { 
+    controlConnectionIP= _IP; 
+    dataConnectionIP = controlConnectionIP; 
+  }
+  
+  const char* getDataConnectionIP() { return dataConnectionIP.c_str(); }
+  int getDataConnectionPortNumber() { return dataConnectionPortNumber; }
+  
+  void setDataConnectionIP(string _IP) {
+    transform(_IP.begin(), _IP.end(), _IP.begin(), ::toupper);
 
+    /**Handling naive user
+     * 
+     * When user uses 127.0.0.1 or localhost as dumping site.
+     * He is being naive.
+     * User is trying to dump to his machine but he doesn't know 
+     * he has to use CURRENT_MACHINE_IP for this.
+     * 
+     * NO problem, we'll forgive him, for NOW
+    */
+    if( string("127.0.0.1").compare(_IP) == 0 || string("LOCALHOST").compare(_IP) == 0 ) {
+      _IP = "CURRENT_MACHINE_IP";
+    }
+    
+    if(string("CURRENT_MACHINE_IP").compare(_IP) == 0 ) {
+      resetDataConnectionIP();
+    }
+    else{
+      dataConnectionIP = _IP;
+    }
+    }  
+  void setDataConnectionPortNumber(int _port) { dataConnectionPortNumber = _port; }
 
+  void resetDataConnectionIP() { dataConnectionIP = controlConnectionIP;  }
+  void resetDataConnectionPortNumber() { 
+    dataConnectionPortNumber = controlConnectionPortNumber + FTP::OFFSET_dataConnectionToClient; 
+  }
+  
   /**************************** loggers ****************************/
   void logServerConfiguration();
 
@@ -149,6 +213,7 @@ class Server {
 
   // Receive ONE LINE
   int Recv(int sockfd, string& msgReceived);
+  int RecvWithTimeout(int controlConnectionfd, string& transferRequest, int timeoutDurationInSeconds);
   
   // Send the file `filename` through the socket as binary data
   int SendFile(int sockfd, const string& filename);  
@@ -161,6 +226,9 @@ class Server {
 
   // Protocol Interpreter for Server
   void initiateProtocolInterpreter(int connectionControlfd);
+
+  // control connection is passed so it can received transfer request
+  int createDataConnection(int controlConnectionfd);
 
   // Authentication
   int authenticateClient(int controlfd);
@@ -178,30 +246,36 @@ class Server {
     CWD, 
     MKD, RMD,
     STOR, RETR,
+    TYPE, MODE, STRU,
     QUIT, ABOR
   };
 
   // Resolve command type
-  Command resolveCommand(const std::string& incomingCommand);
+  Command resolveCommand(const string& incomingCommandTokens);
 
   // Wrappers to execute Commands
-  void cmd_INVALID(int);
-  void cmd_USER();
-  void cmd_PASS();
+  void cmd_USER(int, const vector<string>&);
+  void cmd_PASS(int, const vector<string>&);
+  
+  void cmd_PORT(int, const vector<string>& args = vector<string>());
+  void cmd_LIST(int, const vector<string>& args = vector<string>());
+  void cmd_CWD(int, const vector<string>&);
+  void cmd_MKD(int, const vector<string>&);
+  void cmd_RMD(int, const vector<string>&);
+  void cmd_STOR(int, const vector<string>&);
+  void cmd_RETR(int, const vector<string>&);
+  void cmd_TYPE(int, const vector<string>&);
+  void cmd_MODE(int, const vector<string>&);
+  void cmd_STRU(int, const vector<string>&);
+  
   void cmd_NOOP(int);
-  void cmd_SYS();
-  void cmd_PORT();
-  void cmd_PASV();
-  void cmd_LIST();
-  void cmd_PWD();
-  void cmd_CWD();
-  void cmd_MKD();
-  void cmd_RMD();
-  void cmd_STOR();
-  void cmd_RETR();
-  void cmd_QUIT();
-  void cmd_ABOR();
-
+  void cmd_SYS(int);
+  void cmd_PASV(int);
+  void cmd_PWD(int);
+  void cmd_QUIT(int);
+  void cmd_ABOR(int);
+  void cmd_INVALID(int);
+  
 };
 
 #endif // !SRC_SERVER_SERVER_H

@@ -8,10 +8,16 @@ int main(int argc, char **argv) {
     Client ftpClient = parseArgs(argc, argv);
 
     // create a socket and connect to Server
-    int clientControlfd = createSocketAndConnectToHost(ftpClient.getServerIP(), ftpClient.getServerPortNumber());
+    int controlConnectionfd = createSocketAndConnectToHost(
+                                    ftpClient.getControlConnectionIP(), 
+                                    ftpClient.getControlConnectionPortNumber()
+                                );
+
+    // log client info
+    ftpClient.logClientConfiguration();
 
     // Start the FTP protocol
-    ftpClient.initiateProtocolInterpreter(clientControlfd);
+    ftpClient.initiateProtocolInterpreter(controlConnectionfd);
 
     return 0;
 } 

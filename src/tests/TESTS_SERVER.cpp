@@ -14,11 +14,11 @@ namespace TESTS_SERVER {
     ftpServer2.logServerConfiguration();
 
     cout << "Two arguments\n";
-    Server ftpServer3(6000, 6001);
+    Server ftpServer3(6000, true);
     ftpServer3.logServerConfiguration();
 
     cout << "All Arguements\n";
-    Server ftpServer4(6000, 6001, true, 5, "$$$");
+    Server ftpServer4(6000, true, 5);
     ftpServer4.logServerConfiguration();
   }
 } // namespace TESTS_SERVER

@@ -85,3 +85,31 @@ int Server::_recv_all_binary(int sockfd, FILE* fd) {
 
     return totalNoOfBytesReceived;
 }
+
+// Recv with timeout
+
+int Server::RecvWithTimeout(int controlConnectionfd, string& transferRequest, int timeoutDurationInSeconds) {
+	fd_set fds;
+	int n;
+	struct timeval tv;
+	// set up the file descriptor set
+	FD_ZERO(&fds);
+	FD_SET(controlConnectionfd, &fds);
+	// set up the struct timeval for the timeout
+	tv.tv_sec = timeoutDurationInSeconds;
+	tv.tv_usec = 0;
+	// wait until timeout or data received
+
+	n = select(controlConnectionfd+1, &fds, NULL, NULL, &tv);
+	
+	if (n == 0){	// timeout 
+		return -2;		
+	} // timeout!
+	if (n == -1){	// error
+		printError("[RECV:TIMEOUT:ERROR]");
+		return -1;
+	} 
+
+	// data must be here, so do a normal recv()
+	return Recv(controlConnectionfd, transferRequest);
+}

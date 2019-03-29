@@ -11,16 +11,18 @@ const string PATH_SEPARATOR("/");
 string &ltrim(string &s);
 string &rtrim(string &s);
 string &trim(string &s);
-vector<string> split(const string &str, const string &delim, const int limit = 10);
+vector<string> splitString(const string &str, const string &delim, const int limit = 10);
 
-// breaks up the command and path
+// breaks up the command 
 vector<string> commandTokenizer(string& cmd) {
     trim(cmd);
-    vector<string> Command = split(cmd, " ");
-    vector<string> Path = split(Command.back(), PATH_SEPARATOR);
-    Command.pop_back();
-    Command.insert(Command.end(), Path.begin(), Path.end());
+    vector<string> Command = splitString(cmd, " ");
     return Command;
+}
+
+// breaks up path
+vector<string> pathTokenizer(string& path) {
+    return splitString(path, PATH_SEPARATOR);
 }
 
 // trim from start
@@ -43,7 +45,7 @@ std::string &rtrim(std::string &s) {
 // trim from both ends
 std::string &trim(std::string &s) { return ltrim(rtrim(s)); }
 
-vector<string> split(const string &str, const string &delim, const int limit) {
+vector<string> splitString(const string &str, const string &delim, const int limit) {
   vector<string> tokens;
   size_t prev = 0, pos = 0;
   int found = 0;

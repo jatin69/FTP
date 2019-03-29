@@ -3,10 +3,11 @@
 void Server::logServerConfiguration() {
     if(isVerbose()){
         logs("Server config is : ");
-        logv(controlPortNumber);
+        logv(controlConnectionIP);
+        logv(controlConnectionPortNumber);
+        logv(dataConnectionIP);
         logv(dataConnectionPortNumber);
         logv(isVerboseModeOn);
         logv(backlogsPermitted);
-        logv(extraBuffer);
     }
 }

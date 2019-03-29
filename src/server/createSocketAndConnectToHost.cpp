@@ -1,4 +1,4 @@
-#include "./client.hpp"
+#include "./server.hpp"
 
 int createSocketAndConnectToHost(const char* host, int portNumber) {
     
@@ -77,7 +77,7 @@ int createSocketAndConnectToHost(const char* host, int portNumber) {
         */
         sock_fd = socket(p->ai_family, p->ai_socktype, p->ai_protocol);
 	    if (sock_fd < 0){
-            printError("[CLIENT] : Cannot Open Socket");
+            printError("[SERVER] : Cannot Open Socket");
             continue;       // try next
 	    }
 
@@ -89,13 +89,17 @@ int createSocketAndConnectToHost(const char* host, int portNumber) {
          * Moreover, we don't want to listen. We just want to connect.
          * So we can do that directly without binding
         */
-
+        
 	    /* Connect to the HOST
-        *
-        */
+        * 
+        */ 
         int connect_status = connect(sock_fd, p->ai_addr, p->ai_addrlen);
         if (connect_status != 0){
-            printError("[CLIENT] : Cannot Connect to this Server IP");
+            printError("[SERVER] : Cannot Connect to this HOST IP");
+            char s[INET6_ADDRSTRLEN];
+            inet_ntop(p->ai_family, _get_in_addr((struct sockaddr *)p->ai_addr), s, sizeof s);
+            fprintf(stdout, "[SERVER:CONNECTION:FAIL] Can't Connect to  %s\n", s);
+
             close(sock_fd);      // close this socket
             continue;            // try another socket
         }
@@ -106,15 +110,15 @@ int createSocketAndConnectToHost(const char* host, int portNumber) {
 
 	// No Connection happened in the above loop
 	if (p == NULL){
-        printError("[CLIENT] : Failed to Connect to SERVER");
+        printError("[SERVER] : Failed to Connect to HOST");
 	    // returning will end the program and res will automatically be freed
-        throw std::runtime_error("Exiting : Client failed to establish connection");
+        throw std::runtime_error("Exiting : SERVER failed to establish connection");
 	}
 
     // Print out IP address
     char s[INET6_ADDRSTRLEN];
     inet_ntop(p->ai_family, _get_in_addr((struct sockaddr *)p->ai_addr), s, sizeof s);
-    fprintf(stdout, "\n[CLIENT:CONNECTION] Connected to  %s\n", s);
+    fprintf(stdout, "\n[SERVER:CONNECTION] Connected to  %s\n", s);
 
 
 	/* Don't need the structure with address info any more

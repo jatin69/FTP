@@ -1,4 +1,4 @@
-#include "./server.hpp"
+#include "./client.hpp"
 
 // @todo : document
 // this is done to support IPv6 
@@ -21,7 +21,7 @@ int Accept(int sockfd, string& ipAddressOfClient) {
    * 
   */
   inet_ntop(their_addr.ss_family, _get_in_addr((struct sockaddr *)&their_addr), s, sizeof s);
-  fprintf(stdout, "[SERVER]: Got connection from %s", s);
+  fprintf(stdout, "[CLIENT]: Got connection from %s", s);
   ipAddressOfClient = s;
 
   return connectionControlfd;

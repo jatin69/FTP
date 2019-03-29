@@ -4,9 +4,9 @@
 
 // Send ONE LINE
 int Server::Send(int sockfd, const string& msgToSend, int responseCode) {
-    string msg;
+    string msg = "[RESPONSE] ";
     if(responseCode != 0){
-        msg += string("[Response : ") + to_string(responseCode) + string("] "); 
+        msg += string("[Response : ") + to_string(responseCode) + string("] \n"); 
     }
     msg += msgToSend;
     msg += FTP::DELIM;

@@ -6,10 +6,10 @@
 // also Show what will be used once initialisation is done
 
 Server parseArgs(int argc, char** argv){
-    Server ftpServer(9000, 9001, true);
+    Server ftpServer(9000, true);
     if(ftpServer.isVerbose()){
         // print a lot of details
-        fprintf(stdout, "Using Defaults. ./server 9000 9001 -v");
+        fprintf(stdout, "Using Defaults. ./server 9000 -v");
         ftpServer.logServerConfiguration();
     }
     return ftpServer;

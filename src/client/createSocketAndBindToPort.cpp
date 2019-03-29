@@ -1,4 +1,4 @@
-#include "./server.hpp"
+#include "./client.hpp"
 
 /**Special Note :
  * 
@@ -22,7 +22,7 @@
  * 
  * It could be made class functions, but that'll give a wrong idea.
  * 
- * Therefore a copy is kept in both places to save all the trouble
+ * Therefore a copy is kept in both places to save all the trouble.
  * In the makefile, creation of `client` object uses only files in the client and util folder
  * therefore, this function is unique in that folder, and everything works fine.
  * 
@@ -110,7 +110,7 @@ int createSocketAndBindToPort(int portNumber){
         */
         sock_fd = socket(p->ai_family, p->ai_socktype, p->ai_protocol);
 	    if (sock_fd < 0){
-            printError("[SERVER] : Cannot Open Socket");
+            printError("[CLIENT] : Cannot Open Socket");
             continue;       // try next
 	    }
 
@@ -136,7 +136,7 @@ int createSocketAndBindToPort(int portNumber){
        */
 	  int bind_status = bind(sock_fd, p->ai_addr, p->ai_addrlen);
 	  if (bind_status != 0){
-	    printError("[SERVER] : Cannot Bind to Socket");
+	    printError("[CLIENT] : Cannot Bind to Socket");
         close(sock_fd);      // close this socket
 	    continue;            // try another socket
 	  }
@@ -147,7 +147,7 @@ int createSocketAndBindToPort(int portNumber){
 
 	// No binds happened in the above loop
 	if (p == NULL){
-        printError("[SERVER] : Failed to Bind to all addresses");
+        printError("[CLIENT] : Failed to Bind to all addresses");
         throw std::runtime_error("Exiting : Server Failed Binding");
 	}
 
