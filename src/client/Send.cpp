@@ -30,7 +30,7 @@ int Client::_send_all(int sockfd, const void *buffer, size_t length) {
         return -1; 
     }
 
-    return 0;
+    return totalNumberBytesSent;
 }
 
 // Send a file
@@ -53,21 +53,25 @@ int Client::SendFile(int sockfd, const string& filename) {
 }
 
 // Send the complete file pointed by fd as binary data
-int Client::_send_all_binary(int sockfd, FILE *fd, int sizeOfFile){
+int Client::_send_all_binary(int sockfd, FILE *fd, int size){
+    int sizeOfFile = size;
     unsigned char buffer[FTP::FILE_READ_BUFFER_SIZE+1];
-	int bytesSent=0;
 	
+    int totalNoOfBytesSent = 0;
+    int noOfBytesSent = 0;
+    int noOfBytesRead = 0;
     while(sizeOfFile > 0){
-        int noOfBytesRead = fread(buffer, 1, FTP::FILE_READ_BUFFER_SIZE, fd);
-		int status = _send_all(sockfd, buffer, noOfBytesRead);
-		if(status != 0 ){
-            printError("[SEND-BINARY]");
-			break;
-		}
-		sizeOfFile -= noOfBytesRead;
+        noOfBytesRead = fread(buffer, 1, FTP::FILE_READ_BUFFER_SIZE, fd);
+		noOfBytesSent = _send_all(sockfd, buffer, noOfBytesRead);
+		if(noOfBytesSent == -1){
+            printError("[CLIENT:SEND:BINARY]");
+            break;
+        }
+        sizeOfFile -= noOfBytesRead;
+        totalNoOfBytesSent += noOfBytesSent;
 	}
     if(sizeOfFile > 0){
         return -1;
     }
-	return 0;	
+	return totalNoOfBytesSent;	
 }

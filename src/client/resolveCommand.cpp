@@ -1,7 +1,7 @@
 #include "./client.hpp"
 
-Client::Command Client::resolveCommand(const string& incomingCommandTokens) {
-    string cmd(incomingCommandTokens);
+Client::Command Client::resolveCommand(const string& incomingCommand) {
+    string cmd(incomingCommand);
     std::transform(cmd.begin(), cmd.end(), cmd.begin(), std::ptr_fun<int, int>(std::toupper));
     
     if(cmd.compare("USER") == 0)     return Command::USER;

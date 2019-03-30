@@ -22,16 +22,16 @@ void Server::initiateProtocolInterpreter(int controlConnectionfd) {
         for(auto it : tokens){ cout << it << "\n"; }    // @todo : remove log
 
         Command commandType = resolveCommand(tokens.front());
-        logv(commandType);
+        // logv(commandType);
         
         switch (commandType){
             case Command::PORT      : { cmd_PORT     (controlConnectionfd, tokens);    } break;
             case Command::LIST      : { cmd_LIST     (controlConnectionfd, tokens);    } break;
-            // case Command::CWD       : { cmd_CWD      (controlConnectionfd, tokens);    } break;
-            // case Command::MKD       : { cmd_MKD      (controlConnectionfd, tokens);    } break;
-            // case Command::RMD       : { cmd_RMD      (controlConnectionfd, tokens);    } break;
-            // case Command::STOR      : { cmd_STOR     (controlConnectionfd, tokens);    } break;
-            // case Command::RETR      : { cmd_RETR     (controlConnectionfd, tokens);    } break;
+            case Command::CWD       : { cmd_CWD      (controlConnectionfd, tokens);    } break;
+            case Command::MKD       : { cmd_MKD      (controlConnectionfd, tokens);    } break;
+            case Command::RMD       : { cmd_RMD      (controlConnectionfd, tokens);    } break;
+            case Command::STOR      : { cmd_STOR     (controlConnectionfd, tokens);    } break;
+            case Command::RETR      : { cmd_RETR     (controlConnectionfd, tokens);    } break;
             // case Command::TYPE      : { cmd_TYPE     (controlConnectionfd, tokens);    } break;
             // case Command::MODE      : { cmd_MODE     (controlConnectionfd, tokens);    } break;
             // case Command::STRU      : { cmd_STRU     (controlConnectionfd, tokens);    } break;
