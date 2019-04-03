@@ -28,6 +28,7 @@
 #include <sys/wait.h>
 #include <unistd.h> // close()
 #include <signal.h>
+#include <execinfo.h>
 using namespace std;
 
 // Preprocessors
@@ -173,6 +174,9 @@ Client(
     // Protocol Interpreter for Client
     void initiateProtocolInterpreter(int connectionControlfd);
 
+    // Authentication
+    int authenticateFromServer(int controlConnectionfd);
+
     // control connection is passed so it can convey the receiver of transfer request
     int createDataConnection(int controlConnectionfd);
     int provideHelpAndCreateDataConnection(int controlConnectionfd);
@@ -188,7 +192,7 @@ Client(
     NOOP, SYS,
     PORT, PASV,
     LIST, PWD,
-    CWD, 
+    CWD, CDUP,
     MKD, RMD,
     STOR, RETR,
     TYPE, MODE, STRU,
@@ -202,10 +206,10 @@ Client(
 
   // Wrappers to execute Commands
   void cmd_USER(int, const vector<string>&);
-  void cmd_PASS(int, const vector<string>&);
+  int cmd_PASS(int, const vector<string>&);
   
-  void cmd_PORT(int, const vector<string>& args = vector<string>());
-  void cmd_LIST(int, const vector<string>& args = vector<string>());
+  void cmd_PORT(int, const vector<string>&);
+  void cmd_LIST(int, const vector<string>&);
   void cmd_CWD(int, const vector<string>&);
   void cmd_MKD(int, const vector<string>&);
   void cmd_RMD(int, const vector<string>&);
@@ -216,6 +220,7 @@ Client(
   void cmd_STRU(int, const vector<string>&);
   
   void cmd_NOOP(int);
+  void cmd_CDUP(int);
   void cmd_SYS(int);
   void cmd_PASV(int);
   void cmd_PWD(int);

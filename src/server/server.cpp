@@ -5,7 +5,7 @@ void Server::initiateProtocolInterpreter(int controlConnectionfd) {
     Send(controlConnectionfd, "J's FTP-Server ", 220);
     
     if(authenticateClient(controlConnectionfd) == 0){
-        Send(controlConnectionfd, "[AUTHENTICATION:FAILURE] Retry");
+        cmd_QUIT(controlConnectionfd);
         return;
     }
  
@@ -32,17 +32,17 @@ void Server::initiateProtocolInterpreter(int controlConnectionfd) {
             case Command::RMD       : { cmd_RMD      (controlConnectionfd, tokens);    } break;
             case Command::STOR      : { cmd_STOR     (controlConnectionfd, tokens);    } break;
             case Command::RETR      : { cmd_RETR     (controlConnectionfd, tokens);    } break;
-            // case Command::TYPE      : { cmd_TYPE     (controlConnectionfd, tokens);    } break;
-            // case Command::MODE      : { cmd_MODE     (controlConnectionfd, tokens);    } break;
-            // case Command::STRU      : { cmd_STRU     (controlConnectionfd, tokens);    } break;
-            
-            case Command::NOOP      : { cmd_NOOP     (controlConnectionfd);    } break;
-            case Command::SYS       : { cmd_SYS      (controlConnectionfd);    } break;
+            case Command::TYPE      : { cmd_TYPE     (controlConnectionfd, tokens);    } break;
+            case Command::MODE      : { cmd_MODE     (controlConnectionfd, tokens);    } break;
+            case Command::STRU      : { cmd_STRU     (controlConnectionfd, tokens);    } break;
+            case Command::NOOP      : { cmd_NOOP     (controlConnectionfd);            } break;
+            case Command::SYS       : { cmd_SYS      (controlConnectionfd);            } break;
+            case Command::CDUP      : { cmd_CDUP     (controlConnectionfd);            } break;
+            case Command::PWD       : { cmd_PWD      (controlConnectionfd);            } break;
+            case Command::QUIT      : { cmd_QUIT     (controlConnectionfd);            } break;
             // case Command::PASV      : { cmd_PASV     (controlConnectionfd);    } break;
-            case Command::PWD       : { cmd_PWD      (controlConnectionfd);    } break;
-            case Command::QUIT      : { cmd_QUIT     (controlConnectionfd);    } break;
             // case Command::ABOR      : { cmd_ABOR     (controlConnectionfd);    } break;
-            default                 : { cmd_INVALID  (controlConnectionfd);    } break;
+            default                 : { cmd_INVALID  (controlConnectionfd);            } break;
         }
 
         // keeping track of previous command and current command

@@ -29,6 +29,7 @@
 #include <sys/select.h>
 #include <unistd.h> // close()
 #include <signal.h>
+#include <execinfo.h>
 using namespace std;
 
 // Preprocessors
@@ -58,6 +59,10 @@ namespace FTP{
 // UTILS
 vector<string> commandTokenizer(string& cmd);
 vector<string> pathTokenizer(string& path);
+string oneWayHash(string s);
+
+// ftpUser ftpPassword table
+extern vector<pair<string, string>> hashedUserPassTable ;
 
 // Print error messages
 void printError(const char* msg = "No Detailed Info Available");
@@ -226,7 +231,6 @@ class Server {
   // Authentication
   int authenticateClient(int controlfd);
 
-
   /**************************** FTP Commands ****************************/
 
   // Supported Commands by Server
@@ -236,7 +240,7 @@ class Server {
     NOOP, SYS,
     PORT, PASV,
     LIST, PWD,
-    CWD, 
+    CWD, CDUP,
     MKD, RMD,
     STOR, RETR,
     TYPE, MODE, STRU,
@@ -247,11 +251,11 @@ class Server {
   Command resolveCommand(const string& incomingCommandTokens);
 
   // Wrappers to execute Commands
-  void cmd_USER(int, const vector<string>&);
-  void cmd_PASS(int, const vector<string>&);
+  string cmd_USER(int, const vector<string>&);
+  int cmd_PASS(int, const vector<string>&, const string&);
   
-  void cmd_PORT(int, const vector<string>& args = vector<string>());
-  void cmd_LIST(int, const vector<string>& args = vector<string>());
+  void cmd_PORT(int, const vector<string>&);
+  void cmd_LIST(int, const vector<string>&);
   void cmd_CWD(int, const vector<string>&);
   void cmd_MKD(int, const vector<string>&);
   void cmd_RMD(int, const vector<string>&);
@@ -262,6 +266,7 @@ class Server {
   void cmd_STRU(int, const vector<string>&);
   
   void cmd_NOOP(int);
+  void cmd_CDUP(int);
   void cmd_SYS(int);
   void cmd_PASV(int);
   void cmd_PWD(int);

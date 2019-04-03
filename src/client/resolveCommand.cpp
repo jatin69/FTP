@@ -16,6 +16,7 @@ Client::Command Client::resolveCommand(const string& incomingCommand) {
     if(cmd.compare("LIST") == 0)     return Command::LIST;
     if(cmd.compare("PWD") == 0)      return Command::PWD;
     if(cmd.compare("CWD") == 0)      return Command::CWD;
+    if(cmd.compare("CDUP") == 0)     return Command::CDUP;
 
     if(cmd.compare("MKD") == 0)      return Command::MKD;
     if(cmd.compare("RMD") == 0)      return Command::RMD;

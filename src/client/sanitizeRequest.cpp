@@ -28,8 +28,16 @@ string Client::sanitizeRequest(const string& req) {
         nickName = it.first;
         originalCommand = it.second;
         if (cmd.compare(0, nickName.length(), nickName) == 0){
-            cmd = originalCommand + cmd.substr(nickName.length(), cmd.length());
-            break;
+            if(cmd.length() > nickName.length()){
+                if(isspace(cmd.at(nickName.length()))){
+                    cmd = originalCommand + cmd.substr(nickName.length(), cmd.length());
+                    break;        
+                }
+            }
+            else{
+                cmd = originalCommand + cmd.substr(nickName.length(), cmd.length());
+                break;
+            }
         }
     }
 
