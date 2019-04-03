@@ -15,20 +15,29 @@ int Client::createDataConnection(int controlConnectionfd) {
     
     // we want to accept only 1 connection, i.e. of server
     // only one connection is allowed to queue up
-    Listen(dataConnectionSocketfd, 0);
+    Listen(dataConnectionSocketfd, 1);
     string ipAddressOfDataServer;
 
     // client is now ready and is listening
     // sleep(1);
     Send(controlConnectionfd, "Client Listening. Please Transfer.");
 
-    // accept is a blocking call. 
-    // it will ensure that it only return when a connection is made.
-    int dataConnectionfd = Accept(dataConnectionSocketfd, ipAddressOfDataServer);
+    // see if server needs any help with routing
+    string serverResponse;
+    Recv(controlConnectionfd, serverResponse);
+    logs(serverResponse.c_str());
+
+    int dataConnectionfd;
+    if(serverResponse.find("[RESPONSE] HELP ME") == 0){   // server needs help
+        logs("CLIENT HELP XXXXXXXXXXXXX");
+        dataConnectionfd = provideHelpAndCreateDataConnection(controlConnectionfd);
+    } 
+    else{   // server is ready
+        
+        // accept is a blocking call. 
+        // it will ensure that it only return when a connection is made.
+        dataConnectionfd = Accept(dataConnectionSocketfd, ipAddressOfDataServer);
+    }
 
     return dataConnectionfd;
-
-    // server actually can't connect himself
-    // he needs a transfer request
-    // maybe it'll be needed with NAT
 }

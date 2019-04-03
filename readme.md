@@ -17,6 +17,16 @@ Checkout the [todoList](./todoList.md)
 - For localhost you can use `./server 9000` and `./client 127.0.0.1 9000`
 - Also ensure that you run server first.
 
+## How to Debug
+
+- To verify everything is going as intented, use `strace`
+- `strace -fe trace=process,network,signal ./server 9000`
+- `strace -fe trace=process,network,signal ./client 127.0.0.1 9000`
+
+## How to production
+
+- To hide all output from server/client use the null device `./server &>/dev/null`
+
 ## Testing
 
 The code in this project has been tested in `all three cases` below and it works. Phew.

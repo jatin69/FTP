@@ -68,6 +68,7 @@ void* _get_in_addr(struct sockaddr *sa);
 
 // Socket programming functions
 int createSocketAndConnectToHost(const char* host, int port);
+bool doesRouteToHostExist(const char* host, int portNumber);
 
 // Create a socket and bind it to the given port
 int createSocketAndBindToPort(int portNumber);
@@ -100,16 +101,12 @@ class Server {
   // ignore this comment
   // Data Connection Port Number : By default it is same as 1+controlConnectionPortNumber
 
-  // Should the Server be verbose and print all internal messages
-  bool isVerboseModeOn;
-
   // When accept() call is blocking, how many potential connections are allowed to queue up
   const int backlogsPermitted ;
 
   // extraBuffer
   string extraBuffer = "";
 
-  
   // Internal Functions
 
   // Send the entire buffer
@@ -131,28 +128,23 @@ class Server {
     controlConnectionPortNumber{9000},
     dataConnectionIP{controlConnectionIP},
     dataConnectionPortNumber{controlConnectionPortNumber + FTP::OFFSET_dataConnectionToClient},
-    isVerboseModeOn{true},
     backlogsPermitted{10} {}
 
   // Paramterized cons'
   Server(
     const int _controlConnectionPortNumber,
-    bool _isVerboseModeOn = true,
     int _backlogsPermitted = 10
     ) : 
       controlConnectionIP{""},
       controlConnectionPortNumber{_controlConnectionPortNumber},
       dataConnectionIP{controlConnectionIP},
       dataConnectionPortNumber{controlConnectionPortNumber + FTP::OFFSET_dataConnectionToClient},
-      isVerboseModeOn(_isVerboseModeOn),
       backlogsPermitted{_backlogsPermitted} {}
 
   ~Server() = default;
   
 
   /************************ Getters & Setters ***********************/
-
-  bool isVerbose() { return isVerboseModeOn; }
   int getBacklogsPermitted() { return backlogsPermitted; }
   
   const char* getControlConnectionIP() { return controlConnectionIP.c_str(); }
@@ -187,7 +179,7 @@ class Server {
     else{
       dataConnectionIP = _IP;
     }
-    }  
+  }  
   void setDataConnectionPortNumber(int _port) { dataConnectionPortNumber = _port; }
 
   void resetDataConnectionIP() { dataConnectionIP = controlConnectionIP;  }
@@ -229,6 +221,7 @@ class Server {
 
   // control connection is passed so it can received transfer request
   int createDataConnection(int controlConnectionfd);
+  int askForHelpAndCreateDataConnection(int controlConnectionfd);
 
   // Authentication
   int authenticateClient(int controlfd);

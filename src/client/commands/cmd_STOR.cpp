@@ -83,10 +83,13 @@ void Client::cmd_STOR(int controlConnectionfd, const vector<string>& args) {
         
         string fileName(args[1]);
         SendFile(dataConnectionfd, fileName);
+        // dont send anything else now. 
+        // Server knows about completion because of connection termination.
+        close(dataConnectionfd);        
+
         logs("File Sent.");
         
         // child will exit upon completion of its task
-        close(dataConnectionfd);        
         exit(0);
     }
 }

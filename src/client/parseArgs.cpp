@@ -1,16 +1,14 @@
 #include "./client.hpp"
 
-// @todo
-// Parse properly. Handle all cases.
-// Display Usage and exit in case of incomplete args
-// also Show what will be used once initialisation is done
-
 Client parseArgs(int argc, char** argv){
-    // Client ftpClient("127.0.0.1", 9000, true);
-    Client ftpClient(argv[1], atoi(argv[2]), true);
-    if(ftpClient.isVerbose()){
-        // print a lot of details
-        fprintf(stdout, "Using Defaults. ./client 127.0.0.1 9000 -v");
-    }   
+    string IP = "127.0.0.1";
+    int port = 9000;
+
+    if(argc > 1)   { IP = argv[1];         }
+    if(argc > 2)   { port = atoi(argv[2]); }
+    
+    Client ftpClient(IP, port);
+    fprintf(stdout, "Connection to Server ...\nServer IP : %s \nPort      : %d", IP.c_str(), port);
+       
     return ftpClient;
 }

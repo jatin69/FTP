@@ -1,10 +1,29 @@
 #include "./server.hpp"
+// #include <stdio.h>
+// #include <execinfo.h>
+// #include <signal.h>
+// #include <stdlib.h>
+// #include <unistd.h>
+
+// void handler(int sig) {
+//   void *array[10];
+//   size_t size;
+
+//   // get void*'s for all entries on the stack
+//   size = backtrace(array, 10);
+
+//   // print out all the frames to stderr
+//   fprintf(stderr, "Error: signal %d:\n", sig);
+//   backtrace_symbols_fd(array, size, STDERR_FILENO);
+//   exit(1);
+// }
 
 Server parseArgs(int, char**);
 void handleZombieProcesses();
 
-int main(int argc, char **argv) {
 
+int main(int argc, char **argv) {
+    // signal(SIGSEGV, handler); 
     // create a FTP server
     Server ftpServer = parseArgs(argc, argv);
     
@@ -28,14 +47,12 @@ int main(int argc, char **argv) {
             continue;
         }
         
-        if(ftpServer.isVerbose()){
-            string info;
-            info.append("[SERVER] Got connection from ");
-            info.append(ipAddressOfClient);
-            info.append("New Connection Accepted. Creating Process to handle this.\n");
-            printInfo(info.c_str());
-        }
-
+        string info;
+        info.append("[SERVER] Got connection from ");
+        info.append(ipAddressOfClient);
+        info.append("\nNew Connection Accepted. Creating Process to handle this.\n");
+        printInfo(info.c_str());
+        
         // create a new process to handle this connection
         int pid = fork();
 

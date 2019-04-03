@@ -48,10 +48,12 @@ void Server::cmd_RETR(int controlConnectionfd, const vector<string>& args){
         
         string fileName(args[1]);
         SendFile(dataConnectionfd, fileName);
-        logs("File Sent.");
-
-        // child will exit upon completion of its task
+        // dont send anything else now. 
+        // Client knows about completion because of connection termination.
         close(dataConnectionfd);        
+        
+        logs("File Sent.");
+        // child will exit upon completion of its task
         exit(0);
     }
 }

@@ -84,9 +84,6 @@ class Client {
   // receive on which port number 
   int dataDumpReceiverPortNumber ;
 
-  // Should the Server be verbose and print all internal messages
-  bool isVerboseModeOn;
-
   // extraBuffer
   string extraBuffer = ""; 
 
@@ -95,24 +92,19 @@ class Client {
       controlConnectionIP{""},
       controlConnectionPortNumber{9000},
       dataDumpReceiverIP{"CURRENT_MACHINE_IP"},
-      dataDumpReceiverPortNumber{ controlConnectionPortNumber + FTP::OFFSET_dataConnectionToClient}, 
-      isVerboseModeOn{true} {}
+      dataDumpReceiverPortNumber{ controlConnectionPortNumber + FTP::OFFSET_dataConnectionToClient} {}
 
 Client( 
-  const char* _controlConnectionIP, 
-    const int _controlConnectionPortNumber,
-    bool _isVerboseModeOn = true
+    string _controlConnectionIP, 
+    const int _controlConnectionPortNumber
     ) : 
       controlConnectionIP{_controlConnectionIP},
       controlConnectionPortNumber{_controlConnectionPortNumber},
       dataDumpReceiverIP{"CURRENT_MACHINE_IP"},
-      dataDumpReceiverPortNumber{ controlConnectionPortNumber + FTP::OFFSET_dataConnectionToClient},
-      isVerboseModeOn(_isVerboseModeOn) {}
+      dataDumpReceiverPortNumber{ controlConnectionPortNumber + FTP::OFFSET_dataConnectionToClient} {}
 
     
   /************************ Getters & Setters ***********************/
-
-  bool isVerbose() { return isVerboseModeOn; }
   
   const char* getControlConnectionIP() { return controlConnectionIP.c_str(); }
   int getControlConnectionPortNumber() { return controlConnectionPortNumber; }
@@ -183,7 +175,8 @@ Client(
 
     // control connection is passed so it can convey the receiver of transfer request
     int createDataConnection(int controlConnectionfd);
-
+    int provideHelpAndCreateDataConnection(int controlConnectionfd);
+    
     ~Client() = default;
 
       /**************************** FTP Commands ****************************/

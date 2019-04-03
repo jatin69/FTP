@@ -20,7 +20,8 @@ string Client::sanitizeRequest(const string& req) {
         { "mkdir", "MKD"},
         { "rmdir", "RMD"},
         { "get", "RETR"}, { "GET", "RETR"},
-        { "put", "STOR"}, { "PUT", "STOR"}
+        { "put", "STOR"}, { "PUT", "STOR"},
+        { "exit", "QUIT"}
     };
 
     for(auto it : commandPairs) {

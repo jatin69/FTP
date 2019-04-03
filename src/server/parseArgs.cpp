@@ -6,11 +6,13 @@
 // also Show what will be used once initialisation is done
 
 Server parseArgs(int argc, char** argv){
-    Server ftpServer(9000, true);
-    if(ftpServer.isVerbose()){
-        // print a lot of details
-        fprintf(stdout, "Using Defaults. ./server 9000 -v");
-        ftpServer.logServerConfiguration();
-    }
+    int port = 9000;
+    int backlogs = 10;
+    if(argc > 1)   { port = atoi(argv[1]);      }
+    if(argc > 2)   { backlogs = atoi(argv[2]);  }
+    
+    Server ftpServer(port, backlogs);
+    fprintf(stdout, "Server Started at Port %d\n", port);
+    ftpServer.logServerConfiguration(); 
     return ftpServer;
 }

@@ -1,7 +1,7 @@
 #include "./server.hpp"
 
 void Server::initiateProtocolInterpreter(int controlConnectionfd) {
-    
+
     Send(controlConnectionfd, "J's FTP-Server ", 220);
     
     if(authenticateClient(controlConnectionfd) == 0){
@@ -40,7 +40,7 @@ void Server::initiateProtocolInterpreter(int controlConnectionfd) {
             case Command::SYS       : { cmd_SYS      (controlConnectionfd);    } break;
             // case Command::PASV      : { cmd_PASV     (controlConnectionfd);    } break;
             case Command::PWD       : { cmd_PWD      (controlConnectionfd);    } break;
-            // case Command::QUIT      : { cmd_QUIT     (controlConnectionfd);    } break;
+            case Command::QUIT      : { cmd_QUIT     (controlConnectionfd);    } break;
             // case Command::ABOR      : { cmd_ABOR     (controlConnectionfd);    } break;
             default                 : { cmd_INVALID  (controlConnectionfd);    } break;
         }

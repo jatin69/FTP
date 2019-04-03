@@ -1,11 +1,7 @@
 #include "./../server.hpp"
 
 void Server::cmd_SYS(int controlConnectionfd) {
-    string sysType = "System Type : ";
-    #ifdef WINDOWS
-    sysType += "WINDOWS";
-    #else
-    sysType += "LINUX";
-    #endif
+    string commandToExecute = "hostnamectl | grep 'Operating System' | cut -d':' -f2";
+    string sysType = "System Type : " + executeShellCommand(commandToExecute);
     Send(controlConnectionfd, sysType.c_str());
 }

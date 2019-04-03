@@ -12,7 +12,7 @@ void printError(const char *msg) {
 }
 
 void printInfo(const char *msg) {
-  fprintf(
+  fprintf( 
     stdout,
     "\n[INFO] : %s\n",
     msg
