@@ -1,6 +1,6 @@
 #include "./../server.hpp"
 
-string Server::cmd_USER(int controlConnectionfd, const vector<string> &args) {
+void Server::cmd_USER(int controlConnectionfd, const vector<string> &args) {
   bool isUsernameOK = false;
   string ftpUser(args[1]);
   
@@ -12,9 +12,8 @@ string Server::cmd_USER(int controlConnectionfd, const vector<string> &args) {
   }
   if (isUsernameOK) {
     Send(controlConnectionfd, "Username OK. Needs Password", 331);
+    setClientUsername(ftpUser);
   } else {
     Send(controlConnectionfd, "User Not found. Make sure the user exists.");
-    ftpUser = "";
   }
-  return ftpUser;
 }

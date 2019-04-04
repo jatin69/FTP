@@ -2,7 +2,7 @@
 
 A client-server Implementation of the File Transfer Protocol closely following [RFC-959](https://tools.ietf.org/html/rfc959) and [Beej's Guide](https://beej.us/guide/bgnet/html/multi/index.html). 
 
-Checkout the [todoList](./todoList.md)
+Checkout the extented todoList [here](./todoList.md)
 
 ## How to make
 

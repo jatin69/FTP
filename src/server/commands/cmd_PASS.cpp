@@ -1,7 +1,8 @@
 #include "./../server.hpp"
 
-int Server::cmd_PASS(int controlConnectionfd, const vector<string> &args, const string& ftpUser) {
+void Server::cmd_PASS(int controlConnectionfd, const vector<string> &args) {
 
+  string ftpUser(getClientUsername());
   string ftpPassword(args[1]);
   bool isAuthenticated = false;
 
@@ -14,9 +15,9 @@ int Server::cmd_PASS(int controlConnectionfd, const vector<string> &args, const 
   }
   if (isAuthenticated) {
     Send(controlConnectionfd, "[AUTHENTICATION:SUCCESS] User logged in.", 230);
-    return 1;
+    updateClientAuthenticationStatus(true);
   } else {
     Send(controlConnectionfd, "[AUTHENTICATION:FAILURE] Retry");
-    return 0;
+    resetClientUsername();
   }
 }

@@ -1,10 +1,7 @@
 #include "./server.hpp"
 
-int Server::authenticateClient(int controlConnectionfd) {
+void Server::authenticateClient(int controlConnectionfd) {
         
-    string ftpUser = "";
-    string ftpPassword = "";
-
     while(true) {
         string commandString;
         Recv(controlConnectionfd, commandString);
@@ -18,27 +15,27 @@ int Server::authenticateClient(int controlConnectionfd) {
         // logv(commandType);
 
         switch (commandType){
-
-            case Command::USER      : { 
-                ftpUser = cmd_USER (controlConnectionfd, tokens);
+            case Command::USER      : {     
+                cmd_USER (controlConnectionfd, tokens); 
             } break;
+            
             case Command::PASS      : { 
-                if(ftpUser == ""){
+                if(getClientUsername() == ""){
                     Send(controlConnectionfd, "Specify USER first", 220);
                     continue;
                 }
-                return cmd_PASS (controlConnectionfd, tokens, ftpUser);
-
+                else{
+                    cmd_PASS (controlConnectionfd, tokens);
+                    return;
+                }
             } break;
-
+            
             case Command::QUIT      : { 
                 cmd_QUIT (controlConnectionfd);         
             } break;
 
             default                 : { 
                 Send(controlConnectionfd, "Unauthenticated User. Please Login first", 331);
-                ftpUser = "";
-                ftpPassword = "";
             } break;
         }
     }

@@ -1,8 +1,9 @@
 # Todo List
 
-- [ ] implement HELP Command for client side - authentication + main loop
-- [ ] put correct response codes everywhere
 - [ ] clean all the printing/logging
+- [ ] put correct response codes everywhere
+
+- [ ] implement HELP Command for client side - authentication + main loop
 - [ ] resolve all the @todos
 - [ ] document all code
 - [ ] Indent and format all code
@@ -10,15 +11,16 @@
 - [ ] Make a proper readme with screenshots
 - [ ] Finalise project
 
-- [ ] [goodToHave] Improve makefile to make everything inside a build folder
+- [X] [goodToHave] Improve makefile to make everything inside a build folder
 - [ ] [goodToHave] stor / retr supports pathnames, not just filenames
 - [ ] [goodToHave] implement PASV command - pretty easy and will make it more wholesome
 - [ ] [goodToHave] Implement ABORT. for ABORT to work, the parent should not wait for the result of child LS and maybe somehow save its pid for it to kill it. Because it is cut in middle, it might need clean up (might)
+- [ ] Update `LIST` command to not use `ls` and use `readdir`
 
 - [ ] [addition] colorize all the logging ?
 - [ ] [addition] implement client side functions - !ls, !pwd
 
-- [ ] change authentication handler, such that server class stores `ftpUsername`. This will be useful for error messages and such.
+- [X] Improve authentication. change authentication handler, such that server class stores `ftpUsername`. This will be useful for error messages and such.
 - [X] Make a proper todolist
 - [X] implement authentication via USER and PASS
 - [X] Implement some more commands. as Listed in `server.cpp`

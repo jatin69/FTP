@@ -13,9 +13,9 @@ int main(int argc, char **argv) {
 
     // create a socket and connect to Server
     int controlConnectionfd = createSocketAndConnectToHost(
-                                    ftpClient.getControlConnectionIP(), 
-                                    ftpClient.getControlConnectionPortNumber()
-                                );
+        ftpClient.getControlConnectionIP(),
+        ftpClient.getControlConnectionPortNumber()
+    );
 
     // log client info
     ftpClient.logClientConfiguration();

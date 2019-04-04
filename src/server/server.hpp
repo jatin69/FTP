@@ -112,6 +112,12 @@ class Server {
   // extraBuffer
   string extraBuffer = "";
 
+  // stored username
+  string clientUsername = "";
+
+  // auth status
+  bool isClientAuthenticated = false;
+
   // Internal Functions
 
   // Send the entire buffer
@@ -191,7 +197,26 @@ class Server {
   void resetDataConnectionPortNumber() { 
     dataConnectionPortNumber = controlConnectionPortNumber + FTP::OFFSET_dataConnectionToClient; 
   }
+
+  bool getClientAuthenticationStatus() {
+    return isClientAuthenticated;
+  }
+
+  void updateClientAuthenticationStatus(bool status) {
+    isClientAuthenticated = status;
+  }
+
+  string getClientUsername() {
+    return clientUsername;
+  }
+
+  void setClientUsername(string _username) {
+    clientUsername = _username;
+  }
   
+  void resetClientUsername() {
+    clientUsername = "";
+  }
   /**************************** loggers ****************************/
   void logServerConfiguration();
 
@@ -229,7 +254,7 @@ class Server {
   int askForHelpAndCreateDataConnection(int controlConnectionfd);
 
   // Authentication
-  int authenticateClient(int controlfd);
+  void authenticateClient(int controlfd);
 
   /**************************** FTP Commands ****************************/
 
@@ -251,8 +276,8 @@ class Server {
   Command resolveCommand(const string& incomingCommandTokens);
 
   // Wrappers to execute Commands
-  string cmd_USER(int, const vector<string>&);
-  int cmd_PASS(int, const vector<string>&, const string&);
+  void cmd_USER(int, const vector<string>&);
+  void cmd_PASS(int, const vector<string>&);
   
   void cmd_PORT(int, const vector<string>&);
   void cmd_LIST(int, const vector<string>&);

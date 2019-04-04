@@ -4,7 +4,9 @@ void Server::initiateProtocolInterpreter(int controlConnectionfd) {
 
     Send(controlConnectionfd, "J's FTP-Server ", 220);
     
-    if(authenticateClient(controlConnectionfd) == 0){
+    // authentication
+    authenticateClient(controlConnectionfd);
+    if(getClientAuthenticationStatus() == false){
         cmd_QUIT(controlConnectionfd);
         return;
     }

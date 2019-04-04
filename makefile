@@ -2,7 +2,6 @@
 
 CXX=g++
 CFLAGS=-std=c++17 -I. -g -rdynamic -Wall -Wextra 
-# -Wno-unused-variable -Wno-unused-but-set-variable
 
 # @@@@@@@@@@@@@@@@@@@@@@@@ PRE-REQUISITES @@@@@@@@@@@@@@@@@@@@@@@@@@
 
