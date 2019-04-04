@@ -9,7 +9,7 @@ vector<string> splitString(const string &str, const string &delim, const int lim
 
 // breaks up the command 
 vector<string> commandTokenizer(string& cmd) {
-    trim(cmd);
+    cmd = trim(cmd);
     vector<string> Command = splitString(cmd, " ");
     return Command;
 }

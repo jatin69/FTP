@@ -18,6 +18,7 @@
 - [ ] [addition] colorize all the logging ?
 - [ ] [addition] implement client side functions - !ls, !pwd
 
+- [ ] change authentication handler, such that server class stores `ftpUsername`. This will be useful for error messages and such.
 - [X] Make a proper todolist
 - [X] implement authentication via USER and PASS
 - [X] Implement some more commands. as Listed in `server.cpp`

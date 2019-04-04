@@ -1,6 +1,6 @@
 #include "./../client.hpp"
 
-int Client::cmd_PASS(int controlConnectionfd, const vector<string>& args) {
+int Client::cmd_PASS(int controlConnectionfd, const vector<string>& args [[gnu::unused]]) {
     string ftpResponse;
     Recv(controlConnectionfd, ftpResponse);
     log(ftpResponse.c_str());

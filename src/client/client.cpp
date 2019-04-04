@@ -21,6 +21,7 @@ void Client::initiateProtocolInterpreter(int controlConnectionfd) {
     while(true) {
         cout<<"J-FTP ➜ ";
 		getline(std::cin, ftpRequest);
+        ftpRequest = trim(ftpRequest);
 
         // handling ctrl+D
         if(cin.eof()){

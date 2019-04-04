@@ -7,11 +7,12 @@ Checkout the [todoList](./todoList.md)
 ## How to make
 
 - make sure you have `make` installed
-- then simply clone the project and run `make` in the folder
-- it'll give you two executables `server` and `client`
+- then simply clone the project and run `make -s` in the folder
+- it'll give you two executables `./bin/server` and `./bin/client`
 
 ## How to Run
 
+- go to bin folder `cd ./bin`
 - `server` can be started as `./server <servePort[9000]>`
 - `client` can be started as `./client <serverIP> <serverPort[9000]>`
 - For localhost you can use `./server 9000` and `./client 127.0.0.1 9000`

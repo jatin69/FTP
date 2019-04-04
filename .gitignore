@@ -12,6 +12,8 @@
 
 # Ignore these
 .vscode/
+bin/
+obj/
 *.exe
 *.o
 *.out

@@ -61,6 +61,7 @@ void Listen(int sockfd, int backlog);
 int Accept(int sockfd, string& ipAddressOfClient);
 
 vector<string> commandTokenizer(string& cmd);
+string &trim(string &s);
 
 // API : dump data at remote IP
 int handleDataDumpProcessAtRemoteIP();
@@ -210,15 +211,15 @@ Client(
   
   void cmd_PORT(int, const vector<string>&);
   void cmd_LIST(int, const vector<string>&);
-  void cmd_CWD(int, const vector<string>&);
-  void cmd_MKD(int, const vector<string>&);
-  void cmd_RMD(int, const vector<string>&);
   void cmd_STOR(int, const vector<string>&);
   void cmd_RETR(int, const vector<string>&);
+  void cmd_CWD(int,  const vector<string>&);
+  void cmd_MKD(int,  const vector<string>&);
+  void cmd_RMD(int,  const vector<string>&);
   void cmd_TYPE(int, const vector<string>&);
   void cmd_MODE(int, const vector<string>&);
   void cmd_STRU(int, const vector<string>&);
-  
+
   void cmd_NOOP(int);
   void cmd_CDUP(int);
   void cmd_SYS(int);

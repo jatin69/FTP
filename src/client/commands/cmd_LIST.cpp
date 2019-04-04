@@ -1,6 +1,6 @@
 #include "./../client.hpp"
 
-void Client::cmd_LIST(int controlConnectionfd, const vector<string>& args) { 
+void Client::cmd_LIST(int controlConnectionfd, const vector<string>& args [[gnu::unused]]) { 
     // @todo : can do a lot of pretty printing
      
     string ftpResponse;

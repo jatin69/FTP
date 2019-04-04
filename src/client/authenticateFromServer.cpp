@@ -6,6 +6,7 @@ int Client::authenticateFromServer(int controlConnectionfd) {
     while(true) {
         cout<<"J-FTP ➜ ";
 		getline(std::cin, ftpRequest);
+        ftpRequest = trim(ftpRequest);
 
         // handling ctrl+D
         if(cin.eof()){
@@ -42,6 +43,7 @@ int Client::authenticateFromServer(int controlConnectionfd) {
             case Command::PASS : { 
                 if(tokens.size() == 2){
                     Send(controlConnectionfd, ftpRequest);
+                    string ftpUser = "This is a dummy variable kept for consistency across server and client";
                     return cmd_PASS(controlConnectionfd, tokens);      
                 }
                 else{
