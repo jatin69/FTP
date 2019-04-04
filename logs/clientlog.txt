@@ -1,0 +1,81 @@
+Connection to Server ...
+Server IP : 127.0.0.1 
+Port      : 9000
+[CLIENT:CONNECTION] Connected to  127.0.0.1
+
+[LOGGING] Client config is : 
+[Variable] controlConnectionIP = 127.0.0.1
+[Variable] controlConnectionPortNumber = 9000
+[Variable] dataDumpReceiverIP = CURRENT_MACHINE_IP
+[Variable] dataDumpReceiverPortNumber = 9010
+
+[LOGGING] [RESPONSE] J's FTP-Server 
+
+J-FTP ➜ [Variable] ftpRequest = ls
+
+[LOGGING] Detected Command : LIST
+
+[RESPONSE] [Response : 530] 
+Unauthenticated User. Please Login first
+
+J-FTP ➜ [Variable] ftpRequest = user root
+
+[LOGGING] Detected Command : user root
+
+[RESPONSE] [Response : 331] 
+Username OK. Needs Password
+
+J-FTP ➜ [Variable] ftpRequest = pass root
+
+[LOGGING] Detected Command : pass root
+
+[RESPONSE] [Response : 230] 
+[AUTHENTICATION:SUCCESS] User logged in.
+
+J-FTP ➜ [Variable] ftpRequest = ls
+
+[LOGGING] Detected Command : LIST
+
+[LOGGING] [CLIENT] : I am creating a new data Connection
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[RESPONSE] Directory Listing is as follows :
+
+
+[RESPONSE] total 12
+drwxrwxrwx 1 jatin jatin    0 Apr  4 13:27 bin
+drwxrwxrwx 1 jatin jatin  376 Apr  4 13:28 logs
+-rwxrwxrwx 1 jatin jatin 3081 Apr  4 12:11 makefile
+drwxrwxrwx 1 jatin jatin    0 Apr  4 12:10 obj
+-rwxrwxrwx 1 jatin jatin 3485 Apr  4 13:27 readme.md
+drwxrwxrwx 1 jatin jatin    0 Apr  4 12:10 src
+-rwxrwxrwx 1 jatin jatin 2678 Apr  4 13:21 todoList.md
+
+
+[Variable] ftpRequest = ls
+
+[LOGGING] Detected Command : LIST
+
+[RESPONSE] [Response : 226] 
+Directory Listing Send OK.
+
+J-FTP ➜ [Variable] ftpRequest = pwd
+
+[LOGGING] Detected Command : PWD
+
+[RESPONSE] [Response : 257] 
+/media/jatin/New Volume1/elementary-OS-backup/Documents/4th-sem/FTP
+
+J-FTP ➜ [Variable] ftpRequest = exit
+
+[LOGGING] Detected Command : QUIT
+
+[RESPONSE] [Response : 221] 
+Terminating Connection
+

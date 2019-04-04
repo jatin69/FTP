@@ -15,11 +15,14 @@
 - [ ] [goodToHave] stor / retr supports pathnames, not just filenames
 - [ ] [goodToHave] implement PASV command - pretty easy and will make it more wholesome
 - [ ] [goodToHave] Implement ABORT. for ABORT to work, the parent should not wait for the result of child LS and maybe somehow save its pid for it to kill it. Because it is cut in middle, it might need clean up (might)
-- [ ] Update `LIST` command to not use `ls` and use `readdir`
+- [ ] [goodToHave] Update `LIST` command to not use `ls` and use `readdir`
+- [ ] [goodToHave] Switch to PORT command's `h1,h2,h3,h4,p1,p2` format
 
 - [ ] [addition] colorize all the logging ?
+- [ ] [addition] do graceful exception handling
 - [ ] [addition] implement client side functions - !ls, !pwd
 
+- [X] put response code in just major places for now
 - [X] Improve authentication. change authentication handler, such that server class stores `ftpUsername`. This will be useful for error messages and such.
 - [X] Make a proper todolist
 - [X] implement authentication via USER and PASS

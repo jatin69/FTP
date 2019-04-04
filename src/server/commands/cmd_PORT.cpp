@@ -24,5 +24,5 @@ void Server::cmd_PORT(int controlConnectionfd, const vector<string>& args) {
 
         logServerConfiguration();
 
-        Send(controlConnectionfd, res , 220);
+        Send(controlConnectionfd, res , 200);
 }

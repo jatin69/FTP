@@ -20,7 +20,7 @@ void Server::cmd_RETR(int controlConnectionfd, const vector<string>& args){
         } 
         
         if(exitCodeOfChild == 0){
-            Send(controlConnectionfd, "Server Sent File Successfully.");
+            Send(controlConnectionfd, "Server Sent File Successfully.", 250);
             logs("Server Sent File Successfully.");
         }
         else{
@@ -44,7 +44,7 @@ void Server::cmd_RETR(int controlConnectionfd, const vector<string>& args){
         logs(getDataConnectionIP());
         logv(getDataConnectionPortNumber());
         
-        Send(dataConnectionfd, "Sending File in Binary Mode.", 150);
+        Send(dataConnectionfd, "Sending File in Binary Mode.");
         
         string fileName(args[1]);
         SendFile(dataConnectionfd, fileName);

@@ -4,6 +4,11 @@ Client::Command Client::resolveCommand(const string& incomingCommand) {
     string cmd(incomingCommand);
     std::transform(cmd.begin(), cmd.end(), cmd.begin(), std::ptr_fun<int, int>(std::toupper));
     
+    // command starts with @
+    if(cmd.rfind(FTP::CLIENT_SIDE_COMMAND_IDENTIFIER, 0) == 0) {
+        return Command::CLIENT;
+    }
+
     if(cmd.compare("USER") == 0)     return Command::USER;
     if(cmd.compare("PASS") == 0)     return Command::PASS;
     

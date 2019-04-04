@@ -17,6 +17,6 @@ void Server::cmd_RMD(int controlConnectionfd, const vector<string>& args) {
 	}
 	else{
 		string res = "Directory " + path + " successfully deleted.";
-		Send(controlConnectionfd, res);
+		Send(controlConnectionfd, res, 257);
 	}
 }

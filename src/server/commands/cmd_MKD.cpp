@@ -13,6 +13,6 @@ void Server::cmd_MKD(int controlConnectionfd, const vector<string>& args) {
 	}
     else{
         string res = "Directory " + path + " successfully created.";
-        Send(controlConnectionfd, res);
+        Send(controlConnectionfd, res, 257);
 	}
 }

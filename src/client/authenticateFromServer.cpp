@@ -1,4 +1,4 @@
-#include "./client.hpp"
+    #include "./client.hpp"
 
 int Client::authenticateFromServer(int controlConnectionfd) {
          
@@ -23,11 +23,20 @@ int Client::authenticateFromServer(int controlConnectionfd) {
         ftpRequest = sanitizeRequest(ftpRequest);
 
         vector<string> tokens = commandTokenizer(ftpRequest);
-        logs("Command Tokenizer");
-        for(auto it : tokens){ cout << it << "\n"; }    // @todo : remove log
+        
+        // logs("Command Tokenizer");
+        // for(auto it : tokens){ cout << it << "\n"; }    // @todo : remove log
+        
         Command commandType = resolveCommand(tokens.front());
         // logv(commandType);
         switch (commandType) {
+
+            case Command::CLIENT : {
+                // remove `CLIENT-SIDE-COMMAND Identifier : @`
+                ftpRequest.erase(ftpRequest.begin(), ftpRequest.begin()+ FTP::CLIENT_SIDE_COMMAND_IDENTIFIER.size());
+                cmd_CLIENT(ftpRequest);
+            }break;
+
             case Command::USER : { 
                 if(tokens.size() == 2){
                     Send(controlConnectionfd, ftpRequest);

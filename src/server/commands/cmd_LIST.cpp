@@ -39,7 +39,7 @@ void Server::cmd_LIST(int controlConnectionfd, const vector<string>& tokens){
         logs(getDataConnectionIP());
         logv(getDataConnectionPortNumber());
         
-        Send(dataConnectionfd, "Directory Listing is as follows :", 150);
+        Send(dataConnectionfd, "Directory Listing is as follows :");
         string commandToExecute = "ls -l ";
         for(auto it=tokens.begin()+1; it!=tokens.end(); ++it){
             commandToExecute += " " + *it;

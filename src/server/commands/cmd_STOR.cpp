@@ -24,7 +24,7 @@ void Server::cmd_STOR(int controlConnectionfd, const vector<string>& args){
         log(ftpResponse.c_str());
 
         if(exitCodeOfChild == 0){
-            Send(controlConnectionfd, "Server Received File Successfully.");
+            Send(controlConnectionfd, "Server Received File Successfully.", 250);
         }
         else{
             Send(controlConnectionfd, "Resuming current connection.");

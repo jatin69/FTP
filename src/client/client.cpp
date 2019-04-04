@@ -38,11 +38,18 @@ void Client::initiateProtocolInterpreter(int controlConnectionfd) {
         ftpRequest = sanitizeRequest(ftpRequest);
 
         vector<string> tokens = commandTokenizer(ftpRequest);
-        logs("Command Tokenizer");
-        for(auto it : tokens){ cout << it << "\n"; }    // @todo : remove log
+        // logs("Command Tokenizer");
+        // for(auto it : tokens){ cout << it << "\n"; }    // @todo : remove log
         Command commandType = resolveCommand(tokens.front());
-        // logv(commandType);
+        logv(commandType); 
         switch (commandType) {
+
+            case Command::CLIENT : {
+                // remove `CLIENT-SIDE-COMMAND Identifier : @`
+                ftpRequest.erase(ftpRequest.begin(), ftpRequest.begin()+ FTP::CLIENT_SIDE_COMMAND_IDENTIFIER.size());
+                cmd_CLIENT(ftpRequest);
+            }break;
+
             case Command::USER : { 
                 if(tokens.size() == 2){
                     Send(controlConnectionfd, ftpRequest);
@@ -116,6 +123,7 @@ void Client::initiateProtocolInterpreter(int controlConnectionfd) {
                 }
                 
             } break;
+
             case Command::RMD : {   
                 if(tokens.size() >= 2){
                     Send(controlConnectionfd, ftpRequest);
@@ -248,10 +256,11 @@ void Client::initiateProtocolInterpreter(int controlConnectionfd) {
                     printf("\nCommand\n\t%s", "Quit the application");
                     printf("\nUsage\n\t%s\n\n", "QUIT");
                 }  
-                } break;
+            } break;
 
-        // case Command::PASV      : { cmd_PASV     (controlConnectionfd);    } break;
-        // case Command::ABOR      : { cmd_ABOR     (controlfd);    } break;
+            // case Command::PASV      : { cmd_PASV     (controlConnectionfd);    } break;
+            // case Command::ABOR      : { cmd_ABOR     (controlConnectionfd);    } break;
+            
             default: { 
                 Send(controlConnectionfd, ftpRequest);
                 cmd_INVALID (controlConnectionfd); 

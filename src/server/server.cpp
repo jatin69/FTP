@@ -2,7 +2,7 @@
 
 void Server::initiateProtocolInterpreter(int controlConnectionfd) {
 
-    Send(controlConnectionfd, "J's FTP-Server ", 220);
+    Send(controlConnectionfd, "J's FTP-Server ");
     
     // authentication
     authenticateClient(controlConnectionfd);
@@ -17,11 +17,11 @@ void Server::initiateProtocolInterpreter(int controlConnectionfd) {
     while(true) {
         string commandString;
         Recv(controlConnectionfd, commandString);
-        logr(commandString.c_str());                    // @todo : remove log
+        // logr(commandString.c_str());                    // @todo : remove log
 
         vector<string> tokens = commandTokenizer(commandString);
-        logs("Command Tokenizer");
-        for(auto it : tokens){ cout << it << "\n"; }    // @todo : remove log
+        // logs("Command Tokenizer");
+        // for(auto it : tokens){ cout << it << "\n"; }    // @todo : remove log
 
         Command commandType = resolveCommand(tokens.front());
         // logv(commandType);

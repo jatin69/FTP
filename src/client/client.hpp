@@ -41,6 +41,7 @@ namespace FTP{
   const int SOCKET_READ_BUFFER_SIZE = 10000;
   const int FILE_READ_BUFFER_SIZE = 100000;
   const string DELIM("\r\n");
+  const string CLIENT_SIDE_COMMAND_IDENTIFIER("!");
   const int OFFSET_dataConnectionToClient = 10; // normally its 0
   const int OFFSET_dataConnectionToServer = 1; // normally its 1
 }
@@ -65,6 +66,9 @@ string &trim(string &s);
 
 // API : dump data at remote IP
 int handleDataDumpProcessAtRemoteIP();
+
+// execute shell command
+string executeShellCommand(const string&);
 
 class Client {
     private:
@@ -188,7 +192,7 @@ Client(
 
   // Supported Commands by Server
   enum Command {
-    INVALID,
+    INVALID, CLIENT,
     USER, PASS,
     NOOP, SYS,
     PORT, PASV,
@@ -204,8 +208,10 @@ Client(
   Command resolveCommand(const string& incomingCommandTokens);
 
   string sanitizeRequest(const string& ftpRequest);
-
+  
   // Wrappers to execute Commands
+  void cmd_CLIENT(const string&);
+
   void cmd_USER(int, const vector<string>&);
   int cmd_PASS(int, const vector<string>&);
   

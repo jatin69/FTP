@@ -8,6 +8,6 @@ void Server::cmd_CDUP(int controlConnectionfd) {
     Send(controlConnectionfd, "Directory successfully changed.", 250);
   } else {
     // @todo : a lot of error handling can be done here
-    Send(controlConnectionfd, "Failed to change directory.", 550);
+    Send(controlConnectionfd, "Failed to change directory.");
   }
 }

@@ -14,6 +14,6 @@ void Server::cmd_USER(int controlConnectionfd, const vector<string> &args) {
     Send(controlConnectionfd, "Username OK. Needs Password", 331);
     setClientUsername(ftpUser);
   } else {
-    Send(controlConnectionfd, "User Not found. Make sure the user exists.");
+    Send(controlConnectionfd, "User Not found. Make sure the user exists.", 332);
   }
 }

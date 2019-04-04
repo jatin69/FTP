@@ -1,0 +1,52 @@
+Server Started at Port 9000
+[LOGGING] Server config is : 
+[Variable] controlConnectionIP = 
+[Variable] controlConnectionPortNumber = 9000
+[Variable] dataConnectionIP = 
+[Variable] dataConnectionPortNumber = 9010
+[Variable] backlogsPermitted = 10
+
+[INFO] : Server Listening at 9000
+[SERVER]: Got connection from 127.0.0.1
+[INFO] : [SERVER] Got connection from 127.0.0.1
+New Connection Accepted. Creating Process to handle this.
+
+[LOGGING] Server config is : 
+[Variable] controlConnectionIP = 127.0.0.1
+[Variable] controlConnectionPortNumber = 9000
+[Variable] dataConnectionIP = 127.0.0.1
+[Variable] dataConnectionPortNumber = 9010
+[Variable] backlogsPermitted = 10
+[LOGGING] [SERVER] : I am creating a new data Connection
+[LOGGING] Server config is : 
+[Variable] controlConnectionIP = 127.0.0.1
+[Variable] controlConnectionPortNumber = 9000
+[Variable] dataConnectionIP = 127.0.0.1
+[Variable] dataConnectionPortNumber = 9010
+[Variable] backlogsPermitted = 10
+127.0.0.1
+[LOGGING] 127.0.0.1
+[Variable] port = 9010
+
+[SERVER:CONNECTION] Connected to  127.0.0.1
+[LOGGING] 127.0.0.1
+[Variable] getDataConnectionPortNumber() = 9010
+Server Started at Port 9000
+[LOGGING] Server config is : 
+[Variable] controlConnectionIP = 
+[Variable] controlConnectionPortNumber = 9000
+[Variable] dataConnectionIP = 
+[Variable] dataConnectionPortNumber = 9010
+[Variable] backlogsPermitted = 10
+
+[INFO] : Server Listening at 9000
+[SERVER]: Got connection from 127.0.0.1
+[INFO] : [SERVER] Got connection from 127.0.0.1
+New Connection Accepted. Creating Process to handle this.
+
+[LOGGING] Server config is : 
+[Variable] controlConnectionIP = 127.0.0.1
+[Variable] controlConnectionPortNumber = 9000
+[Variable] dataConnectionIP = 127.0.0.1
+[Variable] dataConnectionPortNumber = 9010
+[Variable] backlogsPermitted = 10
