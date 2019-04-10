@@ -1,5 +1,7 @@
 #include "./../server.hpp"
 
+// LIST - list the directory contents
+  
 void Server::cmd_LIST(int controlConnectionfd, const vector<string>& tokens){
     
     int pid = fork();
@@ -10,8 +12,9 @@ void Server::cmd_LIST(int controlConnectionfd, const vector<string>& tokens){
     }
 
     if(pid > 0) {       // parent
-        int statusOfChild;
+        
         // waiting for this child's completion
+        int statusOfChild;
         waitpid(pid, &statusOfChild, 0);
         
         int exitCodeOfChild;
@@ -23,19 +26,15 @@ void Server::cmd_LIST(int controlConnectionfd, const vector<string>& tokens){
             Send(controlConnectionfd, "Directory Listing Send OK.", 226);
         }
         else{
-            Send(controlConnectionfd, "Resuming current connection.");
+            Send(controlConnectionfd, "Resuming Session.");
         }
     }
 
     if(pid==0) {        // child
         
-        // child does not need control connection
-        // close(controlConnectionfd);
-
-
-        int dataConnectionfd = createDataConnection(controlConnectionfd);  
-        // int dataConnectionfd = controlConnectionfd;
-        
+        int dataConnectionfd = createDataConnection(controlConnectionfd);          
+        close(controlConnectionfd);
+        // @logging
         logs(getDataConnectionIP());
         logv(getDataConnectionPortNumber());
         
@@ -46,9 +45,12 @@ void Server::cmd_LIST(int controlConnectionfd, const vector<string>& tokens){
         }
         string outputOfCommand = executeShellCommand(commandToExecute);
         Send(dataConnectionfd, outputOfCommand);
-        
-        // child will exit upon completion of its task
+
         close(dataConnectionfd);        
+        // @todo : close the control connection as well.
+        // close(controlConnectionfd);
+       
+        // child will exit upon completion of its task
         exit(0);
     }
 }

@@ -1,7 +1,8 @@
 #include "./../client.hpp"
 
+// LIST - list the directory contents
+
 void Client::cmd_LIST(int controlConnectionfd, const vector<string>& args [[gnu::unused]]) { 
-    // @todo : can do a lot of pretty printing
      
     string ftpResponse;
 
@@ -16,17 +17,19 @@ void Client::cmd_LIST(int controlConnectionfd, const vector<string>& args [[gnu:
      * The final response is collected by controlfd.
     */
     int pid = fork();
+
     if(pid < 0){            // error
         printError();
         throw runtime_error("[CLIENT:CMD:LIST] Fork Error");
     }
     else if(pid > 0) {      // parent
         
+        // waiting for child completion and final response
         int statusOfChild;
         wait(&statusOfChild);
-        // waiting for child completion and final response
+        
         Recv(controlConnectionfd, ftpResponse);
-        log(ftpResponse.c_str());
+        logs(ftpResponse.c_str());
     }
     else if(pid==0) {       // child
     
@@ -37,17 +40,18 @@ void Client::cmd_LIST(int controlConnectionfd, const vector<string>& args [[gnu:
      * The server actively connects to client and transfers data.
      * 
      * In case the PORT command is explicitly used and the dump is to be
-     * received elsewhere, we allow that IP to receive data
+     * received elsewhere, we allow that IP to receive data.
     */
+
     // Remote DUMP Mode : allow that IP to accept data
+
     if(string("CURRENT_MACHINE_IP").compare(getDataDumpReceiverIP()) != 0 ){
         handleDataDumpProcessAtRemoteIP();
         exit(0);
     }  
 
-    // Normal DUMP mode 
+    // Normal DUMP mode : same (Control Connection) machine receives data
     
-
     /**Special Note : Race Condition Resolving
      * 
      * It is extremely important that we create this data connection
@@ -55,26 +59,23 @@ void Client::cmd_LIST(int controlConnectionfd, const vector<string>& args [[gnu:
      * 
     */
     int dataConnectionfd = createDataConnection(controlConnectionfd);
+    close(controlConnectionfd);
 
-    // child does not need control connection
-    // its only job is to tranfer data
+    // @logging
+    logs(getDataDumpReceiverIP());
+    logv(getDataDumpReceiverPortNumber());
+    
+    Recv(dataConnectionfd, ftpResponse);
+    logs(ftpResponse.c_str());
+    
+    Recv(dataConnectionfd, ftpResponse);
+    logs(ftpResponse.c_str());
+    
+    close(dataConnectionfd);    
+    // @todo : close the control connection as well.    
     // close(controlConnectionfd);
 
-
-        // int dataConnectionfd = createDataConnection();  
-        // int dataConnectionfd = controlConnectionfd;
-        
-        logs(getDataDumpReceiverIP());
-        logv(getDataDumpReceiverPortNumber());
-        
-        Recv(dataConnectionfd, ftpResponse);
-        log(ftpResponse.c_str());
-        
-        Recv(dataConnectionfd, ftpResponse);
-        log(ftpResponse.c_str());
-        
-        // child will exit upon completion of its task
-        close(dataConnectionfd);        
-        exit(0);
+    // child will exit upon completion of its task
+    exit(0);
     }
 }

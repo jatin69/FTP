@@ -1,16 +1,18 @@
 #include "./../client.hpp"
 
+/**Client commands 
+ * Commands that begin with `!` are to be executed on client.
+ *
+ * All commands are supported.
+ * 
+ * Supported shell builtins - 
+ * `cd`.
+ * 
+*/
+
 void Client::cmd_CLIENT(const string& cmd) {
     
     string commandResponse;
-    // logs((string("RECEIVED CMD IS : ") + cmd).c_str());
-
-    /**Supported Commands -
-     *
-     * Normal commands are passed on as it is. 
-     * Only supported shell builtin is `cd`.
-     * 
-    */
 
     if(cmd.rfind("cd ")==0){
         string pathToChange = cmd.substr(3, cmd.size());
@@ -24,6 +26,6 @@ void Client::cmd_CLIENT(const string& cmd) {
     else{
         commandResponse = executeShellCommand(cmd);
     }
-
+    // @logging
     logs(commandResponse.c_str());
 }

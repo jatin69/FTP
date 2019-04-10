@@ -1,5 +1,13 @@
 #include "./client.hpp"
 
+/**Resolve the incoming token into a command.
+ * 
+ * Whenever a new command is to be implemented, its entry must also be done here.
+ * 
+ * @usage
+ * commands starting with client side command identifier are
+ * to be executed client side
+*/
 Client::Command Client::resolveCommand(const string& incomingCommand) {
     string cmd(incomingCommand);
     std::transform(cmd.begin(), cmd.end(), cmd.begin(), std::ptr_fun<int, int>(std::toupper));

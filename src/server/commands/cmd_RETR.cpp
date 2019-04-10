@@ -1,59 +1,68 @@
 #include "./../server.hpp"
 
-void Server::cmd_RETR(int controlConnectionfd, const vector<string>& args){
-    
-    int pid = fork();
-    
-    if(pid < 0){        // error
-        printError(); 
-        throw runtime_error("[SERVER:CMD:LIST] Fork Error");
-    }
- 
-    if(pid > 0) {       // parent
-        int statusOfChild;
-        // waiting for this child's completion
-        waitpid(pid, &statusOfChild, 0);
-        
-        int exitCodeOfChild;
-        if ( WIFEXITED(statusOfChild) ) { 
-            exitCodeOfChild = WEXITSTATUS(statusOfChild);
-        } 
-        
-        if(exitCodeOfChild == 0){
-            Send(controlConnectionfd, "Server Sent File Successfully.", 250);
-            logs("Server Sent File Successfully.");
-        }
-        else{
-            Send(controlConnectionfd, "Resuming current connection.");
-        }
-        
-        string ftpResponse;
-        Recv(controlConnectionfd, ftpResponse);
-        logs(ftpResponse.c_str());
+// RETR - get/retrive a file from server
 
+void Server::cmd_RETR(int controlConnectionfd, const vector<string> &args) {
+
+  int pid = fork();
+
+  if (pid < 0) { // error
+    printError();
+    throw runtime_error("[SERVER:CMD:LIST] Fork Error");
+  }
+
+  if (pid > 0) { // parent
+
+    // waiting for this child's completion
+    int statusOfChild;
+    waitpid(pid, &statusOfChild, 0);
+
+    int exitCodeOfChild;
+    if (WIFEXITED(statusOfChild)) {
+      exitCodeOfChild = WEXITSTATUS(statusOfChild);
     }
 
-    if(pid==0) {        // child
-        
-        // child does not need control connection
-        // close(controlConnectionfd);
-
-        int dataConnectionfd = createDataConnection(controlConnectionfd);  
-        // int dataConnectionfd = controlConnectionfd;
-        
-        logs(getDataConnectionIP());
-        logv(getDataConnectionPortNumber());
-        
-        Send(dataConnectionfd, "Sending File in Binary Mode.");
-        
-        string fileName(args[1]);
-        SendFile(dataConnectionfd, fileName);
-        // dont send anything else now. 
-        // Client knows about completion because of connection termination.
-        close(dataConnectionfd);        
-        
-        logs("File Sent.");
-        // child will exit upon completion of its task
-        exit(0);
+    if (exitCodeOfChild == 0) {
+      Send(controlConnectionfd, "Server Sent File Successfully.", 250);
+      logs("Server Sent File Successfully.");
+    } else {
+      Send(controlConnectionfd, "Resuming Session.");
     }
+
+    string ftpResponse;
+    Recv(controlConnectionfd, ftpResponse);
+    logs(ftpResponse.c_str());
+  }
+
+  if (pid == 0) { // child
+
+    int dataConnectionfd = createDataConnection(controlConnectionfd);
+    close(controlConnectionfd);
+    // @logging
+    logs(getDataConnectionIP());
+    logv(getDataConnectionPortNumber());
+
+    Send(dataConnectionfd, "Sending File in Binary Mode.");
+
+    string fileName(args[1]);
+    SendFile(dataConnectionfd, fileName);
+    /**Important Note -
+     *
+     * don't send anything else now.
+     * client knows about completion because of connection termination.
+     *
+     * if anything more is sent here, it will be assumed as part of the file
+     * and will be appended in file at the client side.
+    */
+
+    close(dataConnectionfd);
+    // @todo : close the control connection as well.
+    // close(controlConnectionfd);
+
+    //  @logging
+    logs("File Sent.");
+
+    // child will exit upon completion of its task
+    exit(0);
+  }
 }

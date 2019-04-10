@@ -1,7 +1,9 @@
 #include "./../client.hpp"
 
+// CDUP : Change to parent directory
+
 void Client::cmd_CDUP(int controlConnectionfd) {
     string ftpResponse;
     Recv(controlConnectionfd, ftpResponse);
-    log(ftpResponse.c_str());
+    logs(ftpResponse.c_str());
 }

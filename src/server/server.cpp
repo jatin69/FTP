@@ -1,7 +1,14 @@
 #include "./server.hpp"
 
+/**Protocol Interpretor for server
+ * 
+ * Classic FTP has two parts.
+ * The PI to interpret commands, and the data connection to transfer files.
+ * 
+*/
 void Server::initiateProtocolInterpreter(int controlConnectionfd) {
 
+    // begin
     Send(controlConnectionfd, "J's FTP-Server ");
     
     // authentication
@@ -11,20 +18,29 @@ void Server::initiateProtocolInterpreter(int controlConnectionfd) {
         return;
     }
  
+    /**Previous command tracking
+     * 
+     * PORT command changes the datadump site for the next command only.
+     * So we track the previous command, and reset the dump site after one command
+     * 
+    */
     Command previousCommand = Command::INVALID;
     Command currentCommand = Command::INVALID;   
 
+    // command interpreter loop
     while(true) {
+
+        // receive command from client
         string commandString;
         Recv(controlConnectionfd, commandString);
-        // logr(commandString.c_str());                    // @todo : remove log
-
+        // @logging
+        fprintf(stdout,"\n[INFO][REQUEST] : %s", commandString.c_str() );
+        
+        // tokenize command
         vector<string> tokens = commandTokenizer(commandString);
-        // logs("Command Tokenizer");
-        // for(auto it : tokens){ cout << it << "\n"; }    // @todo : remove log
-
+        
+        // resolve command type from first word
         Command commandType = resolveCommand(tokens.front());
-        // logv(commandType);
         
         switch (commandType){
             case Command::PORT      : { cmd_PORT     (controlConnectionfd, tokens);    } break;
@@ -42,19 +58,21 @@ void Server::initiateProtocolInterpreter(int controlConnectionfd) {
             case Command::CDUP      : { cmd_CDUP     (controlConnectionfd);            } break;
             case Command::PWD       : { cmd_PWD      (controlConnectionfd);            } break;
             case Command::QUIT      : { cmd_QUIT     (controlConnectionfd);            } break;
-            // case Command::PASV      : { cmd_PASV     (controlConnectionfd);    } break;
-            // case Command::ABOR      : { cmd_ABOR     (controlConnectionfd);    } break;
+            case Command::PASV      : { cmd_PASV     (controlConnectionfd);            } break;
+            case Command::ABOR      : { cmd_ABOR     (controlConnectionfd);            } break;
             default                 : { cmd_INVALID  (controlConnectionfd);            } break;
         }
 
-        // keeping track of previous command and current command
+        // previous command tracking
         previousCommand = currentCommand;
         currentCommand = commandType;
 
+        // reset PORT to default after one command
         if(previousCommand == Command::PORT) {
             resetDataConnectionIP();
             resetDataConnectionPortNumber();
         }
 
-    }
-}
+    }   // end:while
+    
+} // end:function

@@ -1,7 +1,12 @@
 #include "./client.hpp"
 
-// Method not implemented 
-// Out of scope of this project
+/**handle dump process at remote IP
+ * 
+ * Sends necessary instructions to remote IP
+ * and handles the data transfer.
+ * 
+ * Method not implemented.
+*/
 int handleDataDumpProcessAtRemoteIP() {
     logs("REMOTE DUMPING MODE ACTIVE");
     logs("Send Required instructions to server side and dump site to begin transfer process");

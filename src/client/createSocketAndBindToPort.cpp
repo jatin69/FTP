@@ -28,6 +28,11 @@
  * 
 */
 
+/**create socket and bind to port
+ * 
+ * @usage
+ * creates a socket and binds self-address and given port number
+*/
 int createSocketAndBindToPort(int portNumber){
 
     /**Converting port number to const char*

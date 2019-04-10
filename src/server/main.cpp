@@ -1,20 +1,38 @@
 #include "./server.hpp"
  
+// prototypes for functions used below
+
+// parsing user's command line arguments
 Server parseArgs(int, char**);
+
+// reaper of zombies
 void handleZombieProcesses();
+
+// signal handlers
 void segmentationFaultHandler(int sig); 
 
-// ftpUser ftpPassword table
+/**Hashed User pass table
+ * 
+ * Server has a set of credentials.
+ * Only user who verify these credentials are allowed access to server.
+ * To add a user, simply put his userId, password here
+ * 
+ * Now these can't be store in plaintext because of security reasons.
+ * so we store them as a one-way-hash values (md5, etc)
+ * 
+ * For now, we keep it as plaintext for easy accessibility.
+*/
 vector<pair<string, string>> hashedUserPassTable = {
-    { "root", "root" }
+    { "id", "pass" }, { "root", "root" }, { "jatin", "root" }
 };
 
+// execution of server executable starts from here
 int main(int argc, char **argv) {
 
-    // segmentation fault handler
+    // installing segmentation fault handler
     signal(SIGSEGV, segmentationFaultHandler); 
-
-    // create a FTP server
+    
+    // create a FTP server by parsing user arguments
     Server ftpServer = parseArgs(argc, argv);
     
     // create a socket and bind it to the specified control port
@@ -24,12 +42,13 @@ int main(int argc, char **argv) {
     Listen(serverControlfd, ftpServer.getBacklogsPermitted());
     printInfo("Server Listening at ", ftpServer.getControlConnectionPortNumber());
     
-    // @todo
+    // @todo : run periodically?
+    // handles zombie processes
     handleZombieProcesses();
     
-    // ftpServer.initiateProtocolInterpretor();
-
     while(true) { 
+
+        // start accepting connections
         string ipAddressOfClient;
         int controlConnectionfd = Accept(serverControlfd, ipAddressOfClient);
         if(controlConnectionfd < 0){
@@ -37,16 +56,15 @@ int main(int argc, char **argv) {
             continue;
         }
         
-        string info;
-        info.append("[SERVER] Got connection from ");
-        info.append(ipAddressOfClient);
-        info.append("\nNew Connection Accepted. Creating Process to handle this.\n");
-        printInfo(info.c_str());
+
+        string connectionInfo = string("[SERVER] Got connection from ") + ipAddressOfClient;
+        printInfo(connectionInfo.c_str());
         
         // create a new process to handle this connection
+        printInfo("New Connection Accepted. Creating Process to handle this.");
         int pid = fork();
 
-        if(pid == -1){
+        if(pid == -1){    // error
             printError("[FORK] : Couldn't create a new process.");
             continue;
         }
@@ -58,7 +76,9 @@ int main(int argc, char **argv) {
             */
             close(serverControlfd);
 
+            // set client IP in this instance of server object
             ftpServer.setControlConnectionIP(ipAddressOfClient.c_str());
+            // @logging
             ftpServer.logServerConfiguration();
             
             // Start the Server-PI for this connection
@@ -90,6 +110,14 @@ int main(int argc, char **argv) {
 
 } // end:main
 
+/**Segmentation Fault Handler
+ * 
+ * Whenever the SIGSEGV signal is raised, 
+ * it is redirected here.
+ * 
+ * This informs us in detail, when a client connection dies abruptly.
+ * 
+*/
 void segmentationFaultHandler(int sig) {
   void *array[10];
   size_t size;

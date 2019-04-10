@@ -1,7 +1,8 @@
 #include "./../client.hpp"
 
+// STOR - put/store a file on server
+
 void Client::cmd_STOR(int controlConnectionfd, const vector<string>& args) { 
-    // @todo : can do a lot of pretty printing
       
     string ftpResponse;
 
@@ -21,8 +22,9 @@ void Client::cmd_STOR(int controlConnectionfd, const vector<string>& args) {
         throw runtime_error("[CLIENT:CMD:LIST] Fork Error");
     }
     else if(pid > 0) {      // parent
-        int statusOfChild;
+        
         // waiting for this child's completion
+        int statusOfChild;
         waitpid(pid, &statusOfChild, 0);
         
         int exitCodeOfChild;
@@ -38,7 +40,7 @@ void Client::cmd_STOR(int controlConnectionfd, const vector<string>& args) {
         }
         
         Recv(controlConnectionfd, ftpResponse);
-        log(ftpResponse.c_str());
+        logs(ftpResponse.c_str());
     }
     else if(pid==0) {       // child
         
@@ -51,7 +53,9 @@ void Client::cmd_STOR(int controlConnectionfd, const vector<string>& args) {
          * In case the PORT command is explicitly used and the dump is to be
          * received elsewhere, we allow that IP to receive data
         */
+
         // Remote DUMP Mode : allow that IP to accept data
+       
         if(string("CURRENT_MACHINE_IP").compare(getDataDumpReceiverIP()) != 0 ){
             handleDataDumpProcessAtRemoteIP();
             exit(0);
@@ -66,12 +70,8 @@ void Client::cmd_STOR(int controlConnectionfd, const vector<string>& args) {
          * 
         */
         int dataConnectionfd = createDataConnection(controlConnectionfd);
-        // int dataConnectionfd = controlConnectionfd;
-        
-        // child does not need control connection
-        // its only job is to tranfer data
-        // close(controlConnectionfd);
-        
+        close(controlConnectionfd);
+        // @logging
         logs(getDataDumpReceiverIP());
         logv(getDataDumpReceiverPortNumber());
         
@@ -83,11 +83,19 @@ void Client::cmd_STOR(int controlConnectionfd, const vector<string>& args) {
         
         string fileName(args[1]);
         SendFile(dataConnectionfd, fileName);
-        // dont send anything else now. 
-        // Server knows about completion because of connection termination.
-        close(dataConnectionfd);        
-
+        /**Important Note -
+         *
+         * don't send anything else now.
+         * Server knows about completion because of connection termination.
+         *
+         * if anything more is sent here, it will be assumed as part of the file
+         * and will be appended in file at the client side.
+        */
         logs("File Sent.");
+
+        close(dataConnectionfd);  
+        // @todo : close the control connection as well.      
+        // close(controlConnectionfd);
         
         // child will exit upon completion of its task
         exit(0);

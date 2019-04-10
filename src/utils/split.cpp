@@ -4,6 +4,11 @@
 using std::string;
 using std::vector;
 
+/**Split string
+ * 
+ * Splits the string based on the given delimeter
+ * 
+*/
 vector<string> splitString(const string &str, const string &delim, const int limit) {
   vector<string> tokens;
   size_t prev = 0, pos = 0;

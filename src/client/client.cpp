@@ -1,51 +1,63 @@
 #include "./client.hpp"
 
-// Protocol Interpreter for Server
+/**Protocol Interpretor for client
+ * 
+ * Classic FTP has two parts.
+ * The PI to interpret commands, and the data connection to transfer files.
+ * 
+*/
 void Client::initiateProtocolInterpreter(int controlConnectionfd) {
 
+    // begin
     string msgFromServer;
     Recv(controlConnectionfd, msgFromServer);
     logs(msgFromServer.c_str());
-
+    
+    // authentication
     if(authenticateFromServer(controlConnectionfd) == 0){
         cmd_QUIT(controlConnectionfd);
         return;
-    }
+    } 
  
     string ftpRequest;
     string ftpResponse;
      
+    /**Previous command tracking
+     * 
+     * PORT command changes the datadump site for the next command only.
+     * So we track the previous command, and reset the dump site after one command
+     * 
+    */
     Command previousCommand = Command::INVALID;
     Command currentCommand = Command::INVALID;   
  
+    // command interpreter loop
     while(true) {
+    
         cout<<"J-FTP ➜ ";
 		getline(std::cin, ftpRequest);
         ftpRequest = trim(ftpRequest);
 
         // handling ctrl+D
-        if(cin.eof()){
-              ftpRequest = "QUIT";
-        }
+        if(cin.eof()){  ftpRequest = "QUIT";    }
         
         // handling empty line
-        if (ftpRequest.size() == 0) {    
-          continue;
-        }
-
-        logv(ftpRequest);
+        if (ftpRequest.size() == 0) { continue; }
 
         ftpRequest = sanitizeRequest(ftpRequest);
+        // @logging
+        logv(ftpRequest);
 
+        // tokenize command
         vector<string> tokens = commandTokenizer(ftpRequest);
-        // logs("Command Tokenizer");
-        // for(auto it : tokens){ cout << it << "\n"; }    // @todo : remove log
+    
+        // resolve command type from first word
         Command commandType = resolveCommand(tokens.front());
-        logv(commandType); 
+        
         switch (commandType) {
 
             case Command::CLIENT : {
-                // remove `CLIENT-SIDE-COMMAND Identifier : @`
+                // removes `CLIENT-SIDE-COMMAND Identifier : @` from the request string
                 ftpRequest.erase(ftpRequest.begin(), ftpRequest.begin()+ FTP::CLIENT_SIDE_COMMAND_IDENTIFIER.size());
                 cmd_CLIENT(ftpRequest);
             }break;
@@ -258,8 +270,29 @@ void Client::initiateProtocolInterpreter(int controlConnectionfd) {
                 }  
             } break;
 
-            // case Command::PASV      : { cmd_PASV     (controlConnectionfd);    } break;
-            // case Command::ABOR      : { cmd_ABOR     (controlConnectionfd);    } break;
+            case Command::PASV      : { 
+                if(tokens.size() == 1){
+                    Send(controlConnectionfd, ftpRequest);
+                    cmd_PASV(controlConnectionfd);
+                }
+                else{
+                    printf("\nINVALID USAGE\n");
+                    printf("\nCommand\n\t%s", "Switch to Passive Receive Mode");
+                    printf("\nUsage\n\t%s\n\n", "PASV");
+                }
+            } break;
+
+            case Command::ABOR      : { 
+                if(tokens.size() == 1){
+                    Send(controlConnectionfd, ftpRequest);
+                    cmd_ABOR(controlConnectionfd);
+                }
+                else{
+                    printf("\nINVALID USAGE\n");
+                    printf("\nCommand\n\t%s", "Abort the last command and related data transfer");
+                    printf("\nUsage\n\t%s\n\n", "ABOR");
+                }
+            } break;
             
             default: { 
                 Send(controlConnectionfd, ftpRequest);
@@ -267,16 +300,16 @@ void Client::initiateProtocolInterpreter(int controlConnectionfd) {
             } break;
         }
 
-        // keeping track of previous command and current command
+        // previous command tracking
         previousCommand = currentCommand;
         currentCommand = commandType;
 
+        // reset PORT to default after one command
         if(previousCommand == Command::PORT) {
             resetDataDumpReceiverIP();
             resetDataDumpReceiverPortNumber();
         }
 
+    }   // end:while
 
-    }
-}
-
+}   // end:function

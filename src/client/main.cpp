@@ -1,8 +1,14 @@
 #include "./client.hpp"
 
-Client parseArgs(int, char**);
-void segmentationFaultHandler(int sig); 
+// prototypes for functions used below
 
+// parsing user's command line arguments
+Client parseArgs(int, char**);
+
+// signal handlers
+void segmentationFaultHandler(int sig); 
+ 
+// execution of client executable starts from here
 int main(int argc, char **argv) {
 
     // segmentation fault handler
@@ -17,16 +23,17 @@ int main(int argc, char **argv) {
         ftpClient.getControlConnectionPortNumber()
     );
 
-    // log client info
-    ftpClient.logClientConfiguration();
-
     // Start the FTP protocol
     ftpClient.initiateProtocolInterpreter(controlConnectionfd);
-
     return 0;
 } 
 
-
+/**Segmentation Fault Handler
+ * 
+ * Whenever the SIGSEGV signal is raised, 
+ * it is redirected here.
+ * 
+*/
 void segmentationFaultHandler(int sig) {
   void *array[10];
   size_t size;

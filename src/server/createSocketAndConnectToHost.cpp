@@ -1,5 +1,13 @@
 #include "./server.hpp"
 
+/**create socket and connect to host
+ * 
+ * @usage
+ * creates a socket, and simply tried to connect to host
+ * 
+ * @returns
+ * the connection file descriptor
+*/
 int createSocketAndConnectToHost(const char* host, int portNumber) {
     
     /**Converting port number to const char*
@@ -96,8 +104,9 @@ int createSocketAndConnectToHost(const char* host, int portNumber) {
         int connect_status = connect(sock_fd, p->ai_addr, p->ai_addrlen);
         if (connect_status != 0){
             printError("[SERVER] : Cannot Connect to this HOST IP");
+
             char s[INET6_ADDRSTRLEN];
-            inet_ntop(p->ai_family, _get_in_addr((struct sockaddr *)p->ai_addr), s, sizeof s);
+            get_ip_str((const struct sockaddr *) p->ai_addr, s, sizeof s);
             fprintf(stdout, "[SERVER:CONNECTION:FAIL] Can't Connect to  %s\n", s);
 
             close(sock_fd);      // close this socket
@@ -117,9 +126,8 @@ int createSocketAndConnectToHost(const char* host, int portNumber) {
 
     // Print out IP address
     char s[INET6_ADDRSTRLEN];
-    inet_ntop(p->ai_family, _get_in_addr((struct sockaddr *)p->ai_addr), s, sizeof s);
+    get_ip_str((const struct sockaddr *) p->ai_addr, s, sizeof s);
     fprintf(stdout, "\n[SERVER:CONNECTION] Connected to  %s\n", s);
-
 
 	/* Don't need the structure with address info any more
      *

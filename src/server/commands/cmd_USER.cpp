@@ -1,5 +1,7 @@
 #include "./../server.hpp"
 
+// USER - accepts username and asks for password
+
 void Server::cmd_USER(int controlConnectionfd, const vector<string> &args) {
   bool isUsernameOK = false;
   string ftpUser(args[1]);

@@ -1,8 +1,15 @@
 #include "./server.hpp"
 
-// @todo : Document
+// Send functions
 
-// Send ONE LINE
+/**Send : wrapper for system call `send`
+ * 
+ * @usage
+ * sends the given string terminated by FTP::DELIM
+ * 
+ * @returns
+ * no of bytes sent
+*/
 int Server::Send(int sockfd, const string& msgToSend, int responseCode) {
     string msg = "[RESPONSE] ";
     if(responseCode != 0){
@@ -14,7 +21,15 @@ int Server::Send(int sockfd, const string& msgToSend, int responseCode) {
     return _send_all(sockfd, msg.c_str(), msg.size());
 }
 
-// Send the entire buffer
+/**_send_all : Internal function
+ * 
+ * @usage
+ * Used to send entire Buffer given in arguments
+ * 
+ * @returns
+ * total no of bytes sent.
+ * 
+*/
 int Server::_send_all(int sockfd, const void *buffer, size_t length) {
     size_t totalNumberBytesSent = 0;
     while(totalNumberBytesSent < length){
@@ -33,7 +48,15 @@ int Server::_send_all(int sockfd, const void *buffer, size_t length) {
     return totalNumberBytesSent;
 }
 
-// Send a file
+/**SendFile : Wrapper function : sends a file across
+ * 
+ * @usage
+ * Send a file specified by filename, in binary format
+ * 
+ * @returns
+ * total no of bytes sent.
+ * 
+*/
 int Server::SendFile(int sockfd, const string& filename) {
     struct stat st;
     int statcode = stat(filename.c_str(), &st);
@@ -49,10 +72,18 @@ int Server::SendFile(int sockfd, const string& filename) {
     printInfo("Bytes Sent : ", noOfBytesSent);
     fclose(file);
 
-    return 0;
+    return 0; 
 }
 
-// Send the complete file pointed by fd as binary data
+/**_send_all_binary : Internal function
+ * 
+ * @usage
+ * Send the entire file (pointed by fd)
+ * 
+ * @returns
+ * total no of bytes sent.
+ * 
+*/
 int Server::_send_all_binary(int sockfd, FILE *fd, int size){
     int sizeOfFile = size;
     unsigned char buffer[FTP::FILE_READ_BUFFER_SIZE+1];

@@ -1,7 +1,9 @@
 #include "./../client.hpp"
 
+// SYS - tells the type of system
+
 void Client::cmd_SYS(int controlConnectionfd) {
     string ftpResponse;
     Recv(controlConnectionfd, ftpResponse);
-    log(ftpResponse.c_str());
+    logs(ftpResponse.c_str());
 }

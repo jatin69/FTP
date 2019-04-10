@@ -1,5 +1,8 @@
 #include "./client.hpp"
 
+/**Listen : Wrapper for `listen`
+ * 
+*/
 void Listen(int sockfd, int backlog) {
   const int res = listen(sockfd, backlog);
   if (res < 0) {

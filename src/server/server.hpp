@@ -1,42 +1,49 @@
 #ifndef SRC_SERVER_SERVER_H
 #define SRC_SERVER_SERVER_H
 
-/** Header Files
- *
-*/
-#include <algorithm>
-#include <vector>
-#include <arpa/inet.h>
-#include <arpa/inet.h> // inet_pton
+/************************** Header Files *************************/
+
+// Standard
+#include <iostream>
+#include <string>
+#include <sstream>
+
+#include <cstring>
 #include <cctype>
 #include <cstdio>
 #include <cstdlib>
-#include <cstring>
-#include <dirent.h>
-#include <errno.h>
+#include <unistd.h>
+
+// STL 
+#include <algorithm>
+#include <vector>
 #include <functional>
-#include <iostream>
-#include <locale>
-#include <netdb.h>
-#include <netinet/in.h>
-#include <sstream>
-#include <string>
+
+// socket programming
 #include <sys/socket.h>
+#include <errno.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/time.h>
 #include <sys/select.h>
-#include <unistd.h> // close()
+#include <netdb.h>
+#include <netinet/in.h>
+#include <locale>
+#include <arpa/inet.h>
+#include <dirent.h>
+
+// signal handling
 #include <signal.h>
 #include <execinfo.h>
+
+// standard namespace
 using namespace std;
 
-// Preprocessors
-#define log(x) fprintf(stdout, "%s\n", x)
-#define logv(x) cout << "[Variable] " << #x << " = " << x << "\n"
+/****************** Constants, Preprocessors, Namespaces ******************/
+
 #define logs(x) fprintf(stdout, "[LOGGING] %s\n", x)
-#define logr(x) cout << "[REQUEST] " << #x << " = " << x << "\n"
+#define logv(x) cout << "[Variable] " << #x << " = " << x << "\n"
 
 namespace FTP{
   const int LINE_SIZE = 1000;
@@ -44,96 +51,130 @@ namespace FTP{
   const int FILE_READ_BUFFER_SIZE = 100000;
   const string DELIM("\r\n");
 
-  /**These two cant be same for localhost
-   * Unfortunately, for localhost these cant be same.
-   * Because its the same machine. Same port can't be reused on same address.
+  /**[1] : Data Connection offset is set to 10
+   * 
+   * This is normally 0. That means,
+   * the data connection port is same as the control connection port
+   * in the default mode.
+   * 
+   * But this can't be done on localhost,
+   * because same port can't be binded to same src-dest address pair twice
+   * 
   */
   const int OFFSET_dataConnectionToClient = 10; // normally its 0
   const int OFFSET_dataConnectionToServer = 1; // normally its 1
 }
 
-// The following functions doesn't need to be part of the class
-// These are general Socket Programming functions
-// They follow Beej's advices
-
-// UTILS
-vector<string> commandTokenizer(string& cmd);
-vector<string> pathTokenizer(string& path);
-string oneWayHash(string s);
+/************************** General purpose Variables *************************/
 
 // ftpUser ftpPassword table
 extern vector<pair<string, string>> hashedUserPassTable ;
 
-// Print error messages
+/************************** General purpose functions *************************/
+
+// print functions
 void printError(const char* msg = "No Detailed Info Available");
 void printInfo(const char *msg);
 void printInfo(const char *msg, int value);
 
-void* _get_in_addr(struct sockaddr *sa);
+// utils
+vector<string> commandTokenizer(string& cmd);
+vector<string> pathTokenizer(string& path);
+string oneWayHash(string s);
 
-// Socket programming functions
-int createSocketAndConnectToHost(const char* host, int port);
-bool doesRouteToHostExist(const char* host, int portNumber);
+// execute any shell commmand
+string executeShellCommand(const string&);
+
+/************************** Socket programming functions *************************/
 
 // Create a socket and bind it to the given port
 int createSocketAndBindToPort(int portNumber);
+
+// start listening on the given socket
 void Listen(int sockfd, int backlog);
+
+// accept & tell the ip Address of connected Client
 int Accept(int sockfd, string& ipAddressOfClient);
 
-string executeShellCommand(const string&);
+// create a socket and connect to specified host on his specified port
+int createSocketAndConnectToHost(const char* host, int port);
+
+// print IP address from the given socket address structure
+void get_ip_str(const struct sockaddr *sa, char *s, size_t maxlen);
+
+// is host reachable
+bool doesRouteToHostExist(const char* host, int portNumber);
+
+
+/************************** SERVER CLASS *************************/
 
 /** Class : Server
  *
- * A simple class to encapsulate all server related features
+ * A simple class to encapsulate all server related features.
 */
 class Server {
 
-  private:
-  
-  //  Control IP : with whom the connection is Active
+  /**Note that
+   * 
+   * For each accepted client, we create a copy of the server object.
+   * Thus, that server object is unique to that connection with that client.
+   * It can therefore, be used to store information about the connection
+   * and client.
+  */
+
+private:
+
+  /************************ Data Members ***********************/
+
+  //  Control IP : client IP with whom the connection is Active
   string controlConnectionIP ;
-  // Control port : Protocol Interpreter Connection Port
+
+  // Control port : Protocol Interpreter Connection Port of the client
   const int controlConnectionPortNumber ;
   
-  // Data Connection IP : By default it is same as controlConnectionIP
-  
-  // send data from which IP
+  // Data Connection IP : send data to which IP
+  // By default, it is same as the control connection IP
   string dataConnectionIP ;
   
-  // send data to which port : in default cases, we send to client control port only
+  // send data to which port of client
+  // By default it is same as control connection port no (refer [1])
   int dataConnectionPortNumber;
-
-  // ignore this comment
-  // Data Connection Port Number : By default it is same as 1+controlConnectionPortNumber
 
   // When accept() call is blocking, how many potential connections are allowed to queue up
   const int backlogsPermitted ;
 
-  // extraBuffer
+  // extraBuffer : if recv reads up extra after newline, it is kept here
   string extraBuffer = "";
 
-  // stored username
+  // stored username of client for this connection
   string clientUsername = "";
 
-  // auth status
+  // authentication status of client
   bool isClientAuthenticated = false;
 
-  // Internal Functions
+
+  /************************ private member functions ***********************/
+
+  // Data Send / Receive Internal Functions
 
   // Send the entire buffer
   int _send_all(int sockfd, const void *buffer, size_t length);
+
   // Send the complete file pointed by fd as binary data
   int _send_all_binary(int sockfd, FILE *fd, int size);
 
   // Receive data until socket is empty and save it to a string
   int _recv_all(int sockfd, string& result);
+
   // Receive binary data until socket is empty and save it to a file
   int _recv_all_binary(int sockfd, FILE *fd);
-  
 
-  public: 
 
-  // Default cons'
+public: 
+
+  /************************ Cons'tors & Des'tors ***********************/
+
+  // Default constructor
   Server() :
     controlConnectionIP{""},
     controlConnectionPortNumber{9000},
@@ -141,7 +182,7 @@ class Server {
     dataConnectionPortNumber{controlConnectionPortNumber + FTP::OFFSET_dataConnectionToClient},
     backlogsPermitted{10} {}
 
-  // Paramterized cons'
+  // Paramterized constructor
   Server(
     const int _controlConnectionPortNumber,
     int _backlogsPermitted = 10
@@ -152,81 +193,84 @@ class Server {
       dataConnectionPortNumber{controlConnectionPortNumber + FTP::OFFSET_dataConnectionToClient},
       backlogsPermitted{_backlogsPermitted} {}
 
+  // Default destructor
   ~Server() = default;
   
 
   /************************ Getters & Setters ***********************/
+
+  // backlogs
   int getBacklogsPermitted() { return backlogsPermitted; }
-  
-  const char* getControlConnectionIP() { return controlConnectionIP.c_str(); }
-  int getControlConnectionPortNumber() { return controlConnectionPortNumber; }
-  void setControlConnectionIP(const char* _IP) { 
-    controlConnectionIP= _IP; 
-    dataConnectionIP = controlConnectionIP; 
+
+  // control connection IP
+  const char *getControlConnectionIP() { return controlConnectionIP.c_str(); }
+  void setControlConnectionIP(const char *_IP) {
+    controlConnectionIP = _IP;
+    // Because default data connection IP = control connection IP
+    // it is updated in sync with control connection IP
+    dataConnectionIP = controlConnectionIP;
   }
-  
-  const char* getDataConnectionIP() { return dataConnectionIP.c_str(); }
-  int getDataConnectionPortNumber() { return dataConnectionPortNumber; }
-  
+
+  // control connection port number
+  int getControlConnectionPortNumber() { return controlConnectionPortNumber; }
+
+  // data connection IP
+  const char *getDataConnectionIP() { return dataConnectionIP.c_str(); }
   void setDataConnectionIP(string _IP) {
     transform(_IP.begin(), _IP.end(), _IP.begin(), ::toupper);
 
     /**Handling naive user
-     * 
+     *
      * When user uses 127.0.0.1 or localhost as dumping site.
      * He is being naive.
-     * User is trying to dump to his machine but he doesn't know 
+     * User is trying to dump to his machine but he doesn't know
      * he has to use CURRENT_MACHINE_IP for this.
-     * 
+     *
      * NO problem, we'll forgive him, for NOW
     */
-    if( string("127.0.0.1").compare(_IP) == 0 || string("LOCALHOST").compare(_IP) == 0 ) {
+    if (string("127.0.0.1").compare(_IP) == 0 ||
+        string("LOCALHOST").compare(_IP) == 0) {
       _IP = "CURRENT_MACHINE_IP";
     }
-    
-    if(string("CURRENT_MACHINE_IP").compare(_IP) == 0 ) {
+
+    if (string("CURRENT_MACHINE_IP").compare(_IP) == 0) {
       resetDataConnectionIP();
-    }
-    else{
+    } else {
       dataConnectionIP = _IP;
     }
-  }  
-  void setDataConnectionPortNumber(int _port) { dataConnectionPortNumber = _port; }
+  }
+  void resetDataConnectionIP() { dataConnectionIP = controlConnectionIP; }
 
-  void resetDataConnectionIP() { dataConnectionIP = controlConnectionIP;  }
-  void resetDataConnectionPortNumber() { 
-    dataConnectionPortNumber = controlConnectionPortNumber + FTP::OFFSET_dataConnectionToClient; 
+  // data connection port number
+  int getDataConnectionPortNumber() { return dataConnectionPortNumber; }
+  void setDataConnectionPortNumber(int _port) {
+    dataConnectionPortNumber = _port;
+  }
+  void resetDataConnectionPortNumber() {
+    dataConnectionPortNumber =
+        controlConnectionPortNumber + FTP::OFFSET_dataConnectionToClient;
   }
 
-  bool getClientAuthenticationStatus() {
-    return isClientAuthenticated;
-  }
+  // client username
+  string getClientUsername() { return clientUsername; }
+  void setClientUsername(string _username) { clientUsername = _username; }
 
+  // authentication status
+  bool getClientAuthenticationStatus() { return isClientAuthenticated; }
   void updateClientAuthenticationStatus(bool status) {
     isClientAuthenticated = status;
   }
+  void resetClientUsername() { clientUsername = ""; }
 
-  string getClientUsername() {
-    return clientUsername;
-  }
-
-  void setClientUsername(string _username) {
-    clientUsername = _username;
-  }
-  
-  void resetClientUsername() {
-    clientUsername = "";
-  }
   /**************************** loggers ****************************/
+
   void logServerConfiguration();
 
-
-  /***************** Wrappers for Socket Programming ****************/
+  /***************** Socket Programming Wrapper Functions ****************/
 
   int Socket();
   void Bind(int sockfd, int port);
   int Connect(int sockfd, const std::string &host, int port);
-
 
   /************ Wrappers for Sending and Receiving Data **************/
 
@@ -249,14 +293,15 @@ class Server {
   // Protocol Interpreter for Server
   void initiateProtocolInterpreter(int connectionControlfd);
 
-  // control connection is passed so it can received transfer request
-  int createDataConnection(int controlConnectionfd);
-  int askForHelpAndCreateDataConnection(int controlConnectionfd);
-
   // Authentication
   void authenticateClient(int controlfd);
 
-  /**************************** FTP Commands ****************************/
+  // Data Connection : server establishes connection to client
+  int createDataConnection(int controlConnectionfd);
+  int askForHelpAndCreateDataConnection(int controlConnectionfd);
+
+
+  /************************ Supported Commands ****************************/
 
   // Supported Commands by Server
   enum Command {
@@ -302,6 +347,3 @@ class Server {
 };
 
 #endif // !SRC_SERVER_SERVER_H
-
-// @todo
-// 1. Move constructor?

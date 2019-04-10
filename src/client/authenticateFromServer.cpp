@@ -1,34 +1,45 @@
-    #include "./client.hpp"
+#include "./client.hpp"
 
+/**Authenticate from server
+ *
+ * @usage
+ * Before client can access server's file system or any other commands,
+ * it has to go through authentication.
+ * 
+ * This function handles all commands prior to authentication.
+ * 
+ * Note that, the server is also in its authentication function when
+ * this function is called, so the access space is very limited 
+ * for un-authenticated client.
+ *
+*/
 int Client::authenticateFromServer(int controlConnectionfd) {
          
     string ftpRequest;
+
+    // command interpreter loop
     while(true) {
+        
         cout<<"J-FTP ➜ ";
 		getline(std::cin, ftpRequest);
         ftpRequest = trim(ftpRequest);
 
         // handling ctrl+D
-        if(cin.eof()){
-              ftpRequest = "QUIT";
-        }
+        if(cin.eof()){  ftpRequest = "QUIT";    }
         
         // handling empty line
-        if (ftpRequest.size() == 0) {    
-          continue;
-        }
-
-        logv(ftpRequest);
+        if (ftpRequest.size() == 0) { continue; }
 
         ftpRequest = sanitizeRequest(ftpRequest);
+        // @logging
+        logv(ftpRequest);
 
+        // tokenize command
         vector<string> tokens = commandTokenizer(ftpRequest);
-        
-        // logs("Command Tokenizer");
-        // for(auto it : tokens){ cout << it << "\n"; }    // @todo : remove log
-        
+    
+        // resolve command type from first word
         Command commandType = resolveCommand(tokens.front());
-        // logv(commandType);
+        
         switch (commandType) {
 
             case Command::CLIENT : {
@@ -74,7 +85,13 @@ int Client::authenticateFromServer(int controlConnectionfd) {
                 }  
                 } break;
 
-            default: { 
+            default: {
+                /**Note that -
+                 * This request goes to server's `authenticateClient` function
+                 * Where only `USER`, `PASS`, `QUIT` are recognised.
+                 * All other strings are simply responded with
+                 * `un-authenticated client`
+                */
                 Send(controlConnectionfd, ftpRequest);
                 cmd_INVALID (controlConnectionfd); 
             } break;

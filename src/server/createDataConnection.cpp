@@ -1,5 +1,20 @@
 #include "./server.hpp"
 
+/**create Data Connection
+ * 
+ * @usage
+ * This function is responsible to create a data connection and
+ * return the data-connection-file-descriptor
+ * 
+ * @args-justification
+ * This function in itself does not need any arguments, 
+ * and yet controlConnectionfd is passed.
+ * 
+ * This is because, 
+ * server has to receive transfer request (signal that client is now in listening state) 
+ * before it tries to connect to client for data transfer.
+ * 
+*/
 int Server::createDataConnection(int controlConnectionfd) {
     logs("[SERVER] : I am creating a new data Connection");
 
@@ -10,8 +25,8 @@ int Server::createDataConnection(int controlConnectionfd) {
     // this is also a race condtion, resolve it
     bool doesRouteExist = doesRouteToHostExist(ip, port);
 
-    logServerConfiguration();
-    log(getDataConnectionIP());
+    // @logging
+    // logServerConfiguration();
     logs(ip);
     logv(port);
  

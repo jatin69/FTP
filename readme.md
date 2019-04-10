@@ -2,8 +2,6 @@
 
 A client-server Implementation of the File Transfer Protocol closely following [RFC-959](https://tools.ietf.org/html/rfc959) and [Beej's Guide](https://beej.us/guide/bgnet/html/multi/index.html). 
 
-Checkout the extented todoList [here](./todoList.md).
-
 ## Demo
 
 Screenshots / screencasts coming soon.
@@ -73,3 +71,11 @@ The maximum file size tested is `40MB` pdf file. That's a pretty big file for FT
   - `make | tee logs/makelog.txt`
   - `./bin/server | tee logs/serverlog.txt`
   - `./bin/client | tee logs/clientlog.txt`
+
+## Supported Commands
+
+| command | nickname | Action                                        |
+| ------- | -------- | --------------------------------------------- |
+| `LIST`  | `ls`     | Displays Directory Listing of Server          |
+| `PWD`   | `pwd`    | Displays present working directory for server |
+|         |          |                                               |

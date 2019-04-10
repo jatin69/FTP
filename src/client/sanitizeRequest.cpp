@@ -1,5 +1,15 @@
 #include "./client.hpp"
 
+/**sanitize request
+ * 
+ * user can enter anything. It is our job to ensure he does not break system.
+ * A few measures a being taken to avoid the same.
+ * 
+ * @usage
+ * disallow anything after semicolon
+ * support nickname facility
+ * 
+*/
 string Client::sanitizeRequest(const string& req) {
 
     // disallow semicolon, truncate all after semicolon
@@ -8,9 +18,6 @@ string Client::sanitizeRequest(const string& req) {
 
     string originalCommand;
     string nickName;
-
-    originalCommand = "LIST";
-    nickName = "LS";
 
     // nickname, originalCommand
     vector<pair<string, string>> commandPairs = {
@@ -43,6 +50,8 @@ string Client::sanitizeRequest(const string& req) {
 
     string detectedCommand("Detected Command : ");
     detectedCommand.append(cmd);
-    logs(detectedCommand.c_str());
+    // @logging
+    // logs(detectedCommand.c_str());
+    
     return cmd;
 }

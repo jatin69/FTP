@@ -1,5 +1,13 @@
 #include "./client.hpp"
 
+/**Execute the given command in shell
+ * 
+ * @usage
+ * opens a pipe and extracts the output from the shell command
+ * 
+ * @returns
+ * executed command's output
+*/
 string executeShellCommand(const string& cmd) {
     FILE *pipe = popen(cmd.c_str(), "r");
 	if (!pipe){

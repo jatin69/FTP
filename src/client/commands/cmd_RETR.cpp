@@ -1,7 +1,8 @@
 #include "./../client.hpp"
 
+// RETR - get/retrive a file from server
+
 void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) { 
-    // @todo : can do a lot of pretty printing
       
     string ftpResponse;
 
@@ -21,8 +22,9 @@ void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
         throw runtime_error("[CLIENT:CMD:LIST] Fork Error");
     }
     else if(pid > 0) {      // parent
-        int statusOfChild;
+
         // waiting for this child's completion
+        int statusOfChild;
         waitpid(pid, &statusOfChild, 0);
         
         int exitCodeOfChild;
@@ -53,14 +55,15 @@ void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
      * In case the PORT command is explicitly used and the dump is to be
      * received elsewhere, we allow that IP to receive data
     */
+
     // Remote DUMP Mode : allow that IP to accept data
+
     if(string("CURRENT_MACHINE_IP").compare(getDataDumpReceiverIP()) != 0 ){
         handleDataDumpProcessAtRemoteIP();
         exit(0);
     }  
 
-    // Normal DUMP mode 
-    
+    // Normal DUMP mode     
 
     /**Special Note : Race Condition Resolving
      * 
@@ -69,26 +72,23 @@ void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
      * 
     */
     int dataConnectionfd = createDataConnection(controlConnectionfd);
-
-    // child does not need control connection
-    // its only job is to tranfer data
-    // close(controlConnectionfd);
-
-
-    // int dataConnectionfd = createDataConnection();  
-    // int dataConnectionfd = controlConnectionfd;
-        
+    close(controlConnectionfd);
+    
+    // @logging
     logs(getDataDumpReceiverIP());
     logv(getDataDumpReceiverPortNumber());
     
     Recv(dataConnectionfd, ftpResponse);
-    log(ftpResponse.c_str());
+    logs(ftpResponse.c_str());
     
     string fileName(args[1]);
     RecvFile(dataConnectionfd, fileName);
     
+    close(dataConnectionfd);       
+    // @todo : close the control connection as well. 
+    // close(controlConnectionfd);
+    
     // child will exit upon completion of its task
-    close(dataConnectionfd);        
     exit(0);
     }
 }
