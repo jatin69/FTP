@@ -4,10 +4,10 @@
  * Logs server's current configuration.
 */
 void Server::logServerConfiguration() {
-    logs("Server config is : ");
-    logv(controlConnectionIP);
-    logv(controlConnectionPortNumber);
-    logv(dataConnectionIP);
-    logv(dataConnectionPortNumber);    
-    logv(backlogsPermitted);
+	logs("Server config is : ");
+	logv(controlConnectionIP);
+	logv(controlConnectionPortNumber);
+	logv(dataConnectionIP);
+	logv(dataConnectionPortNumber);
+	logv(backlogsPermitted);
 }

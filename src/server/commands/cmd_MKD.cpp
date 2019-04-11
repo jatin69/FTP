@@ -2,7 +2,7 @@
 
 // MKD - make directory
 
-void Server::cmd_MKD(int controlConnectionfd, const vector<string> &args) {
+void Server::cmd_MKD(int controlConnectionfd, const vector<string>& args) {
 	string path(args[1]);
 
 	int stat = mkdir(path.c_str(), 0775);
@@ -15,4 +15,3 @@ void Server::cmd_MKD(int controlConnectionfd, const vector<string> &args) {
 		Send(controlConnectionfd, res, 257);
 	}
 }
- 

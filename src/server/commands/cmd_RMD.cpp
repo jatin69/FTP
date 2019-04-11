@@ -2,7 +2,7 @@
 
 // RMD - remove directory
 
-void Server::cmd_RMD(int controlConnectionfd, const vector<string> &args) {
+void Server::cmd_RMD(int controlConnectionfd, const vector<string>& args) {
 	string path(args[1]);
 	int stat = rmdir(path.c_str());
 	if (stat != 0) {
@@ -14,4 +14,3 @@ void Server::cmd_RMD(int controlConnectionfd, const vector<string> &args) {
 		Send(controlConnectionfd, res, 257);
 	}
 }
- 
