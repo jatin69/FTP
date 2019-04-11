@@ -37,7 +37,10 @@ void Server::cmd_STOR(int controlConnectionfd, const vector<string> &args) {
   if (pid == 0) { // child
 
   int dataConnectionfd = createDataConnection(controlConnectionfd);
-	close(controlConnectionfd);
+	    
+  // Child no longer needs control connection, we can close it
+  close(controlConnectionfd);
+
   
 	// @logging
     logs(getDataConnectionIP());
@@ -53,10 +56,8 @@ void Server::cmd_STOR(int controlConnectionfd, const vector<string> &args) {
     RecvFile(dataConnectionfd, fileName);
     logs("File Received.");
 
-	// @todo : close the control connection as well.
-	close(dataConnectionfd);
-
-    // child will exit upon completion of its task
-	exit(0);
+	  // child will exit upon completion of its task
+    close(dataConnectionfd);
+  	exit(0);
   }
 }

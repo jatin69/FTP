@@ -32,25 +32,24 @@ void Server::cmd_LIST(int controlConnectionfd, const vector<string>& tokens){
 
     if(pid==0) {        // child
         
-        int dataConnectionfd = createDataConnection(controlConnectionfd);          
+        int dataConnectionfd = createDataConnection(controlConnectionfd);                      
+        // Child no longer needs control connection, we can close it
         close(controlConnectionfd);
+
         // @logging
         logs(getDataConnectionIP());
         logv(getDataConnectionPortNumber());
         
         Send(dataConnectionfd, "Directory Listing is as follows :");
-        string commandToExecute = "ls -l ";
+        string commandToExecute = "ls -lA ";
         for(auto it=tokens.begin()+1; it!=tokens.end(); ++it){
             commandToExecute += " " + *it;
         }
         string outputOfCommand = executeShellCommand(commandToExecute);
         Send(dataConnectionfd, outputOfCommand);
 
-        close(dataConnectionfd);        
-        // @todo : close the control connection as well.
-        // close(controlConnectionfd);
-       
         // child will exit upon completion of its task
+        close(dataConnectionfd);        
         exit(0);
     }
 }

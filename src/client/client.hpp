@@ -252,7 +252,7 @@ public:
 
   // Supported Commands 
   enum Command {
-    INVALID, CLIENT,
+    INVALID, CLIENT, HELP,
     USER, PASS,
     NOOP, SYS,
     PORT, PASV,
@@ -272,6 +272,7 @@ public:
 
   // Wrappers to execute Commands
   void cmd_CLIENT(const string&);
+  void cmd_HELP(const string&);
 
   void cmd_USER(int, const vector<string>&);
   int cmd_PASS(int, const vector<string>&);

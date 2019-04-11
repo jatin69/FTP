@@ -70,7 +70,10 @@ void Client::cmd_STOR(int controlConnectionfd, const vector<string>& args) {
          * 
         */
         int dataConnectionfd = createDataConnection(controlConnectionfd);
+            
+        // Child no longer needs control connection, we can close it
         close(controlConnectionfd);
+
         // @logging
         logs(getDataDumpReceiverIP());
         logv(getDataDumpReceiverPortNumber());
@@ -93,11 +96,8 @@ void Client::cmd_STOR(int controlConnectionfd, const vector<string>& args) {
         */
         logs("File Sent.");
 
-        close(dataConnectionfd);  
-        // @todo : close the control connection as well.      
-        // close(controlConnectionfd);
-        
         // child will exit upon completion of its task
+        close(dataConnectionfd);  
         exit(0);
     }
 }

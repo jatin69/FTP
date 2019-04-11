@@ -16,6 +16,7 @@ Client::Command Client::resolveCommand(const string& incomingCommand) {
     if(cmd.rfind(FTP::CLIENT_SIDE_COMMAND_IDENTIFIER, 0) == 0) {
         return Command::CLIENT;
     }
+    if(cmd.compare("HELP") == 0)     return Command::HELP;
 
     if(cmd.compare("USER") == 0)     return Command::USER;
     if(cmd.compare("PASS") == 0)     return Command::PASS;

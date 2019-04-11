@@ -48,6 +48,10 @@ int Client::authenticateFromServer(int controlConnectionfd) {
                 cmd_CLIENT(ftpRequest);
             }break;
 
+            case Command::HELP : {
+                cmd_HELP(ftpRequest);
+            }break;
+
             case Command::USER : { 
                 if(tokens.size() == 2){
                     Send(controlConnectionfd, ftpRequest);

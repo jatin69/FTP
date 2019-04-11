@@ -9,9 +9,10 @@
  * `cd`.
  * 
 */
+void Client::cmd_CLIENT(const string& ftpRequest) {
+    // command = ftpRequest without the CLIENT_SIDE_COMMAND_IDENTIFIER
+    string cmd(ftpRequest.substr(FTP::CLIENT_SIDE_COMMAND_IDENTIFIER.size(), ftpRequest.size()));
 
-void Client::cmd_CLIENT(const string& cmd) {
-    
     string commandResponse;
 
     if(cmd.rfind("cd ")==0){

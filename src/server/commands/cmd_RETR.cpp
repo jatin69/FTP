@@ -37,7 +37,10 @@ void Server::cmd_RETR(int controlConnectionfd, const vector<string> &args) {
   if (pid == 0) { // child
 
     int dataConnectionfd = createDataConnection(controlConnectionfd);
+    
+    // Child no longer needs control connection, we can close it
     close(controlConnectionfd);
+
     // @logging
     logs(getDataConnectionIP());
     logv(getDataConnectionPortNumber());
@@ -46,6 +49,9 @@ void Server::cmd_RETR(int controlConnectionfd, const vector<string> &args) {
 
     string fileName(args[1]);
     SendFile(dataConnectionfd, fileName);
+    //  @logging
+    logs("File Sent.");
+
     /**Important Note -
      *
      * don't send anything else now.
@@ -55,14 +61,8 @@ void Server::cmd_RETR(int controlConnectionfd, const vector<string> &args) {
      * and will be appended in file at the client side.
     */
 
-    close(dataConnectionfd);
-    // @todo : close the control connection as well.
-    // close(controlConnectionfd);
-
-    //  @logging
-    logs("File Sent.");
-
     // child will exit upon completion of its task
+    close(dataConnectionfd);
     exit(0);
   }
 }

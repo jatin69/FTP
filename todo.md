@@ -2,12 +2,12 @@
 
 ## Must Have
 
-- [ ] implement HELP Command for client side - authentication + main loop
+- [ ] release version 0.2
+- [ ] Make a proper readme with screenshots
+
 - [ ] Indent and format all code
 - [ ] Finalise code
-- [ ] Make a proper readme with screenshots
-- [ ] Finalise project
-
+- [X] implement HELP Command for client side - authentication + main loop
 - [X] mark all the log statements by `@logging`
 - [X] clean all the printing/logging
 - [X] put correct response codes everywhere
@@ -43,7 +43,7 @@
 - [X] Improve makefile to make everything inside a build folder
 - [ ] Optimize makefile for minimum building
 - [ ] stor / retr supports pathnames, not just filenames. TEST thoroughly.
-- [ ] Update `LIST` command to not use `ls` and use `readdir`
+- [ ] Update `LIST` command to not use `ls` system command and use `readdir` instead.
 - [ ] Switch to PORT command's `h1,h2,h3,h4,p1,p2` format
 - [X] Implement some more commands. as Listed in `server.cpp`
   - [X] CDUP
@@ -55,11 +55,11 @@
 - [ ] do graceful exception handling
 - [ ] colorize all the logging ?
 - [ ] Implement ABORT. for ABORT to work, the parent should not wait for the result of child LS and maybe somehow save its pid for it to kill it. Because it is cut in middle, it might need clean up its leftovers.
-- [ ] resolve all the @todos
-  - [ ] closing unncessary connections
 
 ## Future scope
 
+- [ ] Resolve all the `@todos`
 - [ ] implement PASV command. Test with one client & server-to-server transfer
 - [ ] Transferring multiple files in single data connection
 - [ ] Using ncurses to handle input `history` and other useful stuff
+- [ ] When ready, move to precise colored outputs, and no logging.

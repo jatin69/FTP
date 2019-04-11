@@ -72,6 +72,8 @@ void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
      * 
     */
     int dataConnectionfd = createDataConnection(controlConnectionfd);
+    
+    // Child no longer needs control connection, we can close it
     close(controlConnectionfd);
     
     // @logging
@@ -84,11 +86,8 @@ void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
     string fileName(args[1]);
     RecvFile(dataConnectionfd, fileName);
     
-    close(dataConnectionfd);       
-    // @todo : close the control connection as well. 
-    // close(controlConnectionfd);
-    
     // child will exit upon completion of its task
+    close(dataConnectionfd);   
     exit(0);
     }
 }

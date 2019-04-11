@@ -57,9 +57,11 @@ void Client::initiateProtocolInterpreter(int controlConnectionfd) {
         switch (commandType) {
 
             case Command::CLIENT : {
-                // removes `CLIENT-SIDE-COMMAND Identifier : @` from the request string
-                ftpRequest.erase(ftpRequest.begin(), ftpRequest.begin()+ FTP::CLIENT_SIDE_COMMAND_IDENTIFIER.size());
                 cmd_CLIENT(ftpRequest);
+            }break;
+
+            case Command::HELP : {
+                cmd_HELP(ftpRequest);
             }break;
 
             case Command::USER : { 
