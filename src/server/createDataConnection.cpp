@@ -16,8 +16,7 @@
  *
 */
 int Server::createDataConnection(int controlConnectionfd) {
-	logs("[SERVER] : I am creating a new data Connection");
-
+	printInfo("[SERVER] : I am creating a new data Connection");
 
 	const char* ip = getDataConnectionIP();
 	int port = getDataConnectionPortNumber();
@@ -26,9 +25,7 @@ int Server::createDataConnection(int controlConnectionfd) {
 	bool doesRouteExist = doesRouteToHostExist(ip, port);
 
 	// @logging
-	// logServerConfiguration();
-	logs(ip);
-	logv(port);
+	logServerConfiguration();
 
 	/**Special Note : Race Condition Resolving
 	 *

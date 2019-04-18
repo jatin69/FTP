@@ -40,10 +40,9 @@ void Server::cmd_STOR(int controlConnectionfd, const vector<string>& args) {
 		// Child no longer needs control connection, we can close it
 		close(controlConnectionfd);
 
-
 		// @logging
-		logs(getDataConnectionIP());
-		logv(getDataConnectionPortNumber());
+		// logs(getDataConnectionIP());
+		// logv(getDataConnectionPortNumber());
 
 		Recv(dataConnectionfd, ftpResponse);
 		logs(ftpResponse.c_str());

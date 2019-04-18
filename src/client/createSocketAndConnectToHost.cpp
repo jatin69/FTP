@@ -120,7 +120,7 @@ int createSocketAndConnectToHost(const char* host, int portNumber) {
 	// Print out IP address
 	char s[INET6_ADDRSTRLEN];
 	get_ip_str((const struct sockaddr*)p->ai_addr, s, sizeof s);
-	fprintf(stdout, "\n[CLIENT:CONNECTION:test] Connected to %s\n", s);
+	fprintf(stdout, "\n[CLIENT:CONNECTION] Connected to %s\n", s);
 
 	/* Don't need the structure with address info any more
 	 *
