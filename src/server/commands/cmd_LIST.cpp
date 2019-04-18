@@ -35,8 +35,8 @@ void Server::cmd_LIST(int controlConnectionfd, const vector<string>& tokens) {
 		close(controlConnectionfd);
 
 		// @logging
-		logs(getDataConnectionIP());
-		logv(getDataConnectionPortNumber());
+		// logs(getDataConnectionIP());
+		// logv(getDataConnectionPortNumber());
 
 		Send(dataConnectionfd, "Directory Listing is as follows :");
 		string commandToExecute = "ls -lA ";

@@ -41,8 +41,8 @@ void Server::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
 		close(controlConnectionfd);
 
 		// @logging
-		logs(getDataConnectionIP());
-		logv(getDataConnectionPortNumber());
+		// logs(getDataConnectionIP());
+		// logv(getDataConnectionPortNumber());
 
 		Send(dataConnectionfd, "Sending File in Binary Mode.");
 

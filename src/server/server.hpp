@@ -85,8 +85,7 @@ string oneWayHash(string s);
 // execute any shell commmand
 string executeShellCommand(const string&);
 
-/************************** Socket programming functions
- * *************************/
+/********************** Socket programming functions *************************/
 
 // Create a socket and bind it to the given port
 int createSocketAndBindToPort(int portNumber);

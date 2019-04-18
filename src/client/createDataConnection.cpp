@@ -54,5 +54,8 @@ int Client::createDataConnection(int controlConnectionfd) {
 		dataConnectionfd = Accept(dataConnectionSocketfd, ipAddressOfDataServer);
 	}
 
+	// listening is no longer needed
+	close(dataConnectionSocketfd);
+	
 	return dataConnectionfd;
 }

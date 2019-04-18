@@ -26,6 +26,9 @@ int Server::askForHelpAndCreateDataConnection(int controlConnectionfd) {
 	string ipAddressOfClient;
 	int dataConnectionfd;
 	dataConnectionfd = Accept(helperSocket, ipAddressOfClient);
-
+	
+	// listening is no longer needed
+	close(helperSocket);
+	
 	return dataConnectionfd;
 }
