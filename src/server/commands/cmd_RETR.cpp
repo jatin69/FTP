@@ -3,39 +3,45 @@
 // RETR - get/retrive a file from server
 
 void Server::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
+	
+	int dataConnectionfd = createDataConnection(controlConnectionfd);
+
 	int pid = fork();
 
 	if (pid < 0) {  // error
 		printError();
 		throw runtime_error("[SERVER:CMD:LIST] Fork Error");
 	}
-
+ 
 	if (pid > 0) {  // parent
 
-		// waiting for this child's completion
-		int statusOfChild;
-		waitpid(pid, &statusOfChild, 0);
+		close(dataConnectionfd);
+		
+		// sleep(2);
+		// // waiting for this child's completion
+		// int statusOfChild = -1;
+		// // waitpid(pid, &statusOfChild, 0);
 
-		int exitCodeOfChild;
-		if (WIFEXITED(statusOfChild)) {
-			exitCodeOfChild = WEXITSTATUS(statusOfChild);
-		}
+		// int exitCodeOfChild;
+		// if (WIFEXITED(statusOfChild)) {
+		// 	exitCodeOfChild = WEXITSTATUS(statusOfChild);
+		// }
 
-		if (exitCodeOfChild == 0) {
-			Send(controlConnectionfd, "Server Sent File Successfully.", 250);
-			logs("Server Sent File Successfully.");
-		} else {
-			Send(controlConnectionfd, "Resuming Session.");
-		}
+		// if (exitCodeOfChild == 0) {
+		// 	Send(controlConnectionfd, "Server Sent File Successfully.", 250);
+		// 	logs("Server Sent File Successfully.");
+		// } else {
+		// 	Send(controlConnectionfd, "Resuming Session.");
+		// }
 
-		string ftpResponse;
-		Recv(controlConnectionfd, ftpResponse);
-		logs(ftpResponse.c_str());
+		// string ftpResponse;
+		// Recv(controlConnectionfd, ftpResponse);
+		// logs(ftpResponse.c_str());
 	}
 
 	if (pid == 0) {  // child
 
-		int dataConnectionfd = createDataConnection(controlConnectionfd);
+		// int dataConnectionfd = createDataConnection(controlConnectionfd);
 
 		// Child no longer needs control connection, we can close it
 		close(controlConnectionfd);
@@ -47,9 +53,8 @@ void Server::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
 		Send(dataConnectionfd, "Sending File in Binary Mode.");
 
 		string fileName(args[1]);
+		logs("Server Send inititated");
 		SendFile(dataConnectionfd, fileName);
-		//  @logging
-		logs("File Sent.");
 
 		/**Important Note -
 		 *

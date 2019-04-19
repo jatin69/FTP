@@ -16,7 +16,8 @@
  *
 */
 int Server::createDataConnection(int controlConnectionfd) {
-	printInfo("[SERVER] : I am creating a new data Connection");
+	// @logging
+	logs("[SERVER] : I am creating a new data Connection");
 
 	const char* ip = getDataConnectionIP();
 	int port = getDataConnectionPortNumber();

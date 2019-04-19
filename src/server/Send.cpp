@@ -73,6 +73,14 @@ int Server::SendFile(int sockfd, const string& filename) {
 	printInfo("Bytes Sent : ", noOfBytesSent);
 	fclose(file);
 
+	if(noOfBytesSent != -1){
+		//  @logging
+		logs("File Sent Successfully.");
+	}
+	else{
+		logs("Could not send file.");
+	}
+
 	return 0;
 }
 

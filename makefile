@@ -84,24 +84,18 @@ $(UTILS_OBJ_DIR)/%.o: $(UTILS_SRC_DIR)/%.cpp
 	$(CXX) $(CFLAGS) -c -o $@ $<
 
 
-# ===================== CLEAN UP RULES =====================
+# ================ CLEAN UP RULES ==================
 
 .PHONY: clean
 
-clean: clean-server clean-client clean-utils clean-bin
+clean: clean-obj clean-bin
 	@echo "Cleanup successful."
 
-clean-server:
-	$(RM) $(SERVER_OBJ_FILES)
-
-clean-client:
-	$(RM) $(CLIENT_OBJ_FILES)
-
-clean-utils:
-	$(RM) $(UTILS_OBJ_FILES)
+clean-obj:
+	$(RM) $(shell find ./obj -name "*.o")
 
 clean-bin:
-	$(RM) ./bin/server ./bin/client
+	$(RM) $(shell find ./bin -name "*.o")
 
 # =========================================================
 

@@ -3,6 +3,9 @@
 // RETR - get/retrive a file from server
 
 void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
+	
+	int dataConnectionfd = createDataConnection(controlConnectionfd);
+
 	string ftpResponse;
 
 	/**Create a child - As per RFC 959
@@ -19,28 +22,34 @@ void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
 	if (pid < 0) {  // error
 		printError();
 		throw runtime_error("[CLIENT:CMD:LIST] Fork Error");
-	} else if (pid > 0) {  // parent
+	}
+	
+	if (pid > 0) {  // parent
 
-		// waiting for this child's completion
-		int statusOfChild;
-		waitpid(pid, &statusOfChild, 0);
+		close(dataConnectionfd);
+		// sleep(2);
+		// // waiting for this child's completion
+		// int statusOfChild = -1;
+		// // waitpid(pid, &statusOfChild, 0);
 
-		int exitCodeOfChild;
-		if (WIFEXITED(statusOfChild)) {
-			exitCodeOfChild = WEXITSTATUS(statusOfChild);
-		}
+		// int exitCodeOfChild;
+		// if (WIFEXITED(statusOfChild)) {
+		// 	exitCodeOfChild = WEXITSTATUS(statusOfChild);
+		// }
 
-		Recv(controlConnectionfd, ftpResponse);
-		logs(ftpResponse.c_str());
-
-		if (exitCodeOfChild == 0) {
-			Send(controlConnectionfd, "Client Received File Successfully.");
-			logs("Client Received File Successfully.");
-		} else {
-			Send(controlConnectionfd, "Unchecked error");
-			logs("Unchecked error");
-		}
-	} else if (pid == 0) {  // child
+		// Recv(controlConnectionfd, ftpResponse);
+		// logs(ftpResponse.c_str());
+		
+		// if (exitCodeOfChild == 0) {
+		// 	Send(controlConnectionfd, "Client Received File Successfully.");
+		// 	logs("Client Received File Successfully.");
+		// } else {
+		// 	Send(controlConnectionfd, "Resuming session");
+		// 	logs("Resuming session");
+		// }
+	} 
+	
+	if (pid == 0) {  // child
 
 		/**Data Connection fd
 		 *
@@ -54,10 +63,12 @@ void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
 
 		// Remote DUMP Mode : allow that IP to accept data
 
-		if (string("CURRENT_MACHINE_IP").compare(getDataDumpReceiverIP()) != 0) {
-			handleDataDumpProcessAtRemoteIP();
-			exit(0);
-		}
+		// @todo : what to do about this thing - probably move it about the data connection line.
+		// the exit line will then be remove
+		// if (string("CURRENT_MACHINE_IP").compare(getDataDumpReceiverIP()) != 0) {
+		// 	handleDataDumpProcessAtRemoteIP();
+		// 	exit(0);
+		// }
 
 		// Normal DUMP mode
 
@@ -67,7 +78,7 @@ void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
 		 * and start listening before the server attempts to connect.
 		 *
 		*/
-		int dataConnectionfd = createDataConnection(controlConnectionfd);
+		// int dataConnectionfd = createDataConnection(controlConnectionfd);
 
 		// Child no longer needs control connection, we can close it
 		close(controlConnectionfd);
@@ -80,6 +91,7 @@ void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
 		logs(ftpResponse.c_str());
 
 		string fileName(args[1]);
+		logs("CLient receive inititated");
 		RecvFile(dataConnectionfd, fileName);
 
 		// child will exit upon completion of its task

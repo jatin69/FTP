@@ -2,9 +2,9 @@
 
 ## Must Have
 
-- [ ] release version 0.2
-- [ ] Make a proper readme with screenshots
-
+- [ ] release version 0.2 with logs
+- [ ] Make a proper readme with features and everything
+- [ ] client username in all the logging
 - [x] Indent and format all code
 - [x] Finalise code
 - [x] implement HELP Command for client side - authentication + main loop
@@ -52,14 +52,18 @@
 - [x] Implement client side supported commands
 - [x] implement client side functions (child commands) - !ls, !pwd
 - [x] implement client side - shell builtins - `cd` for now
-- [ ] do graceful exception handling
-- [ ] colorize all the logging ?
-- [ ] Implement ABORT. for ABORT to work, the parent should not wait for the result of child LS and maybe somehow save its pid for it to kill it. Because it is cut in middle, it might need clean up its leftovers.
+- [X] implement basic signal handling
+- [X] reap off zombie processes on server-client side
+- [X] do graceful exception handling
+- [X] `Multi-file transfer` Not possible in stream Mode. Block mode is needed. Moved to future scope.
 
 ## Future scope
 
-- [ ] Resolve all the `@todos`
+- [ ] Resolve all the `@todo`'s
+- [ ] Do optimised exception handling
+- [ ] Move to precise colored outputs ?? and no extra logging ??
+- [ ] Handle input `history` and other stuff using `ncurses` ? Maybe.
+- [ ] Implement ABORT and related functionality - refer to branch `implementing-abort`
 - [ ] implement PASV command. Test with one client & server-to-server transfer
-- [ ] Transferring multiple files in single data connection
-- [ ] Using ncurses to handle input `history` and other useful stuff
-- [ ] When ready, move to precise colored outputs, and no logging.
+- [ ] Implement `BLOCK MODE` => not closing the data connection immediately and reusing it in subsequent requests until a TTL.
+- [ ] Implement `BLOCK MODE` to allow transferring of multiple files in a single data connection. 
