@@ -4,8 +4,6 @@
 
 void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
 	
-	int dataConnectionfd = createDataConnection(controlConnectionfd);
-
 	string ftpResponse;
 
 	/**Create a child - As per RFC 959
@@ -18,6 +16,7 @@ void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
 	 * Parent waits for child to complete. Once the child has done its work,
 	 * The final response is collected by controlfd.
 	*/
+	int myid = getpid();
 	int pid = fork();
 	if (pid < 0) {  // error
 		printError();
@@ -26,27 +25,53 @@ void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
 	
 	if (pid > 0) {  // parent
 
-		close(dataConnectionfd);
-		// sleep(2);
-		// // waiting for this child's completion
-		// int statusOfChild = -1;
-		// // waitpid(pid, &statusOfChild, 0);
+		/**If we don't do anything here, parent starts to race for `receive control connection`
+		 * Instead of child getting the transfer request,
+		 * the parent gets the transfer request.
+		 * 
+		 * 
+		 * PARENT MUST WAIT UNTIL A DATA CONNECTION IS CREATED. THEN IT CAN RETURN to accept ABORT FROM USER.
+		*/
+
+		// sleep(5);
+		
+		// waiting for this child's completion
+		int statusOfChild = -1;
+		wait(NULL);
+		// waitpid(-1, &statusOfChild, 0);
+		// waitpid(pid, &statusOfChild, 0);
+		logv(myid);
+		siginfo_t info;
+		if(waitid(P_PGID, myid, &info, WEXITED | WCONTINUED)==0){
+			logs("I AM GOOD");
+		}
+		else{
+			logs("SHIT");
+			printError();
+		}
+		
+		int exitCodeOfChild = info.si_status;
+		logs("I FOUND EXIT CODE.");
+		logv(exitCodeOfChild);
 
 		// int exitCodeOfChild;
 		// if (WIFEXITED(statusOfChild)) {
 		// 	exitCodeOfChild = WEXITSTATUS(statusOfChild);
 		// }
 
-		// Recv(controlConnectionfd, ftpResponse);
-		// logs(ftpResponse.c_str());
+		Recv(controlConnectionfd, ftpResponse);
+		logs(ftpResponse.c_str());
 		
-		// if (exitCodeOfChild == 0) {
-		// 	Send(controlConnectionfd, "Client Received File Successfully.");
-		// 	logs("Client Received File Successfully.");
-		// } else {
-		// 	Send(controlConnectionfd, "Resuming session");
-		// 	logs("Resuming session");
-		// }
+		if (exitCodeOfChild == -10) {
+			Send(controlConnectionfd, "Resuming session");
+			logs("Resuming session");
+			// Send(controlConnectionfd, "Client Received File Successfully.");
+			// logs("Client Received File Successfully.");
+		} else {
+			logs("BLAHH");
+			// Send(controlConnectionfd, "Resuming session");
+			// logs("Resuming session");
+		}
 	} 
 	
 	if (pid == 0) {  // child
@@ -77,8 +102,24 @@ void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
 		 * It is extremely important that we create this data connection
 		 * and start listening before the server attempts to connect.
 		 *
-		*/
-		// int dataConnectionfd = createDataConnection(controlConnectionfd);
+		*/ 
+		// @abort
+		int dataConnectionfd = createDataConnection(controlConnectionfd);
+
+		// send a signal to parent that he is safe to return now
+		// send a signal to parent that he is safe to return now
+		int newp = fork();
+		if(newp == 0){
+			// changing the process's group id to its parent
+			// so its grandfather can wait for him
+			// int ppid = getppid();
+			setpgid(0, myid);
+			string s = executeShellCommand("ps fj");
+			logs(s.c_str());
+			logs("CHECK NOW ..");
+			// sleep(4000);
+			exit(-10);
+		}
 
 		// Child no longer needs control connection, we can close it
 		close(controlConnectionfd);
@@ -93,6 +134,7 @@ void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
 		string fileName(args[1]);
 		logs("CLient receive inititated");
 		RecvFile(dataConnectionfd, fileName);
+		logs("Client receiving done.");
 
 		// child will exit upon completion of its task
 		close(dataConnectionfd);

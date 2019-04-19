@@ -11,11 +11,11 @@ void Server::initiateProtocolInterpreter(int controlConnectionfd) {
 	Send(controlConnectionfd, "J's FTP-Server ");
 
 	// authentication
-	authenticateClient(controlConnectionfd);
-	if (getClientAuthenticationStatus() == false) {
-		cmd_QUIT(controlConnectionfd);
-		return;
-	}
+	// authenticateClient(controlConnectionfd);
+	// if (getClientAuthenticationStatus() == false) {
+	// 	cmd_QUIT(controlConnectionfd);
+	// 	return;
+	// }
 
 	/**Previous command tracking
 	 *

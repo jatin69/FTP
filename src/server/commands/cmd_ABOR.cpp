@@ -9,9 +9,10 @@
 */
 extern pid_t parent_pid;
 
+// @abort
 void Server::cmd_ABOR(int controlConnectionfd) {
+	logs("[SERVER] KILL started.");
 	kill(-parent_pid, SIGQUIT);
-	logs("DONE KILLING ON SERVER SIDE");
-	kill(-parent_pid, SIGQUIT);
-	Send(controlConnectionfd, "DONE KILLING ON SERVER. EDIT.", 502);
+	logs("[SERVER] KILL DONE.");
+	Send(controlConnectionfd, "[SERVER] KILL DONE.", 502);
 }

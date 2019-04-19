@@ -69,10 +69,11 @@ int Server::SendFile(int sockfd, const string& filename) {
 
 	FILE* file;
 	file = fopen(filename.c_str(), "rb");
-	size_t noOfBytesSent = _send_all_binary(sockfd, file, size);
+	int noOfBytesSent = _send_all_binary(sockfd, file, size);
 	printInfo("Bytes Sent : ", noOfBytesSent);
 	fclose(file);
 
+	// @abort
 	if(noOfBytesSent != -1){
 		//  @logging
 		logs("File Sent Successfully.");

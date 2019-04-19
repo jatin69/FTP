@@ -3,10 +3,9 @@
 // RETR - get/retrive a file from server
 
 void Server::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
-	
-	int dataConnectionfd = createDataConnection(controlConnectionfd);
-
+	int myid = getpid();
 	int pid = fork();
+	
 
 	if (pid < 0) {  // error
 		printError();
@@ -15,33 +14,81 @@ void Server::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
  
 	if (pid > 0) {  // parent
 
-		close(dataConnectionfd);
+		/**If we don't do anything here, parent starts to race for `receive control connection`
+		 * Instead of child getting the transfer request,
+		 * the parent gets the transfer request.
+		 * 
+		 * 
+		 * PARENT MUST WAIT UNTIL A DATA CONNECTION IS CREATED. 
+		 * THEN IT CAN RETURN to accept ABORT FROM USER.
+		*/
+
+		// sleep(5);
 		
-		// sleep(2);
-		// // waiting for this child's completion
-		// int statusOfChild = -1;
-		// // waitpid(pid, &statusOfChild, 0);
+		// waiting for this child's completion
+		int statusOfChild = -1;
+		int exitCodeOfChild;
+		// wait(NULL);						// waiting too long
+		// waitpid(-1, &statusOfChild, 0);
+		// waitpid(pid, &statusOfChild, 0);
+		logv(myid);
 
-		// int exitCodeOfChild;
-		// if (WIFEXITED(statusOfChild)) {
-		// 	exitCodeOfChild = WEXITSTATUS(statusOfChild);
+		// NOT WORKING ON GRANDCHILD
+
+		// waitpid(-1, &statusOfChild, 0);
+		// waitpid(pid, &statusOfChild, 0);
+		// siginfo_t info;
+		// logv(myid);
+		// if(waitid(P_PGID, myid, &info, WEXITED | WCONTINUED)==0){
+		// 	logs("I AM GOOD");
 		// }
-
-		// if (exitCodeOfChild == 0) {
-		// 	Send(controlConnectionfd, "Server Sent File Successfully.", 250);
-		// 	logs("Server Sent File Successfully.");
-		// } else {
-		// 	Send(controlConnectionfd, "Resuming Session.");
+		// else{
+		// 	logs("SHIT");
+		// 	printError();
 		// }
+		
+		// int exitCodeOfChild = info.si_status;
+		// logs("I FOUND EXIT CODE.");
+		// logv(exitCodeOfChild);
+		// int processwas = info.si_pid;
+		// logv(processwas);
+		
+		if (WIFEXITED(statusOfChild)) {
+			exitCodeOfChild = WEXITSTATUS(statusOfChild);
+		}
 
-		// string ftpResponse;
-		// Recv(controlConnectionfd, ftpResponse);
-		// logs(ftpResponse.c_str());
+		if (exitCodeOfChild == -5) {
+			Send(controlConnectionfd, "Resuming Session.");
+			logs("Resuming session.");
+			// Send(controlConnectionfd, "Server Sent File Successfully.", 250);
+			// logs("Server Sent File Successfully.");
+		} else {
+			logs("BLAH");
+			// Send(controlConnectionfd, "Resuming Session.");
+		}
+
+		string ftpResponse;
+		Recv(controlConnectionfd, ftpResponse);
+		logs(ftpResponse.c_str());
 	}
 
 	if (pid == 0) {  // child
 
-		// int dataConnectionfd = createDataConnection(controlConnectionfd);
+		// @abort
+		int dataConnectionfd = createDataConnection(controlConnectionfd);
+
+		// send a signal to parent that he is safe to return now
+		if(fork()==0){
+			// changing the process's group id to its parent
+			// so its grandfather can wait for him
+			// int ppid = getppid();
+			setpgid(0, myid);
+			logs("CHECK NOW ..");
+			string s = executeShellCommand("ps fj");
+			logs(s.c_str());
+			
+			exit(-5);
+		}
 
 		// Child no longer needs control connection, we can close it
 		close(controlConnectionfd);
@@ -55,6 +102,7 @@ void Server::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
 		string fileName(args[1]);
 		logs("Server Send inititated");
 		SendFile(dataConnectionfd, fileName);
+		logs("Server Sent file");
 
 		/**Important Note -
 		 *

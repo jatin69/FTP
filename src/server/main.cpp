@@ -6,6 +6,7 @@ Server parseArgs(int, char**);
 // install Required signal handlers
 void InstallSignalHandlers();
 
+// @abort
 pid_t parent_pid;
 
 /**Hashed User pass table
@@ -75,9 +76,9 @@ int main(int argc, char** argv) {
 				ftpServer.logServerConfiguration();
 
 				try {
-					// Start the Server-PI for this connection
-
+					// @abort
 					parent_pid = getpid();
+					// Start the Server-PI for this connection
 					ftpServer.initiateProtocolInterpreter(controlConnectionfd);
 
 				} catch (const std::exception& e) {

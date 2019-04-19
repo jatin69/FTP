@@ -13,10 +13,10 @@ void Client::initiateProtocolInterpreter(int controlConnectionfd) {
 	logs(msgFromServer.c_str());
 
 	// authentication
-	if (authenticateFromServer(controlConnectionfd) == 0) {
-		cmd_QUIT(controlConnectionfd);
-		return;
-	}
+	// if (authenticateFromServer(controlConnectionfd) == 0) {
+	// 	cmd_QUIT(controlConnectionfd);
+	// 	return;
+	// }
 
 	string ftpRequest;
 	string ftpResponse;

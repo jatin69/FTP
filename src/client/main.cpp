@@ -6,6 +6,7 @@ Client parseArgs(int, char**);
 // install Required signal handlers
 void InstallSignalHandlers();
 
+// @abort
 pid_t parent_pid;
 
 // execution of client executable starts from here
@@ -23,24 +24,23 @@ int main(int argc, char** argv) {
 */
 InstallSignalHandlers();
 
-	parent_pid = getpid();
-
-	if(fork()==0){
-		if(fork()==0){
-			while(true);	
-		}
-		if(fork()==0){
-			while(true);	
-		}
-		while(true);
-	}
-	else{
-		sleep(5);
-		cout << "ALIVE\n";
-		kill(-parent_pid, SIGQUIT);
-	}
-	cout << "WIRD\n";	
-	sleep(5);
+	// proof that sigquit works
+	// if(fork()==0){
+	// 	if(fork()==0){
+	// 		while(true);	
+	// 	}
+	// 	if(fork()==0){
+	// 		while(true);	
+	// 	}
+	// 	while(true);
+	// }
+	// else{
+	// 	sleep(5);
+	// 	cout << "ALIVE\n";
+	// 	kill(-parent_pid, SIGQUIT);
+	// }
+	// cout << "WIRD\n";	
+	// sleep(5);
 	// exit(0);
  
 	try {
@@ -53,6 +53,8 @@ InstallSignalHandlers();
 										 ftpClient.getControlConnectionPortNumber());
 
 		// Start the FTP protocol
+		// @abort
+		parent_pid = getpid();
 		ftpClient.initiateProtocolInterpreter(controlConnectionfd);
 	} catch (const std::exception& e) {
 		// catch anything thrown within try block that derives from std::exception

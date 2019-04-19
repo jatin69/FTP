@@ -62,6 +62,9 @@ int Server::createDataConnection(int controlConnectionfd) {
 	}
 
 	int dataConnectionfd;
+	
+	// @logging
+	logv(doesRouteExist);
 
 	if (doesRouteExist) {
 		Send(controlConnectionfd, "I AM READY");

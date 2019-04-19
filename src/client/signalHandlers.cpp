@@ -38,15 +38,17 @@ void installSignalHandler(int signalType, void (*singalHandlerFunction)(int));
 void segmentationFaultHandler(int sig);
 void zombieProcessesHandler(int sig);
 
+// @abort
 extern pid_t parent_pid;
  
+// @abort
 void sigquit_handler (int sig) {
     // assert(sig == SIGQUIT);
     pid_t self = getpid();
 	cout << "parent id is  " << parent_pid <<  " and MySELF is " << self << "\n";
     if (parent_pid != self) {_exit(0);}
 	else{
-		cout << "I AM PARENT BRUH";
+		cout << "I AM THE PARENT.";
 	}
 }
  
@@ -69,6 +71,8 @@ void InstallSignalHandlers() {
 
 	// reap off zombie processes
 	installSignalHandler(SIGCHLD, zombieProcessesHandler);
+	
+	// @abort
 	installSignalHandler(SIGQUIT, sigquit_handler);
 }
 

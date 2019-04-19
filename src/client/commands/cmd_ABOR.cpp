@@ -10,9 +10,13 @@
 */
 extern pid_t parent_pid;
 
+// @abort
 void Client::cmd_ABOR(int controlConnectionfd) {
+	
+	logs("[CLIENT] KILL started.");
 	kill(-parent_pid, SIGQUIT);
-	logs("DONE KILLING ON CLIENT SIDE");
+	logs("[CLIENT] KILL DONE.");
+	
 	string ftpResponse;
 	Recv(controlConnectionfd, ftpResponse);
 	logs(ftpResponse.c_str());
