@@ -42,8 +42,8 @@ using namespace std;
 
 /****************** Constants, Preprocessors, Namespaces ******************/
 
-#define logs(x) fprintf(stdout, "[LOGGING] %s\n", x)
-#define logv(x) cout << "[Variable] " << #x << " = " << x << "\n"
+#define logs(x) fprintf(stdout, "(%s) [LOGGING] %s\n", getClientUsername().c_str(), x)
+#define logv(x) cout << "(" << getClientUsername() << ") " << "[Variable] " << #x << " = " << x << "\n"
 
 namespace FTP {
 	const int LINE_SIZE = 1000;
@@ -72,10 +72,8 @@ extern vector<pair<string, string>> hashedUserPassTable;
 
 /************************** General purpose functions *************************/
 
-// print functions
+// print meaning error strings based on errno
 void printError(const char* msg = "No Detailed Info Available");
-void printInfo(const char* msg);
-void printInfo(const char* msg, int value);
 
 // utils
 vector<string> commandTokenizer(string& cmd);
@@ -168,7 +166,6 @@ private:
 	// Receive binary data until socket is empty and save it to a file
 	int _recv_all_binary(int sockfd, FILE* fd);
 
-
 public:
 	/************************ Cons'tors & Des'tors ***********************/
 
@@ -249,15 +246,18 @@ public:
 	// client username
 	string getClientUsername() { return clientUsername; }
 	void setClientUsername(string _username) { clientUsername = _username; }
+	void resetClientUsername() { clientUsername = ""; }
 
 	// authentication status
 	bool getClientAuthenticationStatus() { return isClientAuthenticated; }
 	void updateClientAuthenticationStatus(bool status) { isClientAuthenticated = status; }
-	void resetClientUsername() { clientUsername = ""; }
 
 	/**************************** loggers ****************************/
 
 	void logServerConfiguration();
+	void printInfo(const char* msg);
+	void printInfo(const char* msg, int value);
+
 
 	/***************** Socket Programming Wrapper Functions ****************/
 

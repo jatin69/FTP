@@ -32,7 +32,7 @@ void Server::initiateProtocolInterpreter(int controlConnectionfd) {
 		string commandString;
 		Recv(controlConnectionfd, commandString);
 		// @logging
-		fprintf(stdout, "\n[INFO][REQUEST] : %s", commandString.c_str());
+		fprintf(stdout, "\n(%s) [INFO][REQUEST] : %s", getClientUsername().c_str(), commandString.c_str());
 
 		// tokenize command
 		vector<string> tokens = commandTokenizer(commandString);

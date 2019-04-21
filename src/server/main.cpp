@@ -18,7 +18,8 @@ void InstallSignalHandlers();
  * For now, we keep it as plaintext for easy accessibility.
 */
 vector<pair<string, string>> hashedUserPassTable = {
-	{"id", "pass"}, {"root", "root"}, {"jatin", "root"}};
+	{"id", "pass"}, {"root", "root"}, {"jatin", "jatin"},
+};
 
 // execution of server executable starts from here
 int main(int argc, char** argv) {
@@ -36,7 +37,8 @@ int main(int argc, char** argv) {
 
 		// start Listening for incoming connections on this socket[HOST:PORT]
 		Listen(serverControlfd, ftpServer.getBacklogsPermitted());
-		printInfo("Server Listening at ", ftpServer.getControlConnectionPortNumber());
+		fprintf(stdout, "\n[INFO] Server Listening at %d\n",
+				ftpServer.getControlConnectionPortNumber());
 
 		while (true) {
 			// start accepting connections
@@ -49,10 +51,11 @@ int main(int argc, char** argv) {
 
 			string connectionInfo =
 				string("[SERVER] Got connection from ") + ipAddressOfClient;
-			printInfo(connectionInfo.c_str());
+			fprintf(stdout, "\n[INFO] %s\n", connectionInfo.c_str());
 
 			// create a new process to handle this connection
-			printInfo("New Connection Accepted. Creating Process to handle this.");
+			fprintf(stdout,
+					"\nNew Connection Accepted. Creating Process to handle this.\n");
 			int pid = fork();
 
 			if (pid == -1) {  // error

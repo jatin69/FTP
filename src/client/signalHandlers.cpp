@@ -52,7 +52,7 @@ void InstallSignalHandlers() {
 	 * But in some cases, we need more control, for debugging etc
 	 * this is useful in those cases.
 	*/
-	// installSignalHandler(SIGSEGV, segmentationFaultHandler);
+	installSignalHandler(SIGSEGV, segmentationFaultHandler);
 
 	// reap off zombie processes
 	installSignalHandler(SIGCHLD, zombieProcessesHandler);

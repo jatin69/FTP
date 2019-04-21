@@ -30,9 +30,12 @@ void Client::initiateProtocolInterpreter(int controlConnectionfd) {
 	Command previousCommand = Command::INVALID;
 	Command currentCommand = Command::INVALID;
 
+	string userPrompt("J-FTP ➜ ");
+	userPrompt.insert(0, string("(" + getClientUsername() + ") "));
+
 	// command interpreter loop
 	while (true) {
-		cout << "J-FTP ➜ ";
+		cout << userPrompt;
 		getline(std::cin, ftpRequest);
 		ftpRequest = trim(ftpRequest);
 

@@ -70,10 +70,8 @@ namespace FTP {
 
 /************************** General purpose functions *************************/
 
-// Print error messages
+// print meaningful error messages based on error number
 void printError(const char* msg = "No Detailed Info Available");
-void printInfo(const char* msg);
-void printInfo(const char* msg, int value);
 
 // utils
 vector<string> commandTokenizer(string& cmd);
@@ -135,6 +133,8 @@ private:
 	// extraBuffer : if recv reads up extra after newline, it is kept here
 	string extraBuffer = "";
 
+	// stored username of client for this connection
+	string myUsername; 
 
 	/************************ private member functions ***********************/
 
@@ -213,9 +213,18 @@ public:
 			controlConnectionPortNumber + FTP::OFFSET_dataConnectionToClient;
 	}
 
+	// client username
+	string getClientUsername() { return myUsername; }
+	void setClientUsername(string _username) { 
+		myUsername = _username; 
+	}
+	void resetClientUsername() { myUsername = ""; }
+
 	/**************************** loggers ****************************/
 
 	void logClientConfiguration();
+	void printInfo(const char* msg);
+	void printInfo(const char* msg, int value);
 
 	/************ Wrappers for Sending and Receiving Data **************/
 

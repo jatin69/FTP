@@ -102,4 +102,5 @@ void Client::cmd_HELP(const string& ftpRequest[[gnu::unused]]) {
 	printf("\nCommand   :\t%s", "Switch the File structure Type  ");
 	printf("\nUsage     :\t%s\n", "STRU <F/R/P>");
 	printf("          :\t%s\n", "Namely, File, Record Structure, Page Structure");
+	printf("\n\n");
 }

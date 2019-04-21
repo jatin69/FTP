@@ -20,9 +20,10 @@ string Client::sanitizeRequest(const string& req) {
 
 	// nickname, originalCommand
 	vector<pair<string, string>> commandPairs = {
-		{"ls", "LIST"},   {"cd", "CWD"},   {"pwd", "PWD"},  {"mkdir", "MKD"},
-		{"rmdir", "RMD"}, {"get", "RETR"}, {"GET", "RETR"}, {"put", "STOR"},
-		{"PUT", "STOR"},  {"exit", "QUIT"}};
+		{"ls", "LIST"},   {"cd", "CWD"},	{"pwd", "PWD"},	{"mkdir", "MKD"},
+		{"rmdir", "RMD"}, {"exit", "QUIT"}, {"abort", "ABOR"}, {"get", "RETR"},
+		{"GET", "RETR"},  {"put", "STOR"},  {"PUT", "STOR"},
+	};
 
 	for (auto it : commandPairs) {
 		nickName = it.first;

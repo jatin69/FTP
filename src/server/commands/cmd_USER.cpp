@@ -19,3 +19,4 @@ void Server::cmd_USER(int controlConnectionfd, const vector<string>& args) {
 		Send(controlConnectionfd, "User Not found. Make sure the user exists.", 332);
 	}
 }
+ 

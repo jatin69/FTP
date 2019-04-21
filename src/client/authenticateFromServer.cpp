@@ -67,11 +67,8 @@ int Client::authenticateFromServer(int controlConnectionfd) {
 			} break;
 
 			case Command::PASS: {
-				if (tokens.size() == 2) {
+				if (tokens.size() == 2) { 
 					Send(controlConnectionfd, ftpRequest);
-					string ftpUser =
-						"This is a dummy variable kept for consistency across server and "
-						"client";
 					return cmd_PASS(controlConnectionfd, tokens);
 				} else {
 					printf("\nINVALID USAGE\n");

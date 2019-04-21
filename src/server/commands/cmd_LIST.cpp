@@ -38,12 +38,12 @@ void Server::cmd_LIST(int controlConnectionfd, const vector<string>& tokens) {
 		// logs(getDataConnectionIP());
 		// logv(getDataConnectionPortNumber());
 
-		Send(dataConnectionfd, "Directory Listing is as follows :");
 		string commandToExecute = "ls -lA ";
 		for (auto it = tokens.begin() + 1; it != tokens.end(); ++it) {
 			commandToExecute += " " + *it;
 		}
 		string outputOfCommand = executeShellCommand(commandToExecute);
+		Send(dataConnectionfd, "Directory Listing is as follows :");
 		Send(dataConnectionfd, outputOfCommand);
 
 		// child will exit upon completion of its task
@@ -51,3 +51,4 @@ void Server::cmd_LIST(int controlConnectionfd, const vector<string>& tokens) {
 		exit(0);
 	}
 }
+ 
