@@ -3,7 +3,14 @@
 // RETR - get/retrive a file from server
 
 void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
-	
+
+	/**Data connection before fork() . why not ?
+	 * 
+	 * Was not working.
+	 * Was giving error : connection reset by peer ; don't know why
+	 * 
+	*/
+
 	string ftpResponse;
 
 	/**Create a child - As per RFC 959
@@ -93,6 +100,11 @@ void Client::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
 		int dataConnectionfd = createDataConnection(controlConnectionfd);
 
 		// send a signal to parent that he is safe to return now
+
+		// the independently developed solution 
+		// matches with the standard solution for daemon production.
+		// ref - https://stackoverflow.com/a/10932710
+
 		int newp = fork();
 		if(newp > 0){
 			string s = executeShellCommand("ps fj");

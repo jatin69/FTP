@@ -2,6 +2,14 @@
 
 // RETR - get/retrive a file from server
 void Server::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
+
+	/**Data connection before fork() . why not ?
+	 * 
+	 * Was not working.
+	 * Was giving error : connection reset by peer ; don't know why
+	 * 
+	*/
+
 	int pid = fork();
 	if (pid < 0) {  // error
 		printError();
@@ -49,6 +57,10 @@ void Server::cmd_RETR(int controlConnectionfd, const vector<string>& args) {
 
 		// @abort
 		int dataConnectionfd = createDataConnection(controlConnectionfd);
+
+		// the independently developed solution 
+		// matches with the standard solution for daemon production.
+		// ref - https://stackoverflow.com/a/10932710
 
 		// send a signal to parent that he is safe to return now
 		int newpid = fork();
