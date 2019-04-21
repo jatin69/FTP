@@ -16,3 +16,11 @@ void Server::cmd_ABOR(int controlConnectionfd) {
 	logs("[SERVER] KILL DONE.");
 	Send(controlConnectionfd, "[SERVER] KILL DONE.", 502);
 }
+
+/**
+ * The implementation of abort
+ * changes my data connection manager and its logging dramatically.
+ * so,
+ * a design decision has to be made
+ * about how this abort implementation should be elegantly incorportated in the main branch.
+*/

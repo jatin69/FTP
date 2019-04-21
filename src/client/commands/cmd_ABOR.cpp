@@ -21,3 +21,11 @@ void Client::cmd_ABOR(int controlConnectionfd) {
 	Recv(controlConnectionfd, ftpResponse);
 	logs(ftpResponse.c_str());
 }
+
+/**
+ * The implementation of abort
+ * changes my data connection manager and its logging dramatically.
+ * so,
+ * a design decision has to be made
+ * about how this abort implementation should be elegantly incorportated in the main branch.
+*/

@@ -42,15 +42,22 @@ void zombieProcessesHandler(int sig);
 extern pid_t parent_pid;
  
 // @abort
-void sigquit_handler (int sig) {
-    // assert(sig == SIGQUIT);
+void sigquit_handler (int sig[[gnu::unused]]) {
+    
+	// assert(sig == SIGQUIT);
     pid_t self = getpid();
-	cout << "parent id is  " << parent_pid <<  " and MySELF is " << self << "\n";
-    if (parent_pid != self) {_exit(0);}
-	else{
-		cout << "I AM THE PARENT.";
+	
+	// @logging
+	// cout << "parent id is  " << parent_pid <<  " and MySELF is " << self << "\n";
+    
+	if (parent_pid != self) {
+		_exit(0);
 	}
-} 
+	else{ 
+		// @logging
+		// cout << "I AM THE PARENT.";	
+	}
+}
  
 /**Wrapper function : Install Signal Handlers
  *

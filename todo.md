@@ -2,6 +2,7 @@
 
 ## Must Have
 
+- [ ] make a command buffer to allow simultaneous commands without pressing `enter`
 - [ ] release version 0.2 with logs
 - [ ] Make a proper readme with features and everything
 - [ ] client username in all the logging
