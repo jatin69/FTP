@@ -1,0 +1,556 @@
+Connection to Server ...
+Server IP : 127.0.0.1 
+Port      : 9000
+[LOGGING] Client config is : 
+[Variable] controlConnectionIP = 127.0.0.1
+[Variable] controlConnectionPortNumber = 9000
+[Variable] dataDumpReceiverIP = CURRENT_MACHINE_IP
+[Variable] dataDumpReceiverPortNumber = 9010
+
+[CLIENT:CONNECTION] Connected to 127.0.0.1
+
+[LOGGING] [RESPONSE] J's FTP-Server 
+
+J-FTP ➜ [Variable] ftpRequest = user jatin
+
+[LOGGING] [RESPONSE] [Response : 331] 
+Username OK. Needs Password
+
+J-FTP ➜ [Variable] ftpRequest = pass jatin
+
+[LOGGING] [RESPONSE] [Response : 230] 
+[AUTHENTICATION:SUCCESS] User logged in.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = sys
+
+[LOGGING] [RESPONSE] [Response : 211] 
+System Type :  elementary OS 0.4.1 Loki
+
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = LIST
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Directory Listing is as follows :
+
+
+[LOGGING] [RESPONSE] total 77
+drwxrwxrwx 1 root root     0 Apr 22 13:18 bin
+-rwxrwxrwx 1 root root   479 Apr 19 15:39 .clang-format
+drwxrwxrwx 1 root root  4096 Apr 22 13:24 .git
+-rwxrwxrwx 1 root root   215 Apr 21 20:02 .gitignore
+drwxrwxrwx 1 root root  4096 Apr 22 13:24 logs
+-rwxrwxrwx 1 root root  2964 Apr 19 15:43 makefile
+drwxrwxrwx 1 root root     0 Apr 19 14:23 obj
+-rwxrwxrwx 1 root root 37714 Apr 22 00:00 readme.html
+-rwxrwxrwx 1 root root 11402 Apr 22 13:23 readme.md
+drwxrwxrwx 1 root root     0 Apr  4 12:10 src
+drwxrwxrwx 1 root root  4096 Apr 22 00:00 testfiles
+-rwxrwxrwx 1 root root  4573 Apr 22 13:05 todo.md
+drwxrwxrwx 1 root root     0 Apr 21 14:37 .vscode
+
+
+[Variable] ftpRequest = LIST
+
+[LOGGING] [RESPONSE] [Response : 226] 
+Directory Listing Send OK.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = LIST
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Directory Listing is as follows :
+
+
+[LOGGING] [RESPONSE] total 3481
+drwxrwxrwx 1 root root       0 Apr 22 13:18 bin
+-rwxrwxrwx 1 root root     479 Apr 19 15:39 .clang-format
+drwxrwxrwx 1 root root    4096 Apr 22 13:24 .git
+-rwxrwxrwx 1 root root     215 Apr 21 20:02 .gitignore
+drwxrwxrwx 1 root root    4096 Apr 22 13:24 logs
+-rwxrwxrwx 1 root root    2964 Apr 19 15:43 makefile
+drwxrwxrwx 1 root root       0 Apr 19 14:23 obj
+-rwxrwxrwx 1 root root   37714 Apr 22 00:00 readme.html
+-rwxrwxrwx 1 root root   11402 Apr 22 13:23 readme.md
+-rwxrwxrwx 1 root root 3483460 Apr 22 13:24 small.pdf
+drwxrwxrwx 1 root root       0 Apr  4 12:10 src
+drwxrwxrwx 1 root root    4096 Apr 22 00:00 testfiles
+-rwxrwxrwx 1 root root    4573 Apr 22 13:05 todo.md
+drwxrwxrwx 1 root root       0 Apr 21 14:37 .vscode
+
+
+[Variable] ftpRequest = LIST
+
+[LOGGING] [RESPONSE] [Response : 226] 
+Directory Listing Send OK.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = !rm small.pdf
+
+[LOGGING] 
+(jatin) J-FTP ➜ [Variable] ftpRequest = LIST
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Directory Listing is as follows :
+
+
+[LOGGING] [RESPONSE] total 77
+drwxrwxrwx 1 root root     0 Apr 22 13:18 bin
+-rwxrwxrwx 1 root root   479 Apr 19 15:39 .clang-format
+drwxrwxrwx 1 root root  4096 Apr 22 13:24 .git
+-rwxrwxrwx 1 root root   215 Apr 21 20:02 .gitignore
+drwxrwxrwx 1 root root  4096 Apr 22 13:24 logs
+-rwxrwxrwx 1 root root  2964 Apr 19 15:43 makefile
+drwxrwxrwx 1 root root     0 Apr 19 14:23 obj
+-rwxrwxrwx 1 root root 37714 Apr 22 00:00 readme.html
+-rwxrwxrwx 1 root root 11402 Apr 22 13:23 readme.md
+drwxrwxrwx 1 root root     0 Apr  4 12:10 src
+drwxrwxrwx 1 root root  4096 Apr 22 00:00 testfiles
+-rwxrwxrwx 1 root root  4573 Apr 22 13:05 todo.md
+drwxrwxrwx 1 root root     0 Apr 21 14:37 .vscode
+
+
+[Variable] ftpRequest = LIST
+
+[LOGGING] [RESPONSE] [Response : 226] 
+Directory Listing Send OK.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = CWD testfiles
+
+[LOGGING] [RESPONSE] [Response : 250] 
+Directory successfully changed.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = RETR small.pdf
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Sending File in Binary Mode.
+
+
+[INFO] : Bytes Received : 3483460
+[Variable] ftpRequest = RETR small.pdf
+
+[LOGGING] [RESPONSE] [Response : 250] 
+Server Sent File Successfully.
+
+
+[LOGGING] Client Received File Successfully.
+(jatin) J-FTP ➜ [Variable] ftpRequest = LIST
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Directory Listing is as follows :
+
+
+[LOGGING] [RESPONSE] total 214316
+-rwxrwxrwx 1 root root  25096108 Mar 12 18:46 big.pdf
+-rwxrwxrwx 1 root root   3483460 Mar 12 10:01 small.pdf
+-rwxrwxrwx 1 root root 190877452 Jul 21  2018 superbig.mp4
+
+
+[Variable] ftpRequest = LIST
+
+[LOGGING] [RESPONSE] [Response : 226] 
+Directory Listing Send OK.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = CWD ..
+
+[LOGGING] [RESPONSE] [Response : 250] 
+Directory successfully changed.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = LIST
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Directory Listing is as follows :
+
+
+[LOGGING] [RESPONSE] total 3481
+drwxrwxrwx 1 root root       0 Apr 22 13:18 bin
+-rwxrwxrwx 1 root root     479 Apr 19 15:39 .clang-format
+drwxrwxrwx 1 root root    4096 Apr 22 13:24 .git
+-rwxrwxrwx 1 root root     215 Apr 21 20:02 .gitignore
+drwxrwxrwx 1 root root    4096 Apr 22 13:24 logs
+-rwxrwxrwx 1 root root    2964 Apr 19 15:43 makefile
+drwxrwxrwx 1 root root       0 Apr 19 14:23 obj
+-rwxrwxrwx 1 root root   37714 Apr 22 00:00 readme.html
+-rwxrwxrwx 1 root root   11402 Apr 22 13:23 readme.md
+-rwxrwxrwx 1 root root 3483460 Apr 22 13:25 small.pdf
+drwxrwxrwx 1 root root       0 Apr  4 12:10 src
+drwxrwxrwx 1 root root    4096 Apr 22 00:00 testfiles
+-rwxrwxrwx 1 root root    4573 Apr 22 13:05 todo.md
+drwxrwxrwx 1 root root       0 Apr 21 14:37 .vscode
+
+
+[Variable] ftpRequest = LIST
+
+[LOGGING] [RESPONSE] [Response : 226] 
+Directory Listing Send OK.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = CWD testfiles
+
+[LOGGING] [RESPONSE] [Response : 250] 
+Directory successfully changed.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = LIST
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Directory Listing is as follows :
+
+
+[LOGGING] [RESPONSE] total 214316
+-rwxrwxrwx 1 root root  25096108 Mar 12 18:46 big.pdf
+-rwxrwxrwx 1 root root   3483460 Mar 12 10:01 small.pdf
+-rwxrwxrwx 1 root root 190877452 Jul 21  2018 superbig.mp4
+
+
+[Variable] ftpRequest = LIST
+
+[LOGGING] [RESPONSE] [Response : 226] 
+Directory Listing Send OK.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = RETR small.pdf
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Sending File in Binary Mode.
+
+
+[INFO] : Bytes Received : 3483460
+[Variable] ftpRequest = RETR small.pdf
+
+[LOGGING] [RESPONSE] [Response : 250] 
+Server Sent File Successfully.
+
+
+[LOGGING] Client Received File Successfully.
+(jatin) J-FTP ➜ [Variable] ftpRequest = cdup
+
+[LOGGING] [RESPONSE] [Response : 250] 
+Directory successfully changed.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = LIST
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Directory Listing is as follows :
+
+
+[LOGGING] [RESPONSE] total 189885
+drwxrwxrwx 1 root root         0 Apr 22 13:18 bin
+-rwxrwxrwx 1 root root       479 Apr 19 15:39 .clang-format
+drwxrwxrwx 1 root root      4096 Apr 22 13:24 .git
+-rwxrwxrwx 1 root root       215 Apr 21 20:02 .gitignore
+drwxrwxrwx 1 root root      4096 Apr 22 13:24 logs
+-rwxrwxrwx 1 root root      2964 Apr 19 15:43 makefile
+drwxrwxrwx 1 root root         0 Apr 19 14:23 obj
+-rwxrwxrwx 1 root root     37714 Apr 22 00:00 readme.html
+-rwxrwxrwx 1 root root     11402 Apr 22 13:23 readme.md
+-rwxrwxrwx 1 root root   3483460 Apr 22 13:25 small.pdf
+drwxrwxrwx 1 root root         0 Apr  4 12:10 src
+-rwxrwxrwx 1 root root 190877452 Apr 22 13:25 superbig.mp4
+drwxrwxrwx 1 root root      4096 Apr 22 00:00 testfiles
+-rwxrwxrwx 1 root root      4573 Apr 22 13:05 todo.md
+drwxrwxrwx 1 root root         0 Apr 21 14:37 .vscode
+
+
+[Variable] ftpRequest = LIST
+
+[LOGGING] [RESPONSE] [Response : 226] 
+Directory Listing Send OK.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = !ls -la testfiles
+
+[LOGGING] total 214324
+drwxrwxrwx 1 root root      4096 Apr 22 00:00 .
+drwxrwxrwx 1 root root      4096 Apr 22 13:25 ..
+-rwxrwxrwx 1 root root  25096108 Mar 12 18:46 big.pdf
+-rwxrwxrwx 1 root root   3483460 Mar 12 10:01 small.pdf
+-rwxrwxrwx 1 root root 190877452 Jul 21  2018 superbig.mp4
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = LIST
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Directory Listing is as follows :
+
+
+[LOGGING] [RESPONSE] total 189885
+drwxrwxrwx 1 root root         0 Apr 22 13:18 bin
+-rwxrwxrwx 1 root root       479 Apr 19 15:39 .clang-format
+drwxrwxrwx 1 root root      4096 Apr 22 13:24 .git
+-rwxrwxrwx 1 root root       215 Apr 21 20:02 .gitignore
+drwxrwxrwx 1 root root      4096 Apr 22 13:24 logs
+-rwxrwxrwx 1 root root      2964 Apr 19 15:43 makefile
+drwxrwxrwx 1 root root         0 Apr 19 14:23 obj
+-rwxrwxrwx 1 root root     37714 Apr 22 00:00 readme.html
+-rwxrwxrwx 1 root root     11402 Apr 22 13:23 readme.md
+-rwxrwxrwx 1 root root   3483460 Apr 22 13:25 small.pdf
+drwxrwxrwx 1 root root         0 Apr  4 12:10 src
+-rwxrwxrwx 1 root root 190877452 Apr 22 13:25 superbig.mp4
+drwxrwxrwx 1 root root      4096 Apr 22 00:00 testfiles
+-rwxrwxrwx 1 root root      4573 Apr 22 13:05 todo.md
+drwxrwxrwx 1 root root         0 Apr 21 14:37 .vscode
+
+
+[Variable] ftpRequest = LIST
+
+[LOGGING] [RESPONSE] [Response : 226] 
+Directory Listing Send OK.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = !mv small.pdf putme.pdf
+
+[LOGGING] 
+(jatin) J-FTP ➜ [Variable] ftpRequest = CWD testfiles
+
+[LOGGING] [RESPONSE] [Response : 250] 
+Directory successfully changed.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = LIST
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Directory Listing is as follows :
+
+
+[LOGGING] [RESPONSE] total 214316
+-rwxrwxrwx 1 root root  25096108 Mar 12 18:46 big.pdf
+-rwxrwxrwx 1 root root   3483460 Mar 12 10:01 small.pdf
+-rwxrwxrwx 1 root root 190877452 Jul 21  2018 superbig.mp4
+
+
+[Variable] ftpRequest = LIST
+
+[LOGGING] [RESPONSE] [Response : 226] 
+Directory Listing Send OK.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = STOR putme.pdf
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] Sending file in Binary Mode
+
+[LOGGING] [RESPONSE] Server Ready To Receive file.
+
+
+[INFO] : Bytes Sent : 3483460
+
+[LOGGING] File Sent.
+[Variable] ftpRequest = STOR putme.pdf
+
+[LOGGING] [RESPONSE] [Response : 250] 
+Server Received File Successfully.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = LIST
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Directory Listing is as follows :
+
+
+[LOGGING] [RESPONSE] total 217720
+-rwxrwxrwx 1 root root  25096108 Mar 12 18:46 big.pdf
+-rwxrwxrwx 1 root root   3483460 Apr 22 13:28 putme.pdf
+-rwxrwxrwx 1 root root   3483460 Mar 12 10:01 small.pdf
+-rwxrwxrwx 1 root root 190877452 Jul 21  2018 superbig.mp4
+
+
+[Variable] ftpRequest = LIST
+
+[LOGGING] [RESPONSE] [Response : 226] 
+Directory Listing Send OK.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = MKD helloDir
+
+[LOGGING] [RESPONSE] [Response : 257] 
+Directory helloDir successfully created.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = LIST
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Directory Listing is as follows :
+
+
+[LOGGING] [RESPONSE] total 217720
+-rwxrwxrwx 1 root root  25096108 Mar 12 18:46 big.pdf
+drwxrwxrwx 1 root root         0 Apr 22 13:28 helloDir
+-rwxrwxrwx 1 root root   3483460 Apr 22 13:28 putme.pdf
+-rwxrwxrwx 1 root root   3483460 Mar 12 10:01 small.pdf
+-rwxrwxrwx 1 root root 190877452 Jul 21  2018 superbig.mp4
+
+
+[Variable] ftpRequest = LIST
+
+[LOGGING] [RESPONSE] [Response : 226] 
+Directory Listing Send OK.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = RMD helloDir
+
+[LOGGING] [RESPONSE] [Response : 257] 
+Directory helloDir successfully deleted.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = LIST
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Directory Listing is as follows :
+
+
+[LOGGING] [RESPONSE] total 217720
+-rwxrwxrwx 1 root root  25096108 Mar 12 18:46 big.pdf
+-rwxrwxrwx 1 root root   3483460 Apr 22 13:28 putme.pdf
+-rwxrwxrwx 1 root root   3483460 Mar 12 10:01 small.pdf
+-rwxrwxrwx 1 root root 190877452 Jul 21  2018 superbig.mp4
+
+
+[Variable] ftpRequest = LIST
+
+[LOGGING] [RESPONSE] [Response : 226] 
+Directory Listing Send OK.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = LIST
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Directory Listing is as follows :
+
+
+[LOGGING] [RESPONSE] total 217720
+-rwxrwxrwx 1 root root  25096108 Mar 12 18:46 big.pdf
+-rwxrwxrwx 1 root root   3483460 Apr 22 13:28 putme.pdf
+-rwxrwxrwx 1 root root   3483460 Mar 12 10:01 small.pdf
+-rwxrwxrwx 1 root root 190877452 Jul 21  2018 superbig.mp4
+
+
+[Variable] ftpRequest = LIST
+
+[LOGGING] [RESPONSE] [Response : 226] 
+Directory Listing Send OK.
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = !pwd
+
+[LOGGING] /mnt/eDrive/elementary-OS-backup/Documents/4th-sem/FTP
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = PWD
+
+[LOGGING] [RESPONSE] [Response : 257] 
+/mnt/eDrive/elementary-OS-backup/Documents/4th-sem/FTP/testfiles
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = port CURRENT_MACHINE_IP 7878
+
+[LOGGING] PORT Command Successful.
+New Data IP is : CURRENT_MACHINE_IP
+New Data Port is : 7878
+
+[LOGGING] [RESPONSE] [Response : 200] 
+PORT Command Successful.
+New Data IP is : 127.0.0.1
+New Data Port is : 7878
+
+(jatin) J-FTP ➜ [Variable] ftpRequest = RETR small.pdf
+[Variable] getDataDumpReceiverPortNumber() = 7878
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 7878
+
+[LOGGING] [RESPONSE] Sending File in Binary Mode.
+
+
+[INFO] : Bytes Received : 3483460
+[Variable] ftpRequest = RETR small.pdf
+
+[LOGGING] [RESPONSE] [Response : 250] 
+Server Sent File Successfully.
+
+
+[LOGGING] Client Received File Successfully.
+(jatin) J-FTP ➜ [Variable] ftpRequest = QUIT
+
+[LOGGING] [RESPONSE] [Response : 221] 
+Terminating Connection
+

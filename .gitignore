@@ -19,4 +19,6 @@ obj/
 *.out
 *.gch
 *.html
+testfiles/
 *.mp4
+*.pdf

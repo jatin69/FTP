@@ -1,0 +1,247 @@
+Connection to Server ...
+Server IP : 127.0.0.1 
+Port      : 9000
+[LOGGING] Client config is : 
+[Variable] controlConnectionIP = 127.0.0.1
+[Variable] controlConnectionPortNumber = 9000
+[Variable] dataDumpReceiverIP = CURRENT_MACHINE_IP
+[Variable] dataDumpReceiverPortNumber = 9010
+
+[CLIENT:CONNECTION] Connected to 127.0.0.1
+
+[LOGGING] [RESPONSE] J's FTP-Server 
+
+J-FTP ➜ [Variable] ftpRequest = user root
+
+[LOGGING] [RESPONSE] [Response : 331] 
+Username OK. Needs Password
+
+J-FTP ➜ [Variable] ftpRequest = pass root
+
+[LOGGING] [RESPONSE] [Response : 230] 
+[AUTHENTICATION:SUCCESS] User logged in.
+
+(root) J-FTP ➜ [Variable] ftpRequest = sys
+
+[LOGGING] [RESPONSE] [Response : 211] 
+System Type :  elementary OS 0.4.1 Loki
+
+
+(root) J-FTP ➜ [Variable] ftpRequest = LIST
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Directory Listing is as follows :
+
+
+[LOGGING] [RESPONSE] total 77
+drwxrwxrwx 1 root root     0 Apr 22 13:18 bin
+-rwxrwxrwx 1 root root   479 Apr 19 15:39 .clang-format
+drwxrwxrwx 1 root root  4096 Apr 22 13:24 .git
+-rwxrwxrwx 1 root root   215 Apr 21 20:02 .gitignore
+drwxrwxrwx 1 root root  4096 Apr 22 13:24 logs
+-rwxrwxrwx 1 root root  2964 Apr 19 15:43 makefile
+drwxrwxrwx 1 root root     0 Apr 19 14:23 obj
+-rwxrwxrwx 1 root root 37714 Apr 22 00:00 readme.html
+-rwxrwxrwx 1 root root 11402 Apr 22 13:23 readme.md
+drwxrwxrwx 1 root root     0 Apr  4 12:10 src
+drwxrwxrwx 1 root root  4096 Apr 22 00:00 testfiles
+-rwxrwxrwx 1 root root  4573 Apr 22 13:05 todo.md
+drwxrwxrwx 1 root root     0 Apr 21 14:37 .vscode
+
+
+[Variable] ftpRequest = LIST
+
+[LOGGING] [RESPONSE] [Response : 226] 
+Directory Listing Send OK.
+
+(root) J-FTP ➜ [Variable] ftpRequest = CWD testfiles
+
+[LOGGING] [RESPONSE] [Response : 250] 
+Directory successfully changed.
+
+(root) J-FTP ➜ [Variable] ftpRequest = LIST
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Directory Listing is as follows :
+
+
+[LOGGING] [RESPONSE] total 214316
+-rwxrwxrwx 1 root root  25096108 Mar 12 18:46 big.pdf
+-rwxrwxrwx 1 root root   3483460 Mar 12 10:01 small.pdf
+-rwxrwxrwx 1 root root 190877452 Jul 21  2018 superbig.mp4
+
+
+[Variable] ftpRequest = LIST
+
+[LOGGING] [RESPONSE] [Response : 226] 
+Directory Listing Send OK.
+
+(root) J-FTP ➜ [Variable] ftpRequest = RETR small.pdf
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Sending File in Binary Mode.
+
+
+[INFO] : Bytes Received : 3483460
+[Variable] ftpRequest = RETR small.pdf
+
+[LOGGING] [RESPONSE] [Response : 250] 
+Server Sent File Successfully.
+
+
+[LOGGING] Client Received File Successfully.
+(root) J-FTP ➜ [Variable] ftpRequest = noop
+
+[LOGGING] [RESPONSE] [Response : 200] 
+Command OK. No Operation.
+
+(root) J-FTP ➜ [Variable] ftpRequest = LIST
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Directory Listing is as follows :
+
+
+[LOGGING] [RESPONSE] total 214316
+-rwxrwxrwx 1 root root  25096108 Mar 12 18:46 big.pdf
+-rwxrwxrwx 1 root root   3483460 Mar 12 10:01 small.pdf
+-rwxrwxrwx 1 root root 190877452 Jul 21  2018 superbig.mp4
+
+
+[Variable] ftpRequest = LIST
+
+[LOGGING] [RESPONSE] [Response : 226] 
+Directory Listing Send OK.
+
+(root) J-FTP ➜ [Variable] ftpRequest = RETR superbig.mp4
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] I AM READY
+
+[CLIENT]: Got connection from 127.0.0.1
+[LOGGING] CURRENT_MACHINE_IP
+[Variable] getDataDumpReceiverPortNumber() = 9010
+
+[LOGGING] [RESPONSE] Sending File in Binary Mode.
+
+
+[INFO] : Bytes Received : 190877452
+[Variable] ftpRequest = RETR superbig.mp4
+
+[LOGGING] [RESPONSE] [Response : 250] 
+Server Sent File Successfully.
+
+
+[LOGGING] Client Received File Successfully.
+(root) J-FTP ➜ [Variable] ftpRequest = help
+
+ ============ HELP SECTION ============ 
+
+Command   :	Show all the available commands
+Usage     :	HELP
+
+Command   :	Execute a command on client
+Usage     :	!<normal-command>
+          :	!ls -la
+          :	!cd ..
+
+Command   :	No Operation
+Usage     :	NOOP
+
+Command   :	Provide username for login
+Usage     :	USER <username>
+
+Command   :	Provide password for login
+Usage     :	PASS <password>
+
+Command   :	Get System Details Of server
+Usage     :	SYS
+
+Command   :	Print working directory
+Usage     :	PWD
+
+Command   :	List directory contents
+Usage     :	LIST <pathToDirectory>
+          :	ls <pathToDirectory>
+
+Command   :	Change working directory
+Usage     :	CWD <path>
+          :	cd <path>
+
+Command   :	Change to parent directory
+Usage     :	CDUP
+
+Command   :	Make directory
+Usage     :	MKD <directoryName>
+          :	mkdir <directoryName>
+
+Command   :	Remove directory
+Usage     :	RMD <directoryName>
+          :	rmdir <directoryName>
+
+Command   :	Send File to Server
+Usage     :	STOR <fileName>
+          :	put <fileName>
+
+Command   :	Retrive File from Server
+Usage     :	RETR <fileName>
+          :	get <fileName>
+
+Command   :	Switch data connection IP, Port
+Usage     :	PORT <IPAddress> <Port>
+
+Command   :	Quit the application
+Usage     :	QUIT
+
+Command   :	Abort the last command and related data transfer
+Usage     :	ABOR
+
+Command   :	Switch to Passive Receive Mode
+Usage     :	PASV
+
+Command   :	Switch the representation type
+Usage     :	TYPE <A/E/I> <N/T/C>
+          :	TYPE L <byte size>
+
+Command   :	Switch the transfer mode
+Usage     :	MODE <S/B/C>
+          :	Namely, Stream, Block, Compressed Mode
+
+Command   :	Switch the File structure Type  
+Usage     :	STRU <F/R/P>
+          :	Namely, File, Record Structure, Page Structure
+
+
+(root) J-FTP ➜ [Variable] ftpRequest = noop
+
+[LOGGING] [RESPONSE] [Response : 200] 
+Command OK. No Operation.
+
+(root) J-FTP ➜ [Variable] ftpRequest = QUIT
+
+[LOGGING] [RESPONSE] [Response : 221] 
+Terminating Connection
+

@@ -2,9 +2,9 @@
 
 ## Must Have
 
-- [ ] release version 0.2
-- [ ] Make a proper readme with screenshots
-
+- [X] release version 0.2
+- [X] Make a proper readme with features
+- [X] client username in all the logging
 - [x] Indent and format all code
 - [x] Finalise code
 - [x] implement HELP Command for client side - authentication + main loop
@@ -38,13 +38,15 @@
 
 ## Good To Have
 
+- [ ] Create a demo video
+- [X] add v0.2 logs
 - [x] Make a proper todolist
 - [ ] Remove useless headers
 - [x] Improve makefile to make everything inside a build folder
 - [ ] Optimize makefile for minimum building
 - [ ] stor / retr supports pathnames, not just filenames. TEST thoroughly.
 - [ ] Update `LIST` command to not use `ls` system command and use `readdir` instead.
-- [ ] Switch to PORT command's `h1,h2,h3,h4,p1,p2` format
+- [ ] Switch to PORT command's `h1,h2,h3,h4,p1,p2` format. Not really required.
 - [x] Implement some more commands. as Listed in `server.cpp`
   - [x] CDUP
   - [x] STRU, TYPE, MODE
@@ -52,14 +54,28 @@
 - [x] Implement client side supported commands
 - [x] implement client side functions (child commands) - !ls, !pwd
 - [x] implement client side - shell builtins - `cd` for now
-- [ ] do graceful exception handling
-- [ ] colorize all the logging ?
-- [ ] Implement ABORT. for ABORT to work, the parent should not wait for the result of child LS and maybe somehow save its pid for it to kill it. Because it is cut in middle, it might need clean up its leftovers.
+- [X] implement basic signal handling
+- [X] reap off zombie processes on server-client side
+- [X] do graceful exception handling
+- [X] `Multi-file transfer` Not possible in stream Mode. Block mode is needed. Moved to future scope.
+- [ ] Follow exactly as mentioned in `RFC 959` [`3.2.  ESTABLISHING DATA CONNECTIONS`](https://www.w3.org/Protocols/rfc959/3_DataTransfer.html) section. Probably a candidate for `v0.3`
+  - Ideally, we have exact rules for `to which port of receiver` to send data, and `using which port of self` to send data.
+  - Right now, the only thing considered important is `3.2.  ESTABLISHING DATA CONNECTIONS``to which port of receiver` should we send data.
+  - This mechanics still works, because in reality, only this is important to transfer data.
+  - The `using which port of self` is more about following the spec, and has no visible advantage for which it should be pursued.
+  - However, because this implemention is about following the spec as closely as possible, it is good to follow this section as well.
+  - For this, the `createDataConnection` function has to be edited. Consequently leading to `createSocketAndConnectToHost`, which will then result in formation of a new function doing exactly same as this, but which also lets us specify self port `createSocketBindPortAndConnectToHost`.
+  - This new function will then help `createDataConnection` in doing things as per spec.
 
 ## Future scope
 
-- [ ] Resolve all the `@todos`
+- [ ] Resolve all the `@todo`'s
+- [ ] Do optimised exception handling
+- [ ] Move to precise colored outputs ?? and no extra logging ??
+- [ ] make a command buffer to allow simultaneous commands without pressing `enter`
+- [ ] Handle input `history` and other stuff using `ncurses` ? Maybe.
+- [ ] Implement ABORT and related functionality - refer to branch `develop-ABOR`
 - [ ] implement PASV command. Test with one client & server-to-server transfer
-- [ ] Transferring multiple files in single data connection
-- [ ] Using ncurses to handle input `history` and other useful stuff
-- [ ] When ready, move to precise colored outputs, and no logging.
+- [ ] Implement `BLOCK MODE` - not closing the data connection immediately and reusing it in subsequent requests until a TTL.
+- [ ] Implement `BLOCK MODE` to allow transferring of multiple files in a single data connection. 
+- [ ] add unit tests

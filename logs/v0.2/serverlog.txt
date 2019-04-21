@@ -1,0 +1,1638 @@
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO] : [SERVER] : I am creating a new data Connection
+(jatin) [LOGGING] Server config is : 
+(jatin) [Variable] controlConnectionIP = 127.0.0.1
+(jatin) [Variable] controlConnectionPortNumber = 9000
+(jatin) [Variable] dataConnectionIP = 127.0.0.1
+(jatin) [Variable] dataConnectionPortNumber = 9010
+(jatin) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user root
+
+[INFO][REQUEST] : pass root
+
+(root) [INFO][REQUEST] : sys
+
+(root) [INFO][REQUEST] : LIST
+
+(root) [INFO] : [SERVER] : I am creating a new data Connection
+(root) [LOGGING] Server config is : 
+(root) [Variable] controlConnectionIP = 127.0.0.1
+(root) [Variable] controlConnectionPortNumber = 9000
+(root) [Variable] dataConnectionIP = 127.0.0.1
+(root) [Variable] dataConnectionPortNumber = 9010
+(root) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user root
+
+[INFO][REQUEST] : pass root
+
+(root) [INFO][REQUEST] : sys
+
+(root) [INFO][REQUEST] : LIST
+
+(root) [INFO][REQUEST] : CWD testfiles
+
+(root) [INFO][REQUEST] : LIST
+
+(root) [INFO] : [SERVER] : I am creating a new data Connection
+(root) [LOGGING] Server config is : 
+(root) [Variable] controlConnectionIP = 127.0.0.1
+(root) [Variable] controlConnectionPortNumber = 9000
+(root) [Variable] dataConnectionIP = 127.0.0.1
+(root) [Variable] dataConnectionPortNumber = 9010
+(root) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user root
+
+[INFO][REQUEST] : pass root
+
+(root) [INFO][REQUEST] : sys
+
+(root) [INFO][REQUEST] : LIST
+
+(root) [INFO][REQUEST] : CWD testfiles
+
+(root) [INFO][REQUEST] : LIST
+
+(root) [INFO][REQUEST] : RETR small.pdf
+
+(root) [INFO] : [SERVER] : I am creating a new data Connection
+(root) [LOGGING] Server config is : 
+(root) [Variable] controlConnectionIP = 127.0.0.1
+(root) [Variable] controlConnectionPortNumber = 9000
+(root) [Variable] dataConnectionIP = 127.0.0.1
+(root) [Variable] dataConnectionPortNumber = 9010
+(root) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+
+(root) [INFO] : Bytes Sent : 3483460
+(root) [LOGGING] File Sent.
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO] : [SERVER] : I am creating a new data Connection
+(jatin) [LOGGING] Server config is : 
+(jatin) [Variable] controlConnectionIP = 127.0.0.1
+(jatin) [Variable] controlConnectionPortNumber = 9000
+(jatin) [Variable] dataConnectionIP = 127.0.0.1
+(jatin) [Variable] dataConnectionPortNumber = 9010
+(jatin) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO] : [SERVER] : I am creating a new data Connection
+(jatin) [LOGGING] Server config is : 
+(jatin) [Variable] controlConnectionIP = 127.0.0.1
+(jatin) [Variable] controlConnectionPortNumber = 9000
+(jatin) [Variable] dataConnectionIP = 127.0.0.1
+(jatin) [Variable] dataConnectionPortNumber = 9010
+(jatin) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+
+(jatin) [INFO] : [SERVER] : I am creating a new data Connection
+(jatin) [LOGGING] Server config is : 
+(jatin) [Variable] controlConnectionIP = 127.0.0.1
+(jatin) [Variable] controlConnectionPortNumber = 9000
+(jatin) [Variable] dataConnectionIP = 127.0.0.1
+(jatin) [Variable] dataConnectionPortNumber = 9010
+(jatin) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+
+(jatin) [INFO] : Bytes Sent : 3483460
+(jatin) [LOGGING] File Sent.
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO] : [SERVER] : I am creating a new data Connection
+(jatin) [LOGGING] Server config is : 
+(jatin) [Variable] controlConnectionIP = 127.0.0.1
+(jatin) [Variable] controlConnectionPortNumber = 9000
+(jatin) [Variable] dataConnectionIP = 127.0.0.1
+(jatin) [Variable] dataConnectionPortNumber = 9010
+(jatin) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD ..
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO] : [SERVER] : I am creating a new data Connection
+(jatin) [LOGGING] Server config is : 
+(jatin) [Variable] controlConnectionIP = 127.0.0.1
+(jatin) [Variable] controlConnectionPortNumber = 9000
+(jatin) [Variable] dataConnectionIP = 127.0.0.1
+(jatin) [Variable] dataConnectionPortNumber = 9010
+(jatin) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user root
+
+[INFO][REQUEST] : pass root
+
+(root) [INFO][REQUEST] : sys
+
+(root) [INFO][REQUEST] : LIST
+
+(root) [INFO][REQUEST] : CWD testfiles
+
+(root) [INFO][REQUEST] : LIST
+
+(root) [INFO][REQUEST] : RETR small.pdf
+(root) [LOGGING] Server Sent File Successfully.
+(root) [LOGGING] Client Received File Successfully.
+
+
+(root) [INFO][REQUEST] : noop
+
+(root) [INFO][REQUEST] : LIST
+
+(root) [INFO] : [SERVER] : I am creating a new data Connection
+(root) [LOGGING] Server config is : 
+(root) [Variable] controlConnectionIP = 127.0.0.1
+(root) [Variable] controlConnectionPortNumber = 9000
+(root) [Variable] dataConnectionIP = 127.0.0.1
+(root) [Variable] dataConnectionPortNumber = 9010
+(root) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD ..
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO] : [SERVER] : I am creating a new data Connection
+(jatin) [LOGGING] Server config is : 
+(jatin) [Variable] controlConnectionIP = 127.0.0.1
+(jatin) [Variable] controlConnectionPortNumber = 9000
+(jatin) [Variable] dataConnectionIP = 127.0.0.1
+(jatin) [Variable] dataConnectionPortNumber = 9010
+(jatin) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD ..
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+
+(jatin) [INFO] : [SERVER] : I am creating a new data Connection
+(jatin) [LOGGING] Server config is : 
+(jatin) [Variable] controlConnectionIP = 127.0.0.1
+(jatin) [Variable] controlConnectionPortNumber = 9000
+(jatin) [Variable] dataConnectionIP = 127.0.0.1
+(jatin) [Variable] dataConnectionPortNumber = 9010
+(jatin) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+
+(jatin) [INFO] : Bytes Sent : 3483460
+(jatin) [LOGGING] File Sent.
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user root
+
+[INFO][REQUEST] : pass root
+
+(root) [INFO][REQUEST] : sys
+
+(root) [INFO][REQUEST] : LIST
+
+(root) [INFO][REQUEST] : CWD testfiles
+
+(root) [INFO][REQUEST] : LIST
+
+(root) [INFO][REQUEST] : RETR small.pdf
+(root) [LOGGING] Server Sent File Successfully.
+(root) [LOGGING] Client Received File Successfully.
+
+
+(root) [INFO][REQUEST] : noop
+
+(root) [INFO][REQUEST] : LIST
+
+(root) [INFO][REQUEST] : RETR superbig.mp4
+
+(root) [INFO] : [SERVER] : I am creating a new data Connection
+(root) [LOGGING] Server config is : 
+(root) [Variable] controlConnectionIP = 127.0.0.1
+(root) [Variable] controlConnectionPortNumber = 9000
+(root) [Variable] dataConnectionIP = 127.0.0.1
+(root) [Variable] dataConnectionPortNumber = 9010
+(root) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+
+(root) [INFO] : Bytes Sent : 190877452
+(root) [LOGGING] File Sent.
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD ..
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : cdup
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO] : [SERVER] : I am creating a new data Connection
+(jatin) [LOGGING] Server config is : 
+(jatin) [Variable] controlConnectionIP = 127.0.0.1
+(jatin) [Variable] controlConnectionPortNumber = 9000
+(jatin) [Variable] dataConnectionIP = 127.0.0.1
+(jatin) [Variable] dataConnectionPortNumber = 9010
+(jatin) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD ..
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : cdup
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO] : [SERVER] : I am creating a new data Connection
+(jatin) [LOGGING] Server config is : 
+(jatin) [Variable] controlConnectionIP = 127.0.0.1
+(jatin) [Variable] controlConnectionPortNumber = 9000
+(jatin) [Variable] dataConnectionIP = 127.0.0.1
+(jatin) [Variable] dataConnectionPortNumber = 9010
+(jatin) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD ..
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : cdup
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO] : [SERVER] : I am creating a new data Connection
+(jatin) [LOGGING] Server config is : 
+(jatin) [Variable] controlConnectionIP = 127.0.0.1
+(jatin) [Variable] controlConnectionPortNumber = 9000
+(jatin) [Variable] dataConnectionIP = 127.0.0.1
+(jatin) [Variable] dataConnectionPortNumber = 9010
+(jatin) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD ..
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : cdup
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : STOR putme.pdf
+
+(jatin) [INFO] : [SERVER] : I am creating a new data Connection
+(jatin) [LOGGING] Server config is : 
+(jatin) [Variable] controlConnectionIP = 127.0.0.1
+(jatin) [Variable] controlConnectionPortNumber = 9000
+(jatin) [Variable] dataConnectionIP = 127.0.0.1
+(jatin) [Variable] dataConnectionPortNumber = 9010
+(jatin) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+(jatin) [LOGGING] Client Ready to Send File
+
+(jatin) [LOGGING] Server Ready To Receive file.
+
+(jatin) [INFO] : Bytes Received : 3483460
+(jatin) [LOGGING] File Received.
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD ..
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : cdup
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : STOR putme.pdf
+(jatin) [LOGGING] Client Sent File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO] : [SERVER] : I am creating a new data Connection
+(jatin) [LOGGING] Server config is : 
+(jatin) [Variable] controlConnectionIP = 127.0.0.1
+(jatin) [Variable] controlConnectionPortNumber = 9000
+(jatin) [Variable] dataConnectionIP = 127.0.0.1
+(jatin) [Variable] dataConnectionPortNumber = 9010
+(jatin) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD ..
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : cdup
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : STOR putme.pdf
+(jatin) [LOGGING] Client Sent File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : MKD helloDir
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO] : [SERVER] : I am creating a new data Connection
+(jatin) [LOGGING] Server config is : 
+(jatin) [Variable] controlConnectionIP = 127.0.0.1
+(jatin) [Variable] controlConnectionPortNumber = 9000
+(jatin) [Variable] dataConnectionIP = 127.0.0.1
+(jatin) [Variable] dataConnectionPortNumber = 9010
+(jatin) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD ..
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : cdup
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : STOR putme.pdf
+(jatin) [LOGGING] Client Sent File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : MKD helloDir
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : RMD helloDir
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO] : [SERVER] : I am creating a new data Connection
+(jatin) [LOGGING] Server config is : 
+(jatin) [Variable] controlConnectionIP = 127.0.0.1
+(jatin) [Variable] controlConnectionPortNumber = 9000
+(jatin) [Variable] dataConnectionIP = 127.0.0.1
+(jatin) [Variable] dataConnectionPortNumber = 9010
+(jatin) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD ..
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : cdup
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : STOR putme.pdf
+(jatin) [LOGGING] Client Sent File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : MKD helloDir
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : RMD helloDir
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO] : [SERVER] : I am creating a new data Connection
+(jatin) [LOGGING] Server config is : 
+(jatin) [Variable] controlConnectionIP = 127.0.0.1
+(jatin) [Variable] controlConnectionPortNumber = 9000
+(jatin) [Variable] dataConnectionIP = 127.0.0.1
+(jatin) [Variable] dataConnectionPortNumber = 9010
+(jatin) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD ..
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : cdup
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : STOR putme.pdf
+(jatin) [LOGGING] Client Sent File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : MKD helloDir
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : RMD helloDir
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : PWD
+
+(jatin) [INFO][REQUEST] : port CURRENT_MACHINE_IP 7878
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+
+(jatin) [INFO] : [SERVER] : I am creating a new data Connection
+(jatin) [LOGGING] Server config is : 
+(jatin) [Variable] controlConnectionIP = 127.0.0.1
+(jatin) [Variable] controlConnectionPortNumber = 9000
+(jatin) [Variable] dataConnectionIP = 127.0.0.1
+(jatin) [Variable] dataConnectionPortNumber = 7878
+(jatin) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+
+(jatin) [INFO] : Bytes Sent : 3483460
+(jatin) [LOGGING] File Sent.
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user root
+
+[INFO][REQUEST] : pass root
+
+(root) [INFO][REQUEST] : sys
+
+(root) [INFO][REQUEST] : LIST
+
+(root) [INFO][REQUEST] : CWD testfiles
+
+(root) [INFO][REQUEST] : LIST
+
+(root) [INFO][REQUEST] : RETR small.pdf
+(root) [LOGGING] Server Sent File Successfully.
+(root) [LOGGING] Client Received File Successfully.
+
+
+(root) [INFO][REQUEST] : noop
+
+(root) [INFO][REQUEST] : LIST
+
+(root) [INFO][REQUEST] : RETR superbig.mp4
+(root) [LOGGING] Server Sent File Successfully.
+(root) [LOGGING] Client Received File Successfully.
+
+
+(root) [INFO][REQUEST] : noop
+
+(root) [INFO][REQUEST] : QUIT
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user jatin
+
+[INFO][REQUEST] : pass jatin
+
+(jatin) [INFO][REQUEST] : sys
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD ..
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : cdup
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : CWD testfiles
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : STOR putme.pdf
+(jatin) [LOGGING] Client Sent File Successfully.
+
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : MKD helloDir
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : RMD helloDir
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : LIST
+
+(jatin) [INFO][REQUEST] : PWD
+
+(jatin) [INFO][REQUEST] : port CURRENT_MACHINE_IP 7878
+
+(jatin) [INFO][REQUEST] : RETR small.pdf
+(jatin) [LOGGING] Server Sent File Successfully.
+(jatin) [LOGGING] Client Received File Successfully.
+
+
+(jatin) [INFO][REQUEST] : QUIT
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user id
+
+[INFO][REQUEST] : pass pass
+
+(id) [INFO][REQUEST] : sys
+
+(id) [INFO][REQUEST] : LIST
+
+(id) [INFO] : [SERVER] : I am creating a new data Connection
+(id) [LOGGING] Server config is : 
+(id) [Variable] controlConnectionIP = 127.0.0.1
+(id) [Variable] controlConnectionPortNumber = 9000
+(id) [Variable] dataConnectionIP = 127.0.0.1
+(id) [Variable] dataConnectionPortNumber = 9010
+(id) [Variable] backlogsPermitted = 10
+
+[SERVER-INITIATED:CONNECTION] Connected to  127.0.0.1
+Server Started at Port 9000
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO] Server Listening at 9000
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+[CLIENT]: Got connection from 127.0.0.1
+[INFO] [SERVER] Got connection from 127.0.0.1
+
+New Connection Accepted. Creating Process to handle this.
+() [LOGGING] Server config is : 
+() [Variable] controlConnectionIP = 127.0.0.1
+() [Variable] controlConnectionPortNumber = 9000
+() [Variable] dataConnectionIP = 127.0.0.1
+() [Variable] dataConnectionPortNumber = 9010
+() [Variable] backlogsPermitted = 10
+
+[INFO][REQUEST] : user id
+
+[INFO][REQUEST] : pass pass
+
+(id) [INFO][REQUEST] : sys
+
+(id) [INFO][REQUEST] : LIST
+
+(id) [INFO][REQUEST] : QUIT
